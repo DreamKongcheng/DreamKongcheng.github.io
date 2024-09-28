@@ -1,17 +1,13 @@
 ---
 
-title: Github Pages + Hexo从零搭建个人博客
-
+title: Github Pages + Hexo从零搭建个人博客（一）：基础建设
 author: JunZhe
-
 date: 2024-09-27 21:17:27
-
-tags: 前端 网站建设
-
+tags: 
+- 前端 
+- 网站建设
 comments: true
-
 categories: 个人博客建设
-
 ---
 
 
@@ -263,7 +259,7 @@ hexo new "Github Pages + Hexo从零搭建个人博客"
 deploy:
   type: git
   repo: https://github.com/YourgithubName/YourgithubName.github.io.git
-  branch: master
+  branch: main
 ```
 
 在执行之前，记得安装自动部署 (--save 加不加的区别在于是否写入到依赖文件package.json中)
@@ -283,8 +279,4 @@ hexo deploy  #部署文章，缩写hexo d
 过一会儿就可以在`http://yourname.github.io`这个网站看到你的博客了！
 
 （ps：其实部署就是把public内的所有内容推送到仓库中。.gitignore中的内容是给版本控制用的）
-
-
-
-
 
