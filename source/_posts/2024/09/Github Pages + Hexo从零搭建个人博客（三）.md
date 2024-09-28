@@ -38,7 +38,7 @@ scheme: Mist
 
 这里我选择了Mist主题，我很喜欢他的顶部导航栏
 
-![image-20240928212948404](assets/Github Pages + Hexo从零搭建个人博客（三）/image-20240928212948404.png)
+![image-20240928212948404](https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409282248043.webp)
 
 ### 设置菜单
 
@@ -99,7 +99,7 @@ type: tags
 ---
 ```
 
-![image-20240928214810057](assets/Github Pages + Hexo从零搭建个人博客（三）/image-20240928214810057.png)
+![image-20240928214810057](https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409282248044.webp)
 
 这样就对了
 
@@ -115,7 +115,7 @@ type: tags
 
 4. （可选）为菜单栏的图标添加内容数量统计，效果如下：
 
-![image-20240928215331479](assets/Github Pages + Hexo从零搭建个人博客（三）/image-20240928215331479.png)
+![image-20240928215331479](https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409282248045.webp)
 
 
 
@@ -187,7 +187,7 @@ site_state: true
 
 - 是否展示这三个图标，方便你在sidebar里快速导航
 
-![image-20240928220954102](assets/Github Pages + Hexo从零搭建个人博客（三）/image-20240928220954102.png)
+![image-20240928220954102](https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409282248046.webp)
 
 
 
