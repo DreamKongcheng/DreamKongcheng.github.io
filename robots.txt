@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Allow: /about/
+Allow: /archives/
+Allow: /blogs/
+Allow: /categories/
+Allow: /tags/
+
+Disallow: /js/
+Disallow: /css/
+Disallow: /lib/
+
+Sitemap: https://www.DreamKongcheng.com/sitemap.xml
+Sitemap: https://www.DreamKongcheng.com/baidusitemap.xml
