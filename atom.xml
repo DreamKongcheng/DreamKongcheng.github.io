@@ -6,7 +6,7 @@
   <link href="https://dreamkongcheng.github.io/atom.xml" rel="self"/>
   
   <link href="https://dreamkongcheng.github.io/"/>
-  <updated>2025-05-07T13:54:48.006Z</updated>
+  <updated>2025-05-10T14:27:11.573Z</updated>
   <id>https://dreamkongcheng.github.io/</id>
   
   <author>
@@ -17,9 +17,134 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>59.螺旋矩阵II</title>
+    <link href="https://dreamkongcheng.github.io/blogs/%E5%88%B7%E9%A2%98/%E6%95%B0%E7%BB%84/059-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II/"/>
+    <id>https://dreamkongcheng.github.io/blogs/%E5%88%B7%E9%A2%98/%E6%95%B0%E7%BB%84/059-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II/</id>
+    <published>2025-05-10T14:22:37.000Z</published>
+    <updated>2025-05-10T14:27:11.573Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目简介"><a href="#题目简介" class="headerlink" title="题目简介"></a>题目简介</h2><p><a href="https://leetcode.cn/problems/spiral-matrix-ii/description/">题目链接</a></p><p>给你一个正整数 n ，生成一个包含 1 到 n2 所有元素，且元素按顺时针顺序螺旋排列的 n x n 正方形矩阵 matrix 。</p><p>示例 1：<br><img src="https://assets.leetcode.com/uploads/2020/11/13/spiraln.jpg"></p><p>输入：n &#x3D; 3<br>输出：[[1,2,3],[8,9,4],[7,6,5]]<br>示例 2：</p><p>输入：n &#x3D; 1<br>输出：[[1]]</p><p>提示：</p><p>1 &lt;&#x3D; n &lt;&#x3D; 20</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>这道题很容易把人绕晕进去，如果找不到一个统一的写法，会产生大量的逻辑判断。下面我给出一个很巧妙的方法，不光是对这种正方形有用，同时也适用于长方形</p><p>我们访问的顺序就是最外面这一圈，像是<strong>剥洋葱</strong>一样，一条一条的把边剥开，然后每次处理的就是一个新的矩形，代码其实非常好理解，up,down, left, right分别表示矩形的上下左右边界，count表示当前要填入的数字，vec是结果矩阵</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">generateMatrix</span>(<span class="type">int</span> n) &#123;</span><br><span class="line">        <span class="type">int</span> up = <span class="number">0</span>, down = n - <span class="number">1</span>, left = <span class="number">0</span>, right = n - <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> count = <span class="number">1</span>;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">vec</span>(n, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(n, <span class="number">0</span>));</span><br><span class="line">        <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = left; i &lt;= right; i++) vec[up][i] = count++;</span><br><span class="line">            <span class="keyword">if</span> (++up &gt; down) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = up; i &lt;= down; i++) vec[i][right] = count++;</span><br><span class="line">            <span class="keyword">if</span> (--right &lt; left) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = right; i &gt;= left; i--) vec[down][i] = count++;</span><br><span class="line">            <span class="keyword">if</span> (--down &lt; up) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = down; i &gt;= up; i--) vec[i][left] = count++;</span><br><span class="line">            <span class="keyword">if</span> (++left &gt; right) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> vec;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>时间复杂度O(n^2)，空间复杂度O(n^2)</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;题目简介&quot;&gt;&lt;a href=&quot;#题目简介&quot; class=&quot;headerlink&quot; title=&quot;题目简介&quot;&gt;&lt;/a&gt;题目简介&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://leetcode.cn/problems/spiral-matrix-ii/descrip</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>209.长度最小的子数组</title>
+    <link href="https://dreamkongcheng.github.io/blogs/%E5%88%B7%E9%A2%98/%E6%95%B0%E7%BB%84/209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/"/>
+    <id>https://dreamkongcheng.github.io/blogs/%E5%88%B7%E9%A2%98/%E6%95%B0%E7%BB%84/209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/</id>
+    <published>2025-05-10T10:13:57.000Z</published>
+    <updated>2025-05-10T10:29:13.817Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目简介"><a href="#题目简介" class="headerlink" title="题目简介"></a>题目简介</h2><p><a href="https://leetcode.cn/problems/minimum-size-subarray-sum/description/">题目链接</a></p><p>给定一个含有 n 个正整数的数组和一个正整数 target 。</p><p>找出该数组中满足其总和大于等于 target 的长度最小的 子数组 [numsl, numsl+1, …, numsr-1, numsr] ，并返回其长度。如果不存在符合条件的子数组，返回 0 。</p><p>示例 1：</p><p>输入：target &#x3D; 7, nums &#x3D; [2,3,1,2,4,3]<br>输出：2<br>解释：子数组 [4,3] 是该条件下的长度最小的子数组。<br>示例 2：</p><p>输入：target &#x3D; 4, nums &#x3D; [1,4,4]<br>输出：1<br>示例 3：</p><p>输入：target &#x3D; 11, nums &#x3D; [1,1,1,1,1,1,1,1]<br>输出：0</p><p>提示：</p><p>1 &lt;&#x3D; target &lt;&#x3D; 109<br>1 &lt;&#x3D; nums.length &lt;&#x3D; 105<br>1 &lt;&#x3D; nums[i] &lt;&#x3D; 104</p><p>进阶：</p><p>如果你已经实现 O(n) 时间复杂度的解法, 请尝试设计一个 O(n log(n)) 时间复杂度的解法。</p><span id="more"></span><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>首先想到的会是暴力解法</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="type">int</span> s, vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> result = INT32_MAX; <span class="comment">// 最终的结果</span></span><br><span class="line">        <span class="type">int</span> sum = <span class="number">0</span>; <span class="comment">// 子序列的数值之和</span></span><br><span class="line">        <span class="type">int</span> subLength = <span class="number">0</span>; <span class="comment">// 子序列的长度</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++) &#123; <span class="comment">// 设置子序列起点为i</span></span><br><span class="line">            sum = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = i; j &lt; nums.<span class="built_in">size</span>(); j++) &#123; <span class="comment">// 设置子序列终止位置为j</span></span><br><span class="line">                sum += nums[j];</span><br><span class="line">                <span class="keyword">if</span> (sum &gt;= s) &#123; <span class="comment">// 一旦发现子序列和超过了s，更新result</span></span><br><span class="line">                    subLength = j - i + <span class="number">1</span>; <span class="comment">// 取子序列的长度</span></span><br><span class="line">                    result = result &lt; subLength ? result : subLength;</span><br><span class="line">                    <span class="keyword">break</span>; <span class="comment">// 因为我们是找符合条件最短的子序列，所以一旦符合条件就break</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果result没有被赋值的话，就返回0，说明没有符合条件的子序列</span></span><br><span class="line">        <span class="keyword">return</span> result == INT32_MAX ? <span class="number">0</span> : result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>就是从每个开始的位置开始，向后枚举，直到找到符合条件的子序列</p><p>如何优化到使用一个for循环呢？我们可以使用双指针法，或者在这道题里可以叫做滑动窗口法</p><p>现在只有一个for循环，该记录窗口的起始位置还是结束位置呢？答案是结束位置，因为如果是起始位置的话依然会陷入需要枚举结束位置的困境，那样还是O(n^2)的复杂度</p><p>所以我们循环的索引就设置为结束位置，然后把起始位置先设置为0，然后每次发现窗口内的序列和超过了s，就要把起始位置向后移动来减小窗口的大小</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="type">int</span> target, vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> sum=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> subLength=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> result=INT_MAX;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;nums.<span class="built_in">size</span>();j++)&#123;</span><br><span class="line">            sum+=nums[j];</span><br><span class="line">            <span class="keyword">while</span>(sum&gt;=target)&#123; <span class="comment">// 这里很精髓</span></span><br><span class="line">                subLength=j-i<span class="number">+1</span>;</span><br><span class="line">                <span class="keyword">if</span>(subLength&lt;result)&#123;</span><br><span class="line">                    result=subLength;</span><br><span class="line">                &#125;</span><br><span class="line">                sum-=nums[i];</span><br><span class="line">                i++;</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(result==INT_MAX)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>因为每个元素最多只会被遍历两次（一进一出），所以时间复杂度是O(n)，空间复杂度是O(1)</p>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;题目简介&quot;&gt;&lt;a href=&quot;#题目简介&quot; class=&quot;headerlink&quot; title=&quot;题目简介&quot;&gt;&lt;/a&gt;题目简介&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://leetcode.cn/problems/minimum-size-subarray-sum/description/&quot;&gt;题目链接&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;给定一个含有 n 个正整数的数组和一个正整数 target 。&lt;/p&gt;
+&lt;p&gt;找出该数组中满足其总和大于等于 target 的长度最小的 子数组 [numsl, numsl+1, …, numsr-1, numsr] ，并返回其长度。如果不存在符合条件的子数组，返回 0 。&lt;/p&gt;
+&lt;p&gt;示例 1：&lt;/p&gt;
+&lt;p&gt;输入：target &amp;#x3D; 7, nums &amp;#x3D; [2,3,1,2,4,3]&lt;br&gt;输出：2&lt;br&gt;解释：子数组 [4,3] 是该条件下的长度最小的子数组。&lt;br&gt;示例 2：&lt;/p&gt;
+&lt;p&gt;输入：target &amp;#x3D; 4, nums &amp;#x3D; [1,4,4]&lt;br&gt;输出：1&lt;br&gt;示例 3：&lt;/p&gt;
+&lt;p&gt;输入：target &amp;#x3D; 11, nums &amp;#x3D; [1,1,1,1,1,1,1,1]&lt;br&gt;输出：0&lt;/p&gt;
+&lt;p&gt;提示：&lt;/p&gt;
+&lt;p&gt;1 &amp;lt;&amp;#x3D; target &amp;lt;&amp;#x3D; 109&lt;br&gt;1 &amp;lt;&amp;#x3D; nums.length &amp;lt;&amp;#x3D; 105&lt;br&gt;1 &amp;lt;&amp;#x3D; nums[i] &amp;lt;&amp;#x3D; 104&lt;/p&gt;
+&lt;p&gt;进阶：&lt;/p&gt;
+&lt;p&gt;如果你已经实现 O(n) 时间复杂度的解法, 请尝试设计一个 O(n log(n)) 时间复杂度的解法。&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>977.有序数组的平方</title>
+    <link href="https://dreamkongcheng.github.io/blogs/%E5%88%B7%E9%A2%98/%E6%95%B0%E7%BB%84/977-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/"/>
+    <id>https://dreamkongcheng.github.io/blogs/%E5%88%B7%E9%A2%98/%E6%95%B0%E7%BB%84/977-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/</id>
+    <published>2025-05-10T09:43:35.000Z</published>
+    <updated>2025-05-10T09:52:19.675Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目简介"><a href="#题目简介" class="headerlink" title="题目简介"></a>题目简介</h2><p><a href="https://leetcode.cn/problems/squares-of-a-sorted-array/description/">977. 有序数组的平方</a></p><p>给你一个按 非递减顺序 排序的整数数组 nums，返回 每个数字的平方 组成的新数组，要求也按 非递减顺序 排序。</p><p>示例 1：<br>输入：nums &#x3D; [-4,-1,0,3,10]<br>输出：[0,1,9,16,100]<br>解释：平方后，数组变为 [16,1,0,9,100]<br>排序后，数组变为 [0,1,9,16,100]</p><p>示例 2：<br>输入：nums &#x3D; [-7,-3,2,3,11]<br>输出：[4,9,9,49,121]</p><p>提示：<br>1 &lt;&#x3D; nums.length &lt;&#x3D; 104<br>-104 &lt;&#x3D; nums[i] &lt;&#x3D; 104<br>nums 已按 非递减顺序 排序</p><p>进阶：<br>请你设计时间复杂度为 O(n) 的算法解决本问题</p><span id="more"></span><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>想要在O(n)的时间复杂度内完成这个题目，我们可以使用双指针法。<br>平方其实是个二次函数，最大的值会出现在两端，所以可以用左右两个指针不断向中间进行遍历，然后开辟一个新的数组，从后往前接住两个指针中较大的值的平方。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">sortedSquares</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">result</span><span class="params">(nums.size())</span></span>;</span><br><span class="line">        <span class="type">int</span> k=nums.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>,j=k;i&lt;=j;)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]*nums[i]&lt;nums[j]*nums[j])&#123;</span><br><span class="line">                result[k--]=nums[j]*nums[j];</span><br><span class="line">                j--;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                result[k--]=nums[i]*nums[i];</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>时间复杂度O(n)，空间复杂度O(n)</p><p>注意i&lt;&#x3D;j，如果没有等号，此位置的元素会被遗漏而没有填入到result中。</p>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;题目简介&quot;&gt;&lt;a href=&quot;#题目简介&quot; class=&quot;headerlink&quot; title=&quot;题目简介&quot;&gt;&lt;/a&gt;题目简介&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://leetcode.cn/problems/squares-of-a-sorted-array/description/&quot;&gt;977. 有序数组的平方&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;给你一个按 非递减顺序 排序的整数数组 nums，返回 每个数字的平方 组成的新数组，要求也按 非递减顺序 排序。&lt;/p&gt;
+&lt;p&gt;示例 1：&lt;br&gt;输入：nums &amp;#x3D; [-4,-1,0,3,10]&lt;br&gt;输出：[0,1,9,16,100]&lt;br&gt;解释：平方后，数组变为 [16,1,0,9,100]&lt;br&gt;排序后，数组变为 [0,1,9,16,100]&lt;/p&gt;
+&lt;p&gt;示例 2：&lt;br&gt;输入：nums &amp;#x3D; [-7,-3,2,3,11]&lt;br&gt;输出：[4,9,9,49,121]&lt;/p&gt;
+&lt;p&gt;提示：&lt;br&gt;1 &amp;lt;&amp;#x3D; nums.length &amp;lt;&amp;#x3D; 104&lt;br&gt;-104 &amp;lt;&amp;#x3D; nums[i] &amp;lt;&amp;#x3D; 104&lt;br&gt;nums 已按 非递减顺序 排序&lt;/p&gt;
+&lt;p&gt;进阶：&lt;br&gt;请你设计时间复杂度为 O(n) 的算法解决本问题&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>027.移除元素</title>
+    <link href="https://dreamkongcheng.github.io/blogs/%E5%88%B7%E9%A2%98/%E6%95%B0%E7%BB%84/027-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/"/>
+    <id>https://dreamkongcheng.github.io/blogs/%E5%88%B7%E9%A2%98/%E6%95%B0%E7%BB%84/027-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/</id>
+    <published>2025-05-10T09:09:29.000Z</published>
+    <updated>2025-05-10T09:52:50.244Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目简介"><a href="#题目简介" class="headerlink" title="题目简介"></a>题目简介</h2><p><a href="https://leetcode.cn/problems/remove-element/description/">题目链接</a><br>给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素。元素的顺序可能发生改变。然后返回 nums 中与 val 不同的元素的数量。</p><p>假设 nums 中不等于 val 的元素数量为 k，要通过此题，您需要执行以下操作：</p><p>更改 nums 数组，使 nums 的前 k 个元素包含不等于 val 的元素。nums 的其余元素和 nums 的大小并不重要。<br>返回 k。<br>用户评测：</p><p>评测机将使用以下代码测试您的解决方案：</p><p>示例 1：</p><p>输入：nums &#x3D; [3,2,2,3], val &#x3D; 3<br>输出：2, nums &#x3D; [2,2,<em>,</em>]<br>解释：你的函数函数应该返回 k &#x3D; 2, 并且 nums 中的前两个元素均为 2。<br>你在返回的 k 个元素之外留下了什么并不重要（因此它们并不计入评测）。<br>示例 2：</p><p>输入：nums &#x3D; [0,1,2,2,3,0,4,2], val &#x3D; 2<br>输出：5, nums &#x3D; [0,1,4,0,3,<em>,</em>,_]<br>解释：你的函数应该返回 k &#x3D; 5，并且 nums 中的前五个元素为 0,0,1,3,4。<br>注意这五个元素可以任意顺序返回。<br>你在返回的 k 个元素之外留下了什么并不重要（因此它们并不计入评测）。</p><p>提示：</p><p>0 &lt;&#x3D; nums.length &lt;&#x3D; 100<br>0 &lt;&#x3D; nums[i] &lt;&#x3D; 50<br>0 &lt;&#x3D; val &lt;&#x3D; 100</p><span id="more"></span><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>乍一看会想到用两层for循环，第一层检测要删除的元素，第二层是一个个位移填补空缺，这样是$O(n^2)$的时间复杂度</p><p>我们希望能优化到$O(n)$，此时容易想到双指针</p><p>双指针法（快慢指针法）： 通过一个快指针和慢指针在一个for循环下完成两个for循环的工作。</p><ul><li>快指针：寻找符合条件的元素位置</li><li>慢指针：定位更新的位置</li></ul><p>这样讲有点抽象，直接看代码</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">removeElement</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> slow = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> fast = <span class="number">0</span>; fast &lt; nums.<span class="built_in">size</span>(); fast++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[fast] != val) &#123;</span><br><span class="line">                nums[slow] = nums[fast];</span><br><span class="line">                slow++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> slow;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>当fast发现元素不是val的时候，会把现在的fast赋给现在的slow，并且slow也往前进。如果fast指向要删除的元素，就会把fast只会管自己往前走，此时slow就停下来了，等待下一个fast指向的非val的元素</p><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><ul><li>时间复杂度：O(n)</li><li>空间复杂度:O(1)</li></ul><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题是双指针的经典应用，很多数组问题中都可以使用双指针进行优化，必须很清楚两个指针都代表什么含义</p>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;题目简介&quot;&gt;&lt;a href=&quot;#题目简介&quot; class=&quot;headerlink&quot; title=&quot;题目简介&quot;&gt;&lt;/a&gt;题目简介&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://leetcode.cn/problems/remove-element/description/&quot;&gt;题目链接&lt;/a&gt;&lt;br&gt;给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素。元素的顺序可能发生改变。然后返回 nums 中与 val 不同的元素的数量。&lt;/p&gt;
+&lt;p&gt;假设 nums 中不等于 val 的元素数量为 k，要通过此题，您需要执行以下操作：&lt;/p&gt;
+&lt;p&gt;更改 nums 数组，使 nums 的前 k 个元素包含不等于 val 的元素。nums 的其余元素和 nums 的大小并不重要。&lt;br&gt;返回 k。&lt;br&gt;用户评测：&lt;/p&gt;
+&lt;p&gt;评测机将使用以下代码测试您的解决方案：&lt;/p&gt;
+&lt;p&gt;示例 1：&lt;/p&gt;
+&lt;p&gt;输入：nums &amp;#x3D; [3,2,2,3], val &amp;#x3D; 3&lt;br&gt;输出：2, nums &amp;#x3D; [2,2,&lt;em&gt;,&lt;/em&gt;]&lt;br&gt;解释：你的函数函数应该返回 k &amp;#x3D; 2, 并且 nums 中的前两个元素均为 2。&lt;br&gt;你在返回的 k 个元素之外留下了什么并不重要（因此它们并不计入评测）。&lt;br&gt;示例 2：&lt;/p&gt;
+&lt;p&gt;输入：nums &amp;#x3D; [0,1,2,2,3,0,4,2], val &amp;#x3D; 2&lt;br&gt;输出：5, nums &amp;#x3D; [0,1,4,0,3,&lt;em&gt;,&lt;/em&gt;,_]&lt;br&gt;解释：你的函数应该返回 k &amp;#x3D; 5，并且 nums 中的前五个元素为 0,0,1,3,4。&lt;br&gt;注意这五个元素可以任意顺序返回。&lt;br&gt;你在返回的 k 个元素之外留下了什么并不重要（因此它们并不计入评测）。&lt;/p&gt;
+&lt;p&gt;提示：&lt;/p&gt;
+&lt;p&gt;0 &amp;lt;&amp;#x3D; nums.length &amp;lt;&amp;#x3D; 100&lt;br&gt;0 &amp;lt;&amp;#x3D; nums[i] &amp;lt;&amp;#x3D; 50&lt;br&gt;0 &amp;lt;&amp;#x3D; val &amp;lt;&amp;#x3D; 100&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="刷题" scheme="https://dreamkongcheng.github.io/categories/%E5%88%B7%E9%A2%98/"/>
+    
+    
+    <category term="数组" scheme="https://dreamkongcheng.github.io/tags/%E6%95%B0%E7%BB%84/"/>
+    
+    <category term="双指针" scheme="https://dreamkongcheng.github.io/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>704.二分查找</title>
+    <link href="https://dreamkongcheng.github.io/blogs/%E5%88%B7%E9%A2%98/%E6%95%B0%E7%BB%84/704-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"/>
+    <id>https://dreamkongcheng.github.io/blogs/%E5%88%B7%E9%A2%98/%E6%95%B0%E7%BB%84/704-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/</id>
+    <published>2025-05-10T08:22:15.000Z</published>
+    <updated>2025-05-10T09:15:56.018Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目简介"><a href="#题目简介" class="headerlink" title="题目简介"></a>题目简介</h2><p><a href="https://leetcode.cn/problems/binary-search/description/">题目链接</a></p><p>给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target  ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。</p><p>示例 1:</p><p>输入: nums &#x3D; [-1,0,3,5,9,12], target &#x3D; 9<br>输出: 4<br>解释: 9 出现在 nums 中并且下标为 4<br>示例 2:</p><p>输入: nums &#x3D; [-1,0,3,5,9,12], target &#x3D; 2<br>输出: -1<br>解释: 2 不存在 nums 中因此返回 -1</p><p>提示：</p><p>你可以假设 nums 中的所有元素是不重复的。<br>n 将在 [1, 10000]之间。<br>nums 的每个元素都将在 [-9999, 9999]之间。</p><span id="more"></span><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>首先我们明确一下二分查找的条件：</p><ol><li>数组是有序的</li><li>数组中没有重复元素（否则返回的下标可能会不唯一）</li></ol><p>然后要注意二分查找的边界条件，有两种写法，左闭右开和左闭右闭，我是用的左闭右闭的写法，左闭右闭的写法是：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">search</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> right = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> mid;</span><br><span class="line">        <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">            mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (target &gt; nums[mid]) &#123;</span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (target &lt; nums[mid]) &#123;</span><br><span class="line">                right = mid - <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>注意两个地方：</p><ol><li><code>left &lt;= right</code>，这个是二分查找的条件，左闭右闭中是小于等于</li><li><code>else if (target &lt; nums[mid])</code> right &#x3D; mid - 1;</li></ol><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><p>时间复杂度：O(logn)，每次都将搜索范围缩小一半<br>空间复杂度：O(1)，只使用了常数级别的额外空间</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>注意二分查找的适用前提以及边界条件</p>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;题目简介&quot;&gt;&lt;a href=&quot;#题目简介&quot; class=&quot;headerlink&quot; title=&quot;题目简介&quot;&gt;&lt;/a&gt;题目简介&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://leetcode.cn/problems/binary-search/description/&quot;&gt;题目链接&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target  ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。&lt;/p&gt;
+&lt;p&gt;示例 1:&lt;/p&gt;
+&lt;p&gt;输入: nums &amp;#x3D; [-1,0,3,5,9,12], target &amp;#x3D; 9&lt;br&gt;输出: 4&lt;br&gt;解释: 9 出现在 nums 中并且下标为 4&lt;br&gt;示例 2:&lt;/p&gt;
+&lt;p&gt;输入: nums &amp;#x3D; [-1,0,3,5,9,12], target &amp;#x3D; 2&lt;br&gt;输出: -1&lt;br&gt;解释: 2 不存在 nums 中因此返回 -1&lt;/p&gt;
+&lt;p&gt;提示：&lt;/p&gt;
+&lt;p&gt;你可以假设 nums 中的所有元素是不重复的。&lt;br&gt;n 将在 [1, 10000]之间。&lt;br&gt;nums 的每个元素都将在 [-9999, 9999]之间。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="刷题" scheme="https://dreamkongcheng.github.io/categories/%E5%88%B7%E9%A2%98/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>让Google搜到你的Github-Hexo个人博客</title>
-    <link href="https://dreamkongcheng.github.io/blogs/personal-blog-setup/%E8%AE%A9Google%E6%90%9C%E5%88%B0%E4%BD%A0%E7%9A%84Github-Hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
-    <id>https://dreamkongcheng.github.io/blogs/personal-blog-setup/%E8%AE%A9Google%E6%90%9C%E5%88%B0%E4%BD%A0%E7%9A%84Github-Hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</id>
+    <link href="https://dreamkongcheng.github.io/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/%E8%AE%A9Google%E6%90%9C%E5%88%B0%E4%BD%A0%E7%9A%84Github-Hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    <id>https://dreamkongcheng.github.io/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/%E8%AE%A9Google%E6%90%9C%E5%88%B0%E4%BD%A0%E7%9A%84Github-Hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</id>
     <published>2024-10-10T09:58:30.000Z</published>
     <updated>2025-05-07T13:54:48.006Z</updated>
     
@@ -46,8 +171,8 @@
   
   <entry>
     <title>Hexo如何不渲染.md与.html文件</title>
-    <link href="https://dreamkongcheng.github.io/blogs/personal-blog-setup/Hexo%E5%A6%82%E4%BD%95%E4%B8%8D%E6%B8%B2%E6%9F%93-md%E4%B8%8E-html%E6%96%87%E4%BB%B6/"/>
-    <id>https://dreamkongcheng.github.io/blogs/personal-blog-setup/Hexo%E5%A6%82%E4%BD%95%E4%B8%8D%E6%B8%B2%E6%9F%93-md%E4%B8%8E-html%E6%96%87%E4%BB%B6/</id>
+    <link href="https://dreamkongcheng.github.io/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Hexo%E5%A6%82%E4%BD%95%E4%B8%8D%E6%B8%B2%E6%9F%93-md%E4%B8%8E-html%E6%96%87%E4%BB%B6/"/>
+    <id>https://dreamkongcheng.github.io/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Hexo%E5%A6%82%E4%BD%95%E4%B8%8D%E6%B8%B2%E6%9F%93-md%E4%B8%8E-html%E6%96%87%E4%BB%B6/</id>
     <published>2024-10-10T08:58:37.000Z</published>
     <updated>2024-10-10T08:58:36.169Z</updated>
     
@@ -71,8 +196,8 @@
   
   <entry>
     <title>Hexo技巧之_posts文件夹管理</title>
-    <link href="https://dreamkongcheng.github.io/blogs/personal-blog-setup/Hexo%E6%8A%80%E5%B7%A7%E4%B9%8B_posts%E6%96%87%E4%BB%B6%E5%A4%B9%E7%AE%A1%E7%90%86/"/>
-    <id>https://dreamkongcheng.github.io/blogs/personal-blog-setup/Hexo%E6%8A%80%E5%B7%A7%E4%B9%8B_posts%E6%96%87%E4%BB%B6%E5%A4%B9%E7%AE%A1%E7%90%86/</id>
+    <link href="https://dreamkongcheng.github.io/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Hexo%E6%8A%80%E5%B7%A7%E4%B9%8B_posts%E6%96%87%E4%BB%B6%E5%A4%B9%E7%AE%A1%E7%90%86/"/>
+    <id>https://dreamkongcheng.github.io/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Hexo%E6%8A%80%E5%B7%A7%E4%B9%8B_posts%E6%96%87%E4%BB%B6%E5%A4%B9%E7%AE%A1%E7%90%86/</id>
     <published>2024-09-28T12:04:37.000Z</published>
     <updated>2024-10-10T08:44:03.257Z</updated>
     
@@ -95,38 +220,9 @@
   </entry>
   
   <entry>
-    <title>Github Pages + Hexo从零搭建个人博客（二）：Git双分支管理网页与源文件</title>
-    <link href="https://dreamkongcheng.github.io/blogs/personal-blog-setup/Github%20Pages%20+%20Hexo%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
-    <id>https://dreamkongcheng.github.io/blogs/personal-blog-setup/Github%20Pages%20+%20Hexo%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/</id>
-    <published>2024-09-28T10:46:45.000Z</published>
-    <updated>2024-10-10T08:44:07.527Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="双分支管理"><a href="#双分支管理" class="headerlink" title="双分支管理"></a>双分支管理</h2><p>参考文章：<a href="https://blog.csdn.net/gatieme/article/details/82317704">使用 GitHub 分支保存 Hexo 环境和博文</a></p><h3 id="为什么要双分支管理？"><a href="#为什么要双分支管理？" class="headerlink" title="为什么要双分支管理？"></a>为什么要双分支管理？</h3><p><code>hexo d</code>命令实际上是用了hexo-deploy-git工具，将public中的内容加入到.deploy_git文件夹中，然后把这个文件夹的内容同步到远程仓库(YourgithubName.github.io)中你<a href="#%E5%85%B7%E4%BD%93%E6%93%8D%E4%BD%9C">前面设置</a>的分支中。我这里设置的是main。</p><p>注意！你的source文件夹等是不会到public里面去的，所以不会被同步！</p><p>那么问题来了。如果我需要在不同地方撰写我的博客，或者我需要使用github来进行备份，该怎么办呢？</p><p>这时候就需要我们用两个分支，第一个main分支保存public的html内容，也就是我们的网站，另一个source分支来保存我们的配置文件、md源文件等。</p><span id="more"></span><h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><p>（如果完全安装我前面的步骤，你应该还没有进行<code>git init</code>，也没有同步远程仓库）</p><ol><li>初始化 Hexo 项目为 Git 仓库</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> Blogs  <span class="comment"># 返回到 Hexo 项目的根目录</span></span><br><span class="line">git init  <span class="comment"># 初始化 Git 仓库</span></span><br></pre></td></tr></table></figure><ol start="2"><li>切换到一个新的分支来保存源文件：</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b <span class="built_in">source</span></span><br></pre></td></tr></table></figure><ol start="3"><li>将当前的 Hexo 源文件（如 <code>_config.yml</code>、<code>themes</code> 目录、<code>source</code> 目录等）提交到这个 <code>source</code> 分支：</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;Initial commit of Hexo source files&quot;</span></span><br></pre></td></tr></table></figure><ol start="4"><li>关联远程仓库</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:&lt;YourName&gt;/&lt;YourName&gt;.github.io</span><br></pre></td></tr></table></figure><p>这一步需要你配置好ssh key，具体方法请自行google</p><p>通过<code>git remote -v</code>来检查是否关联成功，若成功，有如下消息：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">origin  git@github.com:&lt;YourName&gt;/&lt;YourName&gt;.github.io (fetch)</span><br><span class="line">origin  git@github.com:&lt;YourName&gt;/&lt;YourName&gt;.github.io (push)</span><br></pre></td></tr></table></figure><ol start="5"><li>推送</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin <span class="built_in">source</span></span><br></pre></td></tr></table></figure><p>这样就成功把源文件保存到<code>&lt;YourName&gt;.github.io</code>仓库的source分支了</p><p>接下来，你已经能够对你的整个Hexo博客环境进行git版本控制了，接下来尽情Diy你的个人博客吧！:smiley:</p>]]></content>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;双分支管理&quot;&gt;&lt;a href=&quot;#双分支管理&quot; class=&quot;headerlink&quot; title=&quot;双分支管理&quot;&gt;&lt;/a&gt;双分支管理&lt;/h2&gt;&lt;p&gt;参考文章：&lt;a href=&quot;https://blog.csdn.net/gatieme/article/details/82317704&quot;&gt;使用 GitHub 分支保存 Hexo 环境和博文&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;为什么要双分支管理？&quot;&gt;&lt;a href=&quot;#为什么要双分支管理？&quot; class=&quot;headerlink&quot; title=&quot;为什么要双分支管理？&quot;&gt;&lt;/a&gt;为什么要双分支管理？&lt;/h3&gt;&lt;p&gt;&lt;code&gt;hexo d&lt;/code&gt;命令实际上是用了hexo-deploy-git工具，将public中的内容加入到.deploy_git文件夹中，然后把这个文件夹的内容同步到远程仓库(YourgithubName.github.io)中你&lt;a href=&quot;#%E5%85%B7%E4%BD%93%E6%93%8D%E4%BD%9C&quot;&gt;前面设置&lt;/a&gt;的分支中。我这里设置的是main。&lt;/p&gt;
-&lt;p&gt;注意！你的source文件夹等是不会到public里面去的，所以不会被同步！&lt;/p&gt;
-&lt;p&gt;那么问题来了。如果我需要在不同地方撰写我的博客，或者我需要使用github来进行备份，该怎么办呢？&lt;/p&gt;
-&lt;p&gt;这时候就需要我们用两个分支，第一个main分支保存public的html内容，也就是我们的网站，另一个source分支来保存我们的配置文件、md源文件等。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="个人博客建设" scheme="https://dreamkongcheng.github.io/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%BB%BA%E8%AE%BE/"/>
-    
-    
-    <category term="前端" scheme="https://dreamkongcheng.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-    <category term="网站建设" scheme="https://dreamkongcheng.github.io/tags/%E7%BD%91%E7%AB%99%E5%BB%BA%E8%AE%BE/"/>
-    
-    <category term="Hexo" scheme="https://dreamkongcheng.github.io/tags/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Github Pages + Hexo从零搭建个人博客（三）：Next主题美化</title>
-    <link href="https://dreamkongcheng.github.io/blogs/personal-blog-setup/Github%20Pages%20+%20Hexo%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%89%EF%BC%89/"/>
-    <id>https://dreamkongcheng.github.io/blogs/personal-blog-setup/Github%20Pages%20+%20Hexo%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%89%EF%BC%89/</id>
+    <link href="https://dreamkongcheng.github.io/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Github%20Pages%20+%20Hexo%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%89%EF%BC%89/"/>
+    <id>https://dreamkongcheng.github.io/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Github%20Pages%20+%20Hexo%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%89%EF%BC%89/</id>
     <published>2024-09-28T10:46:45.000Z</published>
     <updated>2024-10-10T10:10:59.827Z</updated>
     
@@ -158,9 +254,38 @@
   </entry>
   
   <entry>
+    <title>Github Pages + Hexo从零搭建个人博客（二）：Git双分支管理网页与源文件</title>
+    <link href="https://dreamkongcheng.github.io/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Github%20Pages%20+%20Hexo%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>https://dreamkongcheng.github.io/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Github%20Pages%20+%20Hexo%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/</id>
+    <published>2024-09-28T10:46:45.000Z</published>
+    <updated>2024-10-10T08:44:07.527Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="双分支管理"><a href="#双分支管理" class="headerlink" title="双分支管理"></a>双分支管理</h2><p>参考文章：<a href="https://blog.csdn.net/gatieme/article/details/82317704">使用 GitHub 分支保存 Hexo 环境和博文</a></p><h3 id="为什么要双分支管理？"><a href="#为什么要双分支管理？" class="headerlink" title="为什么要双分支管理？"></a>为什么要双分支管理？</h3><p><code>hexo d</code>命令实际上是用了hexo-deploy-git工具，将public中的内容加入到.deploy_git文件夹中，然后把这个文件夹的内容同步到远程仓库(YourgithubName.github.io)中你<a href="#%E5%85%B7%E4%BD%93%E6%93%8D%E4%BD%9C">前面设置</a>的分支中。我这里设置的是main。</p><p>注意！你的source文件夹等是不会到public里面去的，所以不会被同步！</p><p>那么问题来了。如果我需要在不同地方撰写我的博客，或者我需要使用github来进行备份，该怎么办呢？</p><p>这时候就需要我们用两个分支，第一个main分支保存public的html内容，也就是我们的网站，另一个source分支来保存我们的配置文件、md源文件等。</p><span id="more"></span><h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><p>（如果完全安装我前面的步骤，你应该还没有进行<code>git init</code>，也没有同步远程仓库）</p><ol><li>初始化 Hexo 项目为 Git 仓库</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> Blogs  <span class="comment"># 返回到 Hexo 项目的根目录</span></span><br><span class="line">git init  <span class="comment"># 初始化 Git 仓库</span></span><br></pre></td></tr></table></figure><ol start="2"><li>切换到一个新的分支来保存源文件：</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b <span class="built_in">source</span></span><br></pre></td></tr></table></figure><ol start="3"><li>将当前的 Hexo 源文件（如 <code>_config.yml</code>、<code>themes</code> 目录、<code>source</code> 目录等）提交到这个 <code>source</code> 分支：</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;Initial commit of Hexo source files&quot;</span></span><br></pre></td></tr></table></figure><ol start="4"><li>关联远程仓库</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:&lt;YourName&gt;/&lt;YourName&gt;.github.io</span><br></pre></td></tr></table></figure><p>这一步需要你配置好ssh key，具体方法请自行google</p><p>通过<code>git remote -v</code>来检查是否关联成功，若成功，有如下消息：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">origin  git@github.com:&lt;YourName&gt;/&lt;YourName&gt;.github.io (fetch)</span><br><span class="line">origin  git@github.com:&lt;YourName&gt;/&lt;YourName&gt;.github.io (push)</span><br></pre></td></tr></table></figure><ol start="5"><li>推送</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin <span class="built_in">source</span></span><br></pre></td></tr></table></figure><p>这样就成功把源文件保存到<code>&lt;YourName&gt;.github.io</code>仓库的source分支了</p><p>接下来，你已经能够对你的整个Hexo博客环境进行git版本控制了，接下来尽情Diy你的个人博客吧！:smiley:</p>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;双分支管理&quot;&gt;&lt;a href=&quot;#双分支管理&quot; class=&quot;headerlink&quot; title=&quot;双分支管理&quot;&gt;&lt;/a&gt;双分支管理&lt;/h2&gt;&lt;p&gt;参考文章：&lt;a href=&quot;https://blog.csdn.net/gatieme/article/details/82317704&quot;&gt;使用 GitHub 分支保存 Hexo 环境和博文&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;为什么要双分支管理？&quot;&gt;&lt;a href=&quot;#为什么要双分支管理？&quot; class=&quot;headerlink&quot; title=&quot;为什么要双分支管理？&quot;&gt;&lt;/a&gt;为什么要双分支管理？&lt;/h3&gt;&lt;p&gt;&lt;code&gt;hexo d&lt;/code&gt;命令实际上是用了hexo-deploy-git工具，将public中的内容加入到.deploy_git文件夹中，然后把这个文件夹的内容同步到远程仓库(YourgithubName.github.io)中你&lt;a href=&quot;#%E5%85%B7%E4%BD%93%E6%93%8D%E4%BD%9C&quot;&gt;前面设置&lt;/a&gt;的分支中。我这里设置的是main。&lt;/p&gt;
+&lt;p&gt;注意！你的source文件夹等是不会到public里面去的，所以不会被同步！&lt;/p&gt;
+&lt;p&gt;那么问题来了。如果我需要在不同地方撰写我的博客，或者我需要使用github来进行备份，该怎么办呢？&lt;/p&gt;
+&lt;p&gt;这时候就需要我们用两个分支，第一个main分支保存public的html内容，也就是我们的网站，另一个source分支来保存我们的配置文件、md源文件等。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="个人博客建设" scheme="https://dreamkongcheng.github.io/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%BB%BA%E8%AE%BE/"/>
+    
+    
+    <category term="前端" scheme="https://dreamkongcheng.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="网站建设" scheme="https://dreamkongcheng.github.io/tags/%E7%BD%91%E7%AB%99%E5%BB%BA%E8%AE%BE/"/>
+    
+    <category term="Hexo" scheme="https://dreamkongcheng.github.io/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Github Pages + Hexo从零搭建个人博客（一）：基础建设</title>
-    <link href="https://dreamkongcheng.github.io/blogs/personal-blog-setup/Github%20Pages%20+%20Hexo%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    <id>https://dreamkongcheng.github.io/blogs/personal-blog-setup/Github%20Pages%20+%20Hexo%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/</id>
+    <link href="https://dreamkongcheng.github.io/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Github%20Pages%20+%20Hexo%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>https://dreamkongcheng.github.io/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Github%20Pages%20+%20Hexo%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/</id>
     <published>2024-09-27T13:17:27.000Z</published>
     <updated>2024-10-10T08:44:24.896Z</updated>
     
