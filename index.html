@@ -132,7 +132,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">11</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">14</span></a>
 
   </li>
   </ul>
@@ -156,6 +156,352 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://dreamkongcheng.github.io/day1-%E6%95%B0%E7%BB%84part01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="JunZhe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JunZhe's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/day1-%E6%95%B0%E7%BB%84part01/" class="post-title-link" itemprop="url">代码随想录算法训练营第一天 | 数组part01</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-05-14 22:51:20 / 修改时间：23:18:02" itemprop="dateCreated datePublished" datetime="2025-05-14T22:51:20+08:00">2025-05-14</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/day1-%E6%95%B0%E7%BB%84part01/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/day1-%E6%95%B0%E7%BB%84part01/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="LeetCode704-二分查找"><a href="#LeetCode704-二分查找" class="headerlink" title="LeetCode704.二分查找"></a>LeetCode704.二分查找</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-search/description/">题目链接：704.二分查找</a></p>
+<h3 id="题目要点与解题思路"><a href="#题目要点与解题思路" class="headerlink" title="题目要点与解题思路"></a>题目要点与解题思路</h3><p>首先我们明确一下二分查找的条件：</p>
+<ol>
+<li>数组是有序的</li>
+<li>数组中没有重复元素（否则返回的下标可能会不唯一）</li>
+</ol>
+<p>然后要注意二分查找的边界条件，有两种写法，左闭右开和左闭右闭，我是用的左闭右闭的写法。</p>
+<h3 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">search</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> right = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> mid;</span><br><span class="line">        <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">            mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (target &gt; nums[mid]) &#123;</span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (target &lt; nums[mid]) &#123;</span><br><span class="line">                right = mid - <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>时间复杂度O(logn)</li>
+<li>空间复杂度O(1)</li>
+</ul>
+<h3 id="遇到的问题与总结"><a href="#遇到的问题与总结" class="headerlink" title="遇到的问题与总结"></a>遇到的问题与总结</h3><p>注意两个地方：</p>
+<ol>
+<li><code>left &lt;= right</code>，这个是二分查找的条件，左闭右闭中是小于等于</li>
+<li><code>else if (target &lt; nums[mid])</code> right &#x3D; mid - 1;</li>
+</ol>
+<h2 id="27-移除元素"><a href="#27-移除元素" class="headerlink" title="27.移除元素"></a>27.移除元素</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-element/description/">题目链接：27.移除元素</a></p>
+<h3 id="题目要点与解题思路-1"><a href="#题目要点与解题思路-1" class="headerlink" title="题目要点与解题思路"></a>题目要点与解题思路</h3><p>乍一看会想到用两层for循环，第一层检测要删除的元素，第二层是一个个位移填补空缺，这样是$O(n^2)$的时间复杂度</p>
+<p>我们希望能优化到$O(n)$，此时容易想到双指针</p>
+<p>双指针法（快慢指针法）： 通过一个快指针和慢指针在一个for循环下完成两个for循环的工作。</p>
+<ul>
+<li>快指针：寻找符合条件的元素位置</li>
+<li>慢指针：定位更新的位置</li>
+</ul>
+<p>这样讲有点抽象，直接看代码</p>
+<h3 id="实现代码-1"><a href="#实现代码-1" class="headerlink" title="实现代码"></a>实现代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">removeElement</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> slow = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> fast = <span class="number">0</span>; fast &lt; nums.<span class="built_in">size</span>(); fast++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[fast] != val) &#123;</span><br><span class="line">                nums[slow] = nums[fast];</span><br><span class="line">                slow++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> slow;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>时间复杂度O(n)</li>
+<li>空间复杂度O(1)</li>
+</ul>
+<p>当fast发现元素不是val的时候，会把现在的fast赋给现在的slow，并且slow也往前进。如果fast指向要删除的元素，就会把fast只会管自己往前走，此时slow就停下来了，等待下一个fast指向的非val的元素</p>
+<h3 id="遇到的问题与总结-1"><a href="#遇到的问题与总结-1" class="headerlink" title="遇到的问题与总结"></a>遇到的问题与总结</h3><p>第一次遇到想不到用双指针</p>
+<p>本题是双指针的经典应用，很多数组问题中都可以使用双指针进行优化，必须很清楚两个指针都代表什么含义</p>
+<h2 id="977-有序数组的平方"><a href="#977-有序数组的平方" class="headerlink" title="977.有序数组的平方"></a>977.有序数组的平方</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/squares-of-a-sorted-array/description/">题目链接：977.有序数组的平方</a></p>
+<h3 id="题目要点与解题思路-2"><a href="#题目要点与解题思路-2" class="headerlink" title="题目要点与解题思路"></a>题目要点与解题思路</h3><p>想要在O(n)的时间复杂度内完成这个题目，我们可以使用双指针法。<br>平方其实是个二次函数，最大的值会出现在两端，所以可以用左右两个指针不断向中间进行遍历，然后开辟一个新的数组，从后往前接住两个指针中较大的值的平方。</p>
+<h3 id="实现代码-2"><a href="#实现代码-2" class="headerlink" title="实现代码"></a>实现代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">sortedSquares</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">result</span><span class="params">(nums.size())</span></span>;</span><br><span class="line">        <span class="type">int</span> k=nums.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>,j=k;i&lt;=j;)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]*nums[i]&lt;nums[j]*nums[j])&#123;</span><br><span class="line">                result[k--]=nums[j]*nums[j];</span><br><span class="line">                j--;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                result[k--]=nums[i]*nums[i];</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>时间复杂度O(n)</li>
+<li>空间复杂度O(n)</li>
+</ul>
+<h3 id="遇到的问题与总结-2"><a href="#遇到的问题与总结-2" class="headerlink" title="遇到的问题与总结"></a>遇到的问题与总结</h3><p>注意i&lt;&#x3D;j，如果没有等号，此位置的元素会被遗漏而没有填入到result中。</p>
+<h2 id="今日总结"><a href="#今日总结" class="headerlink" title="今日总结"></a>今日总结</h2><p>今天是代码随想录训练营打卡第一天，温故了一下前段时间做的题目，很有收获！</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://programmercarl.com/0704.%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.html">代码随想录-二分查找</a><br><a target="_blank" rel="noopener" href="https://programmercarl.com/0027.%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0.html">代码随想录-移除元素</a><br><a target="_blank" rel="noopener" href="https://programmercarl.com/0977.%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9.html">代码随想录-有序数组的平方</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://dreamkongcheng.github.io/blogs/%E5%88%B7%E9%A2%98/%E6%95%B0%E7%BB%84/%E6%95%B0%E7%BB%84%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="JunZhe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JunZhe's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/%E5%88%B7%E9%A2%98/%E6%95%B0%E7%BB%84/%E6%95%B0%E7%BB%84%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">数组总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-05-13 18:15:35 / 修改时间：18:18:06" itemprop="dateCreated datePublished" datetime="2025-05-13T18:15:35+08:00">2025-05-13</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/blogs/%E5%88%B7%E9%A2%98/%E6%95%B0%E7%BB%84/%E6%95%B0%E7%BB%84%E6%80%BB%E7%BB%93/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/blogs/%E5%88%B7%E9%A2%98/%E6%95%B0%E7%BB%84/%E6%95%B0%E7%BB%84%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>117</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>双指针有大用处：<br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-element/description/">027.移除元素</a></p>
+<p>双指针还能延伸出滑动窗口，很多子数组之类的就是滑动窗口问题<br>字节后端一面中的编程题就是一道滑动窗口</p>
+<p>最长非重复子字符串的长度，abcabc这种，最长子字符串是3</p>
+<p>这道题完全可以仿照<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-size-subarray-sum/description/">209.长度最小的子数组</a>来做</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://dreamkongcheng.github.io/blogs/%E5%88%B7%E9%A2%98/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/dp%E7%B1%BB%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="JunZhe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JunZhe's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/%E5%88%B7%E9%A2%98/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/dp%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-05-12 10:21:11 / 修改时间：11:47:28" itemprop="dateCreated datePublished" datetime="2025-05-12T10:21:11+08:00">2025-05-12</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/blogs/%E5%88%B7%E9%A2%98/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/dp%E7%B1%BB%E5%9E%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/blogs/%E5%88%B7%E9%A2%98/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/dp%E7%B1%BB%E5%9E%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>992</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>01背包组合问题<br>见494.目标和</p>
+<p>一共有三种<br>第一种，装满大小为bagsize的背包，最大价值是多少（最基础）<br>首先从最最基本的<strong>二维数组</strong>引入</p>
+<p>表格：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>重量</th>
+<th>价值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>物品1</td>
+<td>1</td>
+<td>15</td>
+</tr>
+<tr>
+<td>物品2</td>
+<td>3</td>
+<td>20</td>
+</tr>
+<tr>
+<td>物品3</td>
+<td>4</td>
+<td>30</td>
+</tr>
+</tbody></table>
+<p>暴力解法：回溯，每个物品选或者不选<br>时间复杂度$O(2^n)$</p>
+<p>二维dp数组解法</p>
+<p>当i放进去时，那么这时候整个物品集就被分成两部分，1到i-1和第i个，而这是i是确定要放进去的，那么就把j空间里的wi给占据了，只剩下j－wi的空间给前面i－1，那么只要这时候前面i－1在j－wi空间里构造出最大价值，即dp【i－1】【j－wi】，再加上此时放入的i的价值vi，就是dpij了</p>
+<p>遍历顺序：这里先遍历物品再遍历背包或者先遍历背包再遍历物品都可以。本质上是根据递推公式来看，只要能保证左上方和正上方有数值就行（具体的递推公式具体分析，有时候遍历顺序有要求）</p>
+<p>然后可以进行<strong>一维数组（滚动数组）</strong>优化<br>当前层是由上一层计算出来的，当前层算完之后上一层就没有用处了，所以我们考虑用当前层直接覆盖上一层，这样的思路就可以把二维数组压缩成一维数组</p>
+<p><strong>核心理解：拷贝</strong></p>
+<p><strong>倒序遍历</strong>，否则正序的话，前面的数据被处理过，相当于是脏数据</p>
+<p>具体原因是，二维dp，我们使用上一行的数据是独立于当前行的数据的，但是一维的时候，当前层的值是需要依赖上一层，但是上一层的数据被存在了当前层。如果是从左到右，先改了左边的值，就相当于改了上一层的值，但是你当前层后面数据还要依赖这些“上一层”的数据，这就是产生了脏数据。而从右往左的话，你利用的是干净的数据，不会对“上一层”数据进行改变（记住要依赖的数据都在左边，所以左边得最后动）</p>
+<p>为什么要倒序感觉很多人还是没有说到点，首先这个一维dp就是相对于二维来说，对上一层进行一个复用，为什么要从右向左，因为如果是从左向右，我们的左边的值就不断更新为新的物品这一层的新状态新值，而我们计算的时候需要上一层状态，即遍历到上一个物品的那一层的状态，如果是从右向左，因为上一层遍历刚结束，左边的值还没改呢，所以此时，上一层就是原来的值，不需要改动，所以我们就从右向左，这样子左边的值都没改过</p>
+<p>可以举一个具体例子 !todo</p>
+<p>为什么要先遍历物品再遍历背包呢（还不是很能解释）<br>代码随想录里面的解释是：<br>首先背包容量一定是倒序的，如果先遍历背包容量再遍历物品，会相当于每个dp[j]里都只放了一个物品！</p>
+<p>第二种，</p>
+<p>第三种，01背包解决排列组合问题</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -891,413 +1237,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://dreamkongcheng.github.io/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Hexo%E6%8A%80%E5%B7%A7%E4%B9%8B_posts%E6%96%87%E4%BB%B6%E5%A4%B9%E7%AE%A1%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="JunZhe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JunZhe's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Hexo%E6%8A%80%E5%B7%A7%E4%B9%8B_posts%E6%96%87%E4%BB%B6%E5%A4%B9%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">Hexo技巧之_posts文件夹管理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-09-28 20:04:37" itemprop="dateCreated datePublished" datetime="2024-09-28T20:04:37+08:00">2024-09-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-10-10 16:44:03" itemprop="dateModified" datetime="2024-10-10T16:44:03+08:00">2024-10-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%BB%BA%E8%AE%BE/" itemprop="url" rel="index"><span itemprop="name">个人博客建设</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Hexo%E6%8A%80%E5%B7%A7%E4%B9%8B_posts%E6%96%87%E4%BB%B6%E5%A4%B9%E7%AE%A1%E7%90%86/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Hexo%E6%8A%80%E5%B7%A7%E4%B9%8B_posts%E6%96%87%E4%BB%B6%E5%A4%B9%E7%AE%A1%E7%90%86/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p>在搭建起我的Hexo框架并且进行了一些的博客写作之后，我发现我习惯是有一点灵感就把他记录下来，然后想着后面有更多输入之后再来填这个坑。但是这样我就会有大量的文档堆在_posts文件夹下面，非常混乱。虽然Hexo也提供了_drafts文件夹来存放草稿，但是就算这样，等我想要发布的时候还是会有很多的文件在_posts文件夹下面。网上很多人都是用年&#x2F;月&#x2F;日来建立文件夹进行分类，但是这不能从根本上解决<strong>本地</strong>分类混乱的问题（线上的分类可以用文章的front-matter来解决）。所以我就想着能不能用文件夹来分类，就像我自己在obsidian里面搭建的个人知识体系一样，下面给出我的一些解决方法.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Hexo%E6%8A%80%E5%B7%A7%E4%B9%8B_posts%E6%96%87%E4%BB%B6%E5%A4%B9%E7%AE%A1%E7%90%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://dreamkongcheng.github.io/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Github%20Pages%20+%20Hexo%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%89%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="JunZhe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JunZhe's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Github%20Pages%20+%20Hexo%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%89%EF%BC%89/" class="post-title-link" itemprop="url">Github Pages + Hexo从零搭建个人博客（三）：Next主题美化</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-09-28 18:46:45" itemprop="dateCreated datePublished" datetime="2024-09-28T18:46:45+08:00">2024-09-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-10-10 18:10:59" itemprop="dateModified" datetime="2024-10-10T18:10:59+08:00">2024-10-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%BB%BA%E8%AE%BE/" itemprop="url" rel="index"><span itemprop="name">个人博客建设</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Github%20Pages%20+%20Hexo%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%89%EF%BC%89/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Github%20Pages%20+%20Hexo%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%89%EF%BC%89/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>首先来讲一下<strong>站点配置文件</strong>和<strong>主题配置文件</strong></p>
-<ul>
-<li>站点配置文件<ul>
-<li>位于博客根目录下的<code>_config.yml</code></li>
-</ul>
-</li>
-<li>主题配置文件<ul>
-<li>位于themes&#x2F;next中的<code>_config.yml</code></li>
-</ul>
-</li>
-</ul>
-<h2 id="站点配置"><a href="#站点配置" class="headerlink" title="站点配置"></a>站点配置</h2><h2 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h2><h3 id="更换内置主题"><a href="#更换内置主题" class="headerlink" title="更换内置主题"></a>更换内置主题</h3><p>在<code>Schemes</code>下可以看到这些主题，去掉想要的主题前面的 # 即可</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Schemes</span></span><br><span class="line"><span class="comment">#scheme: Muse</span></span><br><span class="line"><span class="attr">scheme:</span> <span class="string">Mist</span></span><br><span class="line"><span class="comment">#scheme: Pisces</span></span><br><span class="line"><span class="comment">#scheme: Gemini</span></span><br></pre></td></tr></table></figure>
-
-<p>这里我选择了Mist主题，我很喜欢他的顶部导航栏</p>
-<p><img src="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409282248043.webp" alt="image-20240928212948404"></p>
-<h3 id="设置菜单"><a href="#设置菜单" class="headerlink" title="设置菜单"></a>设置菜单</h3><ol>
-<li>把你想要展示的东西都取消注释掉</li>
-</ol>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># Menu Settings</span></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Usage: `Key: /link/ || icon`</span></span><br><span class="line"><span class="comment"># Key is the name of menu item. If the translation for this item is available, the translated text will be loaded, otherwise the Key name will be used. Key is case-senstive.</span></span><br><span class="line"><span class="comment"># Value before `||` delimiter is the target link, value after `||` delimiter is the name of Font Awesome icon.</span></span><br><span class="line"><span class="comment"># When running the site in a subdirectory (e.g. yoursite.com/blog), remove the leading slash from link value (/archives -&gt; archives).</span></span><br><span class="line"><span class="comment"># External url should start with http:// or https://</span></span><br><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-home</span></span><br><span class="line">  <span class="attr">about:</span> <span class="string">/about/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-user</span></span><br><span class="line">  <span class="attr">tags:</span> <span class="string">/tags/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-tags</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="string">/categories/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-th</span></span><br><span class="line">  <span class="attr">archives:</span> <span class="string">/archives/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-archive</span></span><br><span class="line">  <span class="comment">#schedule: /schedule/ || fa fa-calendar</span></span><br><span class="line">  <span class="comment">#sitemap: /sitemap.xml || fa fa-sitemap</span></span><br><span class="line">  <span class="comment">#commonweal: /404/ || fa fa-heartbeat</span></span><br></pre></td></tr></table></figure>
-
-<p>这时候在本地预览里可以看到这些入口已经出现了，但是点进去会报错<code>Cannot GET /tags/</code></p>
-<p>这是因为你还没有在_post里面新建<strong>页面（page）</strong>。</p>
-<p>如果需要更改图标，可以进入<a href="https://sspai.com/link?target=https://fontawesome.dashgame.com/">Font Awesome</a>获取新图标，只需将||后的内容改为“fa + 复制的图标”即可</p>
-<ol start="2">
-<li>进入终端，输入命令（以创建tags为例）</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> Blogs</span><br><span class="line">hexo new page <span class="string">&quot;tags&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>完成以后在Blogs&#x2F;source目录中会出现tags文件夹，其中含有index.md文件，文件内容如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">date: 2024-09-28 10:56:39</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>接下来添加字段： <code>type: tags</code>（必须要添加，不然网页里是不会显示内容的）</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">date: 2024-09-28 10:56:39</span><br><span class="line">type: tags</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409282248044.webp" alt="image-20240928214810057"></p>
-<p>这样就对了</p>
-<blockquote>
-<p>其实这个的原理就是在hexo g的时候会在public文件夹下生成tags文件夹，里面是由刚刚的index.md生成的index.html，它包含了tags这个页面的全部内容</p>
-</blockquote>
-<p>其他的几个都同理</p>
-<ol start="4">
-<li>（可选）为菜单栏的图标添加内容数量统计，效果如下：</li>
-</ol>
-<p><img src="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409282248045.webp" alt="image-20240928215331479"></p>
-<h3 id="设置侧边栏"><a href="#设置侧边栏" class="headerlink" title="设置侧边栏"></a>设置侧边栏</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># Sidebar Settings</span></span><br><span class="line"><span class="comment"># See: https://theme-next.org/docs/theme-settings/sidebar</span></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="attr">sidebar:</span></span><br><span class="line">  <span class="comment"># Sidebar Position.</span></span><br><span class="line">  <span class="attr">position:</span> <span class="string">left</span></span><br><span class="line">  <span class="comment">#position: right</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Manual define the sidebar width. If commented, will be default for:</span></span><br><span class="line">  <span class="comment"># Muse | Mist: 320</span></span><br><span class="line">  <span class="comment"># Pisces | Gemini: 240</span></span><br><span class="line">  <span class="attr">width:</span> <span class="number">250</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Sidebar Display (only for Muse | Mist), available values:</span></span><br><span class="line">  <span class="comment">#  - post    expand on posts automatically. Default.</span></span><br><span class="line">  <span class="comment">#  - always  expand for all pages automatically.</span></span><br><span class="line">  <span class="comment">#  - hide    expand only when click on the sidebar toggle icon.</span></span><br><span class="line">  <span class="comment">#  - remove  totally remove sidebar including sidebar toggle.</span></span><br><span class="line">  <span class="attr">display:</span> <span class="string">post</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Sidebar padding in pixels.</span></span><br><span class="line">  <span class="attr">padding:</span> <span class="number">30</span></span><br><span class="line">  <span class="comment"># Sidebar offset from top menubar in pixels (only for Pisces | Gemini).</span></span><br><span class="line">  <span class="attr">offset:</span> <span class="number">12</span></span><br><span class="line">  <span class="comment"># Enable sidebar on narrow view (only for Muse | Mist).</span></span><br><span class="line">  <span class="attr">onmobile:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>position：sidebar是在左边还是右边展示</p>
-</li>
-<li><p>width：sidebar的宽度</p>
-</li>
-<li><p>display：默认的显示模式，是默认为展开还是默认为关闭，看个人喜好吧，我默认关闭</p>
-</li>
-<li><p>padding：和顶部的距离，数字越大你的名字、头像这些东西和上面离得越开，默认的18太顶天了，我改成30了</p>
-</li>
-<li><p>onmobile：当你把网页侧边距变小（把窗口拉窄）时，sidebar会继续待着还是自动收起来，建议选择false，即会自动收起来，不然很丑</p>
-</li>
-</ul>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Sidebar Avatar</span></span><br><span class="line"><span class="attr">avatar:</span></span><br><span class="line">  <span class="comment"># Replace the default image and set the url here.</span></span><br><span class="line">  <span class="attr">url:</span> <span class="string">/images/head.jpg</span></span><br><span class="line">  <span class="comment"># If true, the avatar will be dispalyed in circle.</span></span><br><span class="line">  <span class="attr">rounded:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># If true, the avatar will be rotated with the cursor.</span></span><br><span class="line">  <span class="attr">rotated:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>这一部分是设置头像的</li>
-<li>url：头像的图片保存在themes&#x2F;next&#x2F;source&#x2F;images文件夹中</li>
-<li>rounded：头像变成圆框，推荐</li>
-<li>rotated：鼠标放上去会旋转，<del>有点沙雕</del></li>
-</ul>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Posts / Categories / Tags in sidebar.</span></span><br><span class="line"><span class="attr">site_state:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>是否展示这三个图标，方便你在sidebar里快速导航</li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409282248046.webp" alt="image-20240928220954102"></p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Social Links</span></span><br><span class="line"><span class="comment"># Usage: `Key: permalink || icon`</span></span><br><span class="line"><span class="comment"># Key is the link label showing to end users.</span></span><br><span class="line"><span class="comment"># Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.</span></span><br><span class="line"><span class="attr">social:</span></span><br><span class="line">  <span class="attr">GitHub:</span> <span class="string">https://github.com/yourname</span> <span class="string">||</span> <span class="string">fab</span> <span class="string">fa-github</span></span><br><span class="line">  <span class="attr">E-Mail:</span> <span class="string">mailto:yzy20040303@gmail.com</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-envelope</span></span><br><span class="line">  <span class="comment">#Weibo: https://weibo.com/yourname || fab fa-weibo</span></span><br><span class="line">  <span class="comment">#Google: https://plus.google.com/yourname || fab fa-google</span></span><br><span class="line">  <span class="comment">#Twitter: https://twitter.com/yourname || fab fa-twitter</span></span><br><span class="line">  <span class="comment">#FB Page: https://www.facebook.com/yourname || fab fa-facebook</span></span><br><span class="line">  <span class="comment">#StackOverflow: https://stackoverflow.com/yourname || fab fa-stack-overflow</span></span><br><span class="line">  <span class="comment">#YouTube: https://youtube.com/yourname || fab fa-youtube</span></span><br><span class="line">  <span class="comment">#Instagram: https://instagram.com/yourname || fab fa-instagram</span></span><br><span class="line">  <span class="comment">#Skype: skype:yourname?call|chat || fab fa-skype</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>社交链接：自行设置即可，||后面依然是图标</li>
-</ul>
-<p>有点写不动了，感觉注释很详细，可以跟着注释去做</p>
-<h3 id="设置右上角Github图标"><a href="#设置右上角Github图标" class="headerlink" title="设置右上角Github图标"></a>设置右上角Github图标</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># `Follow me on GitHub` banner in the top-right corner.</span></span><br><span class="line"><span class="attr">github_banner:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">permalink:</span> <span class="string">https://github.com/DreamKongcheng</span></span><br><span class="line">  <span class="attr">title:</span> <span class="string">Follow</span> <span class="string">me</span> <span class="string">on</span> <span class="string">GitHub</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>参考文章：<br><a target="_blank" rel="noopener" href="https://sspai.com/post/85116">Hexo+Github Page｜基础教程(二)：NexT 主题基本美化｜全网最细致全面的教程</a><br><a target="_blank" rel="noopener" href="https://www.cylong.com/blog/2016/04/25/hexo-faq/">Hexo 使用总结 &amp; 常见问题</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://dreamkongcheng.github.io/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Github%20Pages%20+%20Hexo%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="JunZhe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JunZhe's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Github%20Pages%20+%20Hexo%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/" class="post-title-link" itemprop="url">Github Pages + Hexo从零搭建个人博客（二）：Git双分支管理网页与源文件</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-09-28 18:46:45" itemprop="dateCreated datePublished" datetime="2024-09-28T18:46:45+08:00">2024-09-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-10-10 16:44:07" itemprop="dateModified" datetime="2024-10-10T16:44:07+08:00">2024-10-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%BB%BA%E8%AE%BE/" itemprop="url" rel="index"><span itemprop="name">个人博客建设</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Github%20Pages%20+%20Hexo%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Github%20Pages%20+%20Hexo%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="双分支管理"><a href="#双分支管理" class="headerlink" title="双分支管理"></a>双分支管理</h2><p>参考文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/gatieme/article/details/82317704">使用 GitHub 分支保存 Hexo 环境和博文</a></p>
-<h3 id="为什么要双分支管理？"><a href="#为什么要双分支管理？" class="headerlink" title="为什么要双分支管理？"></a>为什么要双分支管理？</h3><p><code>hexo d</code>命令实际上是用了hexo-deploy-git工具，将public中的内容加入到.deploy_git文件夹中，然后把这个文件夹的内容同步到远程仓库(YourgithubName.github.io)中你<a href="#%E5%85%B7%E4%BD%93%E6%93%8D%E4%BD%9C">前面设置</a>的分支中。我这里设置的是main。</p>
-<p>注意！你的source文件夹等是不会到public里面去的，所以不会被同步！</p>
-<p>那么问题来了。如果我需要在不同地方撰写我的博客，或者我需要使用github来进行备份，该怎么办呢？</p>
-<p>这时候就需要我们用两个分支，第一个main分支保存public的html内容，也就是我们的网站，另一个source分支来保存我们的配置文件、md源文件等。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blogs/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Github%20Pages%20+%20Hexo%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1369,7 +1308,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1433,12 +1372,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">18k</span>
+    <span title="站点总字数">21k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">16 分钟</span>
+    <span title="站点阅读时长">19 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
@@ -1447,7 +1386,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客共8.5k字</span>
+  <span class="post-count">博客共10.4k字</span>
 </div>
 
         
