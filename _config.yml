@@ -14,7 +14,9 @@ timezone: Asia/Shanghai
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://DreamKongcheng.github.io
-permalink: :year/:month/:day/:title/ #这里的title是相对于_posts文件夹的
+root: /
+#permalink: :year/:month/:day/:title/ #这里的title是相对于_posts文件夹的
+permalink: :title/
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -28,10 +30,13 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render:
+skip_render: 
+- 'README.md'
+- '*.html'
 
 # Writing
-new_post_name: :year/:month/:title.md # File name of new posts
+#new_post_name: :year/:month/:title.md # File name of new posts
+new_post_name: :title.md
 default_layout: post
 titlecase: false # Transform title into titlecase
 external_link:
@@ -102,7 +107,7 @@ theme: next
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/DreamKongcheng/DreamKongcheng.github.io.git
+  repo: git@github.com:DreamKongcheng/DreamKongcheng.github.io.git
   branch: main
 
 
@@ -112,3 +117,28 @@ deploy:
 #   field: post
 #   format: html
 #   limit: 1000
+
+
+sitemap:
+path: sitemap.xml
+
+	
+copyAssets: Google Search Console Verification.html  #表示 copy-assets 文件夹中的文件不被渲染，直接复制到 public 文件夹。
+
+symbols_count_time:
+  symbols: true             # 文章字数统计
+  time: true                # 文章阅读时长
+  total_symbols: true       # 站点总字数统计
+  total_time: true          # 站点总阅读时长
+  exclude_codeblock: false  # 排除代码字数统计
+  awl: 4                    # 平均字长（字中的字符数）
+  wpm: 275                  # 每分钟阅读字数
+  suffix: "mins."
+
+# RSS
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+
