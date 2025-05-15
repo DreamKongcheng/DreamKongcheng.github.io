@@ -8,3 +8,9 @@ public/
 _multiconfig.yml
 .history/
 source/_posts/**/assets/
+
+package-lock.json
+
+public/**/assets/
+# 旧next主题
+themes/next_old/
