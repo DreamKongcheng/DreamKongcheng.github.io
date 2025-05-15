@@ -5,11 +5,12 @@ date: 2024-09-28 18:46:45
 tags:
 - 前端 
 - 网站建设
+- Hexo
 comments: true
 categories: 个人博客建设
 ---
 
-参考文章：[Hexo+Github Page｜基础教程(二)：NexT 主题基本美化｜全网最细致全面的教程](https://sspai.com/post/85116)
+
 
 首先来讲一下**站点配置文件**和**主题配置文件**
 
@@ -228,3 +229,6 @@ github_banner:
 
 ```
 
+参考文章：
+[Hexo+Github Page｜基础教程(二)：NexT 主题基本美化｜全网最细致全面的教程](https://sspai.com/post/85116)
+[Hexo 使用总结 & 常见问题](https://www.cylong.com/blog/2016/04/25/hexo-faq/)

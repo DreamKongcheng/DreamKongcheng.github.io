@@ -6,6 +6,7 @@ date: 2024-09-27 21:17:27
 tags: 
 - 前端 
 - 网站建设
+- Hexo
 comments: true
 categories: 个人博客建设
 ---
@@ -174,9 +175,6 @@ theme: landscape
 ![](https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409272251959.webp)
 
 我们已经成功使用了Next主题，是不是非常的方便快捷？
-
-
-
 
 
 ### Step4：开始我们的第一篇博客文章写作！
