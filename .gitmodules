@@ -1,3 +1,4 @@
 [submodule "themes/next"]
 	path = themes/next
 	url = git@github.com:DreamKongcheng/hexo-theme-next.git
+	ignore = all
