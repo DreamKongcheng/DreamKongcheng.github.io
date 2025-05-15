@@ -1,55 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://DreamKongcheng.github.io/post/20250514225120.html</loc>
+    <loc>https://DreamKongcheng.github.io/posts/lc059-spiral-matrix-ii.html</loc>
     <lastmod>2025-05-15</lastmod>
   </url>
   <url>
-    <loc>https://DreamKongcheng.github.io/post/20240928200437.html</loc>
+    <loc>https://DreamKongcheng.github.io/posts/lc027-remove-element.html</loc>
     <lastmod>2025-05-15</lastmod>
   </url>
   <url>
-    <loc>https://DreamKongcheng.github.io/post/20250513181535.html</loc>
-    <lastmod>2025-05-13</lastmod>
+    <loc>https://DreamKongcheng.github.io/posts/lc704-binary-search.html</loc>
+    <lastmod>2025-05-15</lastmod>
   </url>
   <url>
-    <loc>https://DreamKongcheng.github.io/post/20250510222237.html</loc>
-    <lastmod>2025-05-10</lastmod>
+    <loc>https://DreamKongcheng.github.io/posts/codecamp-day2-arrays.html</loc>
+    <lastmod>2025-05-15</lastmod>
   </url>
   <url>
-    <loc>https://DreamKongcheng.github.io/post/20250510181357.html</loc>
-    <lastmod>2025-05-10</lastmod>
+    <loc>https://DreamKongcheng.github.io/posts/codecamp-day1-arrays.html</loc>
+    <lastmod>2025-05-15</lastmod>
   </url>
   <url>
-    <loc>https://DreamKongcheng.github.io/post/20250510170929.html</loc>
-    <lastmod>2025-05-10</lastmod>
+    <loc>https://DreamKongcheng.github.io/posts/lc-array-summary.html</loc>
+    <lastmod>2025-05-15</lastmod>
   </url>
   <url>
-    <loc>https://DreamKongcheng.github.io/post/20250510174335.html</loc>
-    <lastmod>2025-05-10</lastmod>
+    <loc>https://DreamKongcheng.github.io/posts/lc977-squares-of-a-sorted-array.html</loc>
+    <lastmod>2025-05-15</lastmod>
   </url>
   <url>
-    <loc>https://DreamKongcheng.github.io/post/20250510162215.html</loc>
-    <lastmod>2025-05-10</lastmod>
+    <loc>https://DreamKongcheng.github.io/posts/lc209-minimum-size-subarray-sum.html</loc>
+    <lastmod>2025-05-15</lastmod>
   </url>
   <url>
-    <loc>https://DreamKongcheng.github.io/post/20241010175830.html</loc>
-    <lastmod>2025-05-07</lastmod>
+    <loc>https://DreamKongcheng.github.io/posts/hexo-skip-render.html</loc>
+    <lastmod>2025-05-15</lastmod>
   </url>
   <url>
-    <loc>https://DreamKongcheng.github.io/post/20240928184645.html</loc>
-    <lastmod>2024-10-10</lastmod>
+    <loc>https://DreamKongcheng.github.io/posts/hexo-posts-folder-manage.html</loc>
+    <lastmod>2025-05-15</lastmod>
   </url>
   <url>
-    <loc>https://DreamKongcheng.github.io/post/20241010165837.html</loc>
-    <lastmod>2024-10-10</lastmod>
+    <loc>https://DreamKongcheng.github.io/posts/blog-setup-google.html</loc>
+    <lastmod>2025-05-15</lastmod>
   </url>
   <url>
-    <loc>https://DreamKongcheng.github.io/post/20240927211727.html</loc>
-    <lastmod>2024-10-10</lastmod>
+    <loc>https://DreamKongcheng.github.io/posts/blog-setup-3-next.html</loc>
+    <lastmod>2025-05-15</lastmod>
   </url>
   <url>
-    <loc>https://DreamKongcheng.github.io/post/20240928184645.html</loc>
-    <lastmod>2024-10-10</lastmod>
+    <loc>https://DreamKongcheng.github.io/posts/blog-setup-2-git.html</loc>
+    <lastmod>2025-05-15</lastmod>
+  </url>
+  <url>
+    <loc>https://DreamKongcheng.github.io/posts/blog-setup-1-basics.html</loc>
+    <lastmod>2025-05-15</lastmod>
   </url>
 </urlset> 
