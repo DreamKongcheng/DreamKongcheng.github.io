@@ -108,7 +108,7 @@ menu:
 # Enable / Disable menu icons / item badges.
 menu_settings:
   icons: true
-  badges: true
+  badges: false # 显示具体的数字
 
 
 # ---------------------------------------------------------------
@@ -133,7 +133,7 @@ sidebar:
   #  - always  expand for all pages automatically.
   #  - hide    expand only when click on the sidebar toggle icon.
   #  - remove  totally remove sidebar including sidebar toggle.
-  display: post
+  display: always
 
   # Sidebar padding in pixels.
   padding: 18
@@ -158,7 +158,8 @@ site_state: true
 # Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.
 social:
   GitHub: https://github.com/DreamKongcheng || fab fa-github
-  E-Mail: mailto:yzy20040303@gmail.com || fa fa-envelope
+  E-Mail: mailto:3377965639@qq.com || fa fa-envelope
+  Wechat: https://dreamkongcheng.github.io/about/ || fab fa-weixin
   #GitHub: https://github.com/yourname || fab fa-github
   #E-Mail: mailto:yourname@gmail.com || fa fa-envelope
   #Weibo: https://weibo.com/yourname || fab fa-weibo
@@ -759,7 +760,7 @@ giscus:
   category_id: DIC_kwDOM33FfM4CqJQz
   mapping: pathname
   reactions_enabled: 1
-  emit_metadata: 1
+  emit_metadata: 0
   theme: light
   lang: zh-CN
   crossorigin: anonymous
