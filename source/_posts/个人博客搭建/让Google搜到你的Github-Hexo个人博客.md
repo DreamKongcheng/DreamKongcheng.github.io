@@ -1,13 +1,14 @@
 ---
 title: 让Google搜到你的Github-Hexo个人博客
 author: JunZhe
-date: 2024-10-10 17:58:30
 tags:
-- 前端 
-- 网站建设
-- Hexo
+  - 前端
+  - 网站建设
+  - Hexo
 comments: true
 categories: 个人博客建设
+abbrlink: blog-setup-google
+date: 2024-10-10 17:58:30
 ---
 
 

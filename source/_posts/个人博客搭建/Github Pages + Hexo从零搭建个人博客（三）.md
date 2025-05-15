@@ -1,13 +1,14 @@
 ---
 title: Github Pages + Hexo从零搭建个人博客（三）：Next主题美化
 author: JunZhe
-date: 2024-09-28 18:46:45
 tags:
-- 前端 
-- 网站建设
-- Hexo
+  - 前端
+  - 网站建设
+  - Hexo
 comments: true
 categories: 个人博客建设
+abbrlink: blog-setup-3-next
+date: 2024-09-28 18:46:45
 ---
 
 

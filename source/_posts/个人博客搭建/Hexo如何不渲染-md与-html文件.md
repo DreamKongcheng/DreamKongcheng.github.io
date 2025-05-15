@@ -1,12 +1,13 @@
 ---
 title: Hexo如何不渲染.md与.html文件
 author: JunZhe
-date: 2024-10-10 16:58:37
-tags: 
-- 前端
-- 网站建设
-- Hexo
+tags:
+  - 前端
+  - 网站建设
+  - Hexo
 categories: 个人博客建设
+abbrlink: hexo-skip-render
+date: 2024-10-10 16:58:37
 ---
 
 ## 前言

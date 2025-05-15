@@ -1,14 +1,14 @@
 ---
-
 title: Github Pages + Hexo从零搭建个人博客（一）：基础建设
 author: JunZhe
-date: 2024-09-27 21:17:27
-tags: 
-- 前端 
-- 网站建设
-- Hexo
+tags:
+  - 前端
+  - 网站建设
+  - Hexo
 comments: true
 categories: 个人博客建设
+abbrlink: blog-setup-1-basics
+date: 2024-09-27 21:17:27
 ---
 
 
