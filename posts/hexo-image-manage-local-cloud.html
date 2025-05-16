@@ -17,17 +17,17 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"junzhe.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.junzhe.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
     <meta name="description" content="前言我们在进行 markdown 写作的时候，通常会在文章中插入图片，而 markdown 的图片管理也是很烦人的事情。另外加上 hexo 的一些特性，导致图片本地预览和线上发布不一致，网上也有不少用插件来解决的方法，比如hexo-asset-img。但是我觉得网上的大多数实践还不够完美，下面我就给出我自己的解决方案。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo博客图片管理最佳实践-本地+图床">
-<meta property="og:url" content="https://junzhe.top/posts/hexo-image-manage-local-cloud.html">
+<meta property="og:url" content="https://www.junzhe.top/posts/hexo-image-manage-local-cloud.html">
 <meta property="og:site_name" content="JunZhe&#39;s Blog">
 <meta property="og:description" content="前言我们在进行 markdown 写作的时候，通常会在文章中插入图片，而 markdown 的图片管理也是很烦人的事情。另外加上 hexo 的一些特性，导致图片本地预览和线上发布不一致，网上也有不少用插件来解决的方法，比如hexo-asset-img。但是我觉得网上的大多数实践还不够完美，下面我就给出我自己的解决方案。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-05-16T10:24:55.000Z">
-<meta property="article:modified_time" content="2025-05-16T11:54:30.052Z">
+<meta property="article:modified_time" content="2025-05-16T11:55:52.303Z">
 <meta property="article:author" content="JunZhe">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="网站建设">
@@ -36,10 +36,10 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://junzhe.top/posts/hexo-image-manage-local-cloud.html">
+<link rel="canonical" href="https://www.junzhe.top/posts/hexo-image-manage-local-cloud.html">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://junzhe.top/posts/hexo-image-manage-local-cloud.html","path":"posts/hexo-image-manage-local-cloud.html","title":"Hexo博客图片管理最佳实践-本地+图床"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.junzhe.top/posts/hexo-image-manage-local-cloud.html","path":"posts/hexo-image-manage-local-cloud.html","title":"Hexo博客图片管理最佳实践-本地+图床"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>Hexo博客图片管理最佳实践-本地+图床 | JunZhe's Blog</title>
@@ -319,7 +319,7 @@ mjx-container[display="true"] + br {
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://junzhe.top/posts/hexo-image-manage-local-cloud.html">
+    <link itemprop="mainEntityOfPage" href="https://www.junzhe.top/posts/hexo-image-manage-local-cloud.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/head.jpg">
@@ -349,7 +349,7 @@ mjx-container[display="true"] + br {
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2025-05-16 18:24:55 / 修改时间：19:54:30" itemprop="dateCreated datePublished" datetime="2025-05-16T18:24:55+08:00">2025-05-16</time>
+      <time title="创建时间：2025-05-16 18:24:55 / 修改时间：19:55:52" itemprop="dateCreated datePublished" datetime="2025-05-16T18:24:55+08:00">2025-05-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -401,20 +401,18 @@ mjx-container[display="true"] + br {
 </ol>
 <p>现在网上的解决方案大致分为两类</p>
 <ol>
-<li>插件派：</li>
-</ol>
-<ul>
+<li>插件派：<ul>
 <li>通过使用_config.yml 文件中的附件文件夹，即<code>post_asset_folder: true</code>以及 hexo-asset-img 插件来实现本地预览和线上发布的分离。</li>
 <li>但是没有解决三方平台共享的问题并且使静态网站过于臃肿。</li>
 </ul>
-<ol>
-<li>图床派：</li>
-</ol>
-<ul>
+</li>
+<li>图床派：<ul>
 <li>通过使用各类图床把图片直接上传</li>
 <li>本地没有备份，容易丢失</li>
 </ul>
-<p>我还有一大痛点，就是 post_asset_folder 生成的文件夹名称应该是会和文章题目一样，但是我由于进行了<a href="https://junzhe.top/posts/hexo-posts-folder-manage.html">永久链接的修改</a>所以在生成文件夹的时候会以 abbrlink 作为文件夹名称，这样就会导致文件夹名称和文章内链接名称不一致，导致线上发布时无法预览</p>
+</li>
+</ol>
+<p>我还有一大痛点，就是 post_asset_folder 生成的文件夹名称应该是会和文章题目一样，但是我由于进行了<a target="_blank" rel="noopener" href="https://junzhe.top/posts/hexo-posts-folder-manage.html">永久链接的修改</a>所以在生成文件夹的时候会以 abbrlink 作为文件夹名称，这样就会导致文件夹名称和文章内链接名称不一致，导致线上发布时无法预览</p>
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>把 post_asset_folder 仅仅当成本地的文件分类，不使用任何插件。<br>在 source/文件夹下建立一个_backup/文件夹，用来进行备份</p>
 <h3 id="具体写作流程："><a href="#具体写作流程：" class="headerlink" title="具体写作流程："></a>具体写作流程：</h3><ol>
 <li>hexo new title # 创建文章，并且同时创建同名文件夹</li>
@@ -445,7 +443,7 @@ mjx-container[display="true"] + br {
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://junzhe.top/posts/hexo-image-manage-local-cloud.html" title="Hexo博客图片管理最佳实践-本地+图床">https://junzhe.top/posts/hexo-image-manage-local-cloud.html</a>
+      <a href="https://www.junzhe.top/posts/hexo-image-manage-local-cloud.html" title="Hexo博客图片管理最佳实践-本地+图床">https://www.junzhe.top/posts/hexo-image-manage-local-cloud.html</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
