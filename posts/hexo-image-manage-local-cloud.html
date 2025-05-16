@@ -19,29 +19,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"junzhe.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="双指针有大用处：027.移除元素 双指针还能延伸出滑动窗口，很多子数组之类的就是滑动窗口问题字节后端一面中的编程题就是一道滑动窗口 最长非重复子字符串的长度，abcabc这种，最长子字符串是3 这道题完全可以仿照209.长度最小的子数组来做">
+    <meta name="description" content="前言我们在进行markdown写作的时候，通常会在文章中插入图片，而markdown的图片管理也是很烦人的事情。另外加上hexo的一些特性，导致图片本地预览和线上发布不一致，网上也有不少用插件来解决的方法，比如hexo-asset-img。但是我觉得网上的大多数实践还不够完美，下面我就给出我自己的解决方案。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数组总结">
-<meta property="og:url" content="https://junzhe.top/posts/lc-array-summary.html">
+<meta property="og:title" content="Hexo博客图片管理最佳实践-本地+图床">
+<meta property="og:url" content="https://junzhe.top/posts/hexo-image-manage-local-cloud.html">
 <meta property="og:site_name" content="JunZhe&#39;s Blog">
-<meta property="og:description" content="双指针有大用处：027.移除元素 双指针还能延伸出滑动窗口，很多子数组之类的就是滑动窗口问题字节后端一面中的编程题就是一道滑动窗口 最长非重复子字符串的长度，abcabc这种，最长子字符串是3 这道题完全可以仿照209.长度最小的子数组来做">
+<meta property="og:description" content="前言我们在进行markdown写作的时候，通常会在文章中插入图片，而markdown的图片管理也是很烦人的事情。另外加上hexo的一些特性，导致图片本地预览和线上发布不一致，网上也有不少用插件来解决的方法，比如hexo-asset-img。但是我觉得网上的大多数实践还不够完美，下面我就给出我自己的解决方案。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-05-13T10:15:35.000Z">
-<meta property="article:modified_time" content="2025-05-15T12:08:31.688Z">
+<meta property="article:published_time" content="2025-05-16T10:24:55.000Z">
+<meta property="article:modified_time" content="2025-05-16T11:40:55.815Z">
 <meta property="article:author" content="JunZhe">
-<meta property="article:tag" content="数组">
-<meta property="article:tag" content="双指针">
-<meta property="article:tag" content="二分查找">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="网站建设">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="图床">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://junzhe.top/posts/lc-array-summary.html">
+<link rel="canonical" href="https://junzhe.top/posts/hexo-image-manage-local-cloud.html">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://junzhe.top/posts/lc-array-summary.html","path":"posts/lc-array-summary.html","title":"数组总结"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://junzhe.top/posts/hexo-image-manage-local-cloud.html","path":"posts/hexo-image-manage-local-cloud.html","title":"Hexo博客图片管理最佳实践-本地+图床"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>数组总结 | JunZhe's Blog</title>
+<title>Hexo博客图片管理最佳实践-本地+图床 | JunZhe's Blog</title>
   
 
 
@@ -78,7 +79,119 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-<link rel="alternate" href="/atom.xml" title="JunZhe's Blog" type="application/atom+xml">
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="JunZhe's Blog" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
@@ -126,7 +239,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -139,6 +252,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">需求分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">3.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%93%E5%86%99%E4%BD%9C%E6%B5%81%E7%A8%8B%EF%BC%9A"><span class="nav-number">3.1.</span> <span class="nav-text">体写作流程：</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -205,7 +319,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://junzhe.top/posts/lc-array-summary.html">
+    <link itemprop="mainEntityOfPage" href="https://junzhe.top/posts/hexo-image-manage-local-cloud.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/head.jpg">
@@ -218,12 +332,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="数组总结 | JunZhe's Blog">
+      <meta itemprop="name" content="Hexo博客图片管理最佳实践-本地+图床 | JunZhe's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          数组总结
+          Hexo博客图片管理最佳实践-本地+图床
         </h1>
 
         <div class="post-meta-container">
@@ -233,15 +347,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2025-05-13 18:15:35" itemprop="dateCreated datePublished" datetime="2025-05-13T18:15:35+08:00">2025-05-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-05-15 20:08:31" itemprop="dateModified" datetime="2025-05-15T20:08:31+08:00">2025-05-15</time>
+      <time title="创建时间：2025-05-16 18:24:55 / 修改时间：19:40:55" itemprop="dateCreated datePublished" datetime="2025-05-16T18:24:55+08:00">2025-05-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -249,7 +357,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%88%B7%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a>
+          <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%BB%BA%E8%AE%BE/" itemprop="url" rel="index"><span itemprop="name">个人博客建设</span></a>
         </span>
     </span>
 
@@ -267,7 +375,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>117</span>
+      <span>1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -284,11 +392,43 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>双指针有大用处：<br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-element/description/">027.移除元素</a></p>
-<p>双指针还能延伸出滑动窗口，很多子数组之类的就是滑动窗口问题<br>字节后端一面中的编程题就是一道滑动窗口</p>
-<p>最长非重复子字符串的长度，abcabc这种，最长子字符串是3</p>
-<p>这道题完全可以仿照<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-size-subarray-sum/description/">209.长度最小的子数组</a>来做</p>
-
+    <div class="post-body" itemprop="articleBody"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们在进行markdown写作的时候，通常会在文章中插入图片，而markdown的图片管理也是很烦人的事情。另外加上hexo的一些特性，导致图片本地预览和线上发布不一致，网上也有不少用插件来解决的方法，比如<a target="_blank" rel="noopener" href="https://github.com/yiyungent/hexo-asset-img">hexo-asset-img</a>。但是我觉得网上的大多数实践还不够完美，下面我就给出我自己的解决方案。</p>
+<span id="more"></span>
+<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><ol>
+<li><strong>本地预览</strong>：在本地预览的时候，图片应该是可以直接显示的。</li>
+<li><strong>线上预览</strong>：在发布到线上的版本应该使用便于共享的图床链接，这样可以很快捷的在另外的平台上发布，并且我不希望自己的静态网站中有大量的图片文件。</li>
+<li><strong>本地存储</strong>：我希望本地的图片文件可以被备份，而不是全部放在图床上，万一图床挂了就麻烦了。</li>
+</ol>
+<p>现在网上的解决方案大致分为两类</p>
+<ol>
+<li>插件派：</li>
+</ol>
+<ul>
+<li>通过使用_config.yml文件中的附件文件夹，即<code>post_asset_folder: true</code>以及hexo-asset-img插件来实现本地预览和线上发布的分离。</li>
+<li>但是没有解决三方平台共享的问题并且使静态网站过于臃肿。</li>
+</ul>
+<ol>
+<li>图床派：</li>
+</ol>
+<ul>
+<li>通过使用各类图床把图片直接上传</li>
+<li>本地没有备份，容易丢失</li>
+</ul>
+<p>我还有一大痛点，就是post_asset_folder生成的文件夹名称应该是会和文章题目一样，但是我由于进行了<a href="https://junzhe.top/posts/hexo-posts-folder-manage.html">永久链接的修改</a>所以在生成文件夹的时候会以abbrlink作为文件夹名称，这样就会导致文件夹名称和文章内链接名称不一致，导致线上发布时无法预览</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>把post_asset_folder仅仅当成本地的文件分类，不使用任何插件。<br>在source/文件夹下建立一个_backup/文件夹，用来进行备份</p>
+<h3 id="体写作流程："><a href="#体写作流程：" class="headerlink" title="体写作流程："></a>体写作流程：</h3><ol>
+<li>hexo new <title>  # 创建文章，并且同时创建同名文件夹</li>
+<li>把文章拖到文件夹中</li>
+<li>若使用typora，在typora内设置图片默认存放路径为./${filename}；若直接使用vscode，直接粘贴图片，图片会和文章同名文件夹在同一目录下，等写作完毕了直接把文章拖出去就行了，图片路径会自动变化的</li>
+</ol>
+<h3 id="具体发布流程："><a href="#具体发布流程：" class="headerlink" title="具体发布流程："></a>具体发布流程：</h3><ol>
+<li>定期直接把整个_posts文件夹下的文件夹拖到_backup/文件夹下进行备份</li>
+<li>回到_posts/文件夹下面的文章，选择在typora中打开，在typora中选择上传所有图片到图床（具体图床配置网上很多，我是 GitHub + jsdelivr），文章中的图片链接会自动替换为图床链接</li>
+<li>删除_posts/下的图片文件夹</li>
+<li>hexo g &amp;&amp; hexo d</li>
+<li>访问线上博客，检查图片是否正常显示</li>
+</ol>
+</title></li></ol>
     </div>
 
     
@@ -305,7 +445,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://junzhe.top/posts/lc-array-summary.html" title="数组总结">https://junzhe.top/posts/lc-array-summary.html</a>
+      <a href="https://junzhe.top/posts/hexo-image-manage-local-cloud.html" title="Hexo博客图片管理最佳实践-本地+图床">https://junzhe.top/posts/hexo-image-manage-local-cloud.html</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -314,23 +454,21 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/%E6%95%B0%E7%BB%84/" rel="tag"># 数组</a>
-              <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag"># 双指针</a>
-              <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="tag"># 二分查找</a>
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+              <a href="/tags/%E7%BD%91%E7%AB%99%E5%BB%BA%E8%AE%BE/" rel="tag"># 网站建设</a>
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/%E5%9B%BE%E5%BA%8A/" rel="tag"># 图床</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/lc059-spiral-matrix-ii.html" rel="prev" title="59.螺旋矩阵II">
-                  <i class="fa fa-angle-left"></i> 59.螺旋矩阵II
+                <a href="/posts/blog-setup-4-domain.html" rel="prev" title="Hexo博客绑定域名与加速">
+                  <i class="fa fa-angle-left"></i> Hexo博客绑定域名与加速
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/codecamp-day1-arrays.html" rel="next" title="代码随想录算法训练营第一天 | 数组Part01">
-                  代码随想录算法训练营第一天 | 数组Part01 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
