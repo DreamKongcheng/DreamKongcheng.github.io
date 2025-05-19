@@ -1,6 +1,6 @@
 ---
 title: 让Google搜到你的Github-Hexo个人博客
-author: JunZhe
+author: 濬哲
 tags:
   - 前端
   - 网站建设

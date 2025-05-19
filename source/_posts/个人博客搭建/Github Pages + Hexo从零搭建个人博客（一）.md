@@ -1,6 +1,6 @@
 ---
 title: Github Pages + Hexo从零搭建个人博客（一）：基础建设
-author: JunZhe
+author: 濬哲
 tags:
   - 前端
   - 网站建设

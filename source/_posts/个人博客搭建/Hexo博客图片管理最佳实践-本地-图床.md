@@ -1,6 +1,6 @@
 ---
 title: Hexo博客图片管理最佳实践-本地+图床
-author: JunZhe
+author: 濬哲
 copyright: true
 mathjax: true
 date: 2025-05-16 18:24:55

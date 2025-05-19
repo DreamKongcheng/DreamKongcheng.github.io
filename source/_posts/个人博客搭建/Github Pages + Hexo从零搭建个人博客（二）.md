@@ -1,6 +1,6 @@
 ---
 title: Github Pages + Hexo从零搭建个人博客（二）：Git双分支管理网页与源文件
-author: JunZhe
+author: 濬哲
 tags:
   - 前端
   - 网站建设

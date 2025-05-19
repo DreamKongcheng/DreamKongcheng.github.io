@@ -1,6 +1,6 @@
 ---
 title: 代码随想录算法训练营第三天 | 链表Part01
-author: JunZhe
+author: 濬哲
 copyright: true
 mathjax: true
 date: 2025-05-19 15:37:16

@@ -1,6 +1,6 @@
 ---
 title: Hexo技巧之_posts文件夹管理
-author: JunZhe
+author: 濬哲
 tags:
   - 前端
   - 网站建设

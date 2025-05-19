@@ -1,6 +1,6 @@
 ---
 title: 代码随想录算法训练营第二天 | 数组Part02
-author: JunZhe
+author: 濬哲
 copyright: true
 mathjax: true
 date: 2025-05-15 20:30:32

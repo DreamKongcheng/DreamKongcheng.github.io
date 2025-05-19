@@ -1,6 +1,6 @@
 ---
 title: Hexo博客绑定域名与加速
-author: JunZhe
+author: 濬哲
 copyright: true
 mathjax: true
 abbrlink: blog-setup-4-domain

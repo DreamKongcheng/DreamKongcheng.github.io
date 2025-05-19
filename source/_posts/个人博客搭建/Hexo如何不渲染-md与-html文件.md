@@ -1,6 +1,6 @@
 ---
 title: Hexo如何不渲染.md与.html文件
-author: JunZhe
+author: 濬哲
 tags:
   - 前端
   - 网站建设

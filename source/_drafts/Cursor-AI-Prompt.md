@@ -1,6 +1,6 @@
 ---
 title: Cursor AI Prompt
-author: JunZhe
+author: 濬哲
 tags: 工具 技巧
 categories: Cursor使用技巧
 date: 2024-10-09 23:48:03

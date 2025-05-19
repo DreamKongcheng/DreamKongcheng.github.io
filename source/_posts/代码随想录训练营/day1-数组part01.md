@@ -1,6 +1,6 @@
 ---
 title: 代码随想录算法训练营第一天 | 数组Part01
-author: JunZhe
+author: 濬哲
 tags:
   - 数组
   - 算法
