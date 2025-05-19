@@ -2,7 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://www.junzhe.top/posts/codecamp-day2-arrays.html</loc>
+    <loc>https://www.junzhe.top/posts/blog-setup-3-next.html</loc>
+    
+    <lastmod>2025-05-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.junzhe.top/posts/codecamp-day4-linkedlist.html</loc>
     
     <lastmod>2025-05-19</lastmod>
     
@@ -20,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://www.junzhe.top/posts/codecamp-day4-linkedlist.html</loc>
+    <loc>https://www.junzhe.top/posts/codecamp-day2-arrays.html</loc>
     
     <lastmod>2025-05-19</lastmod>
     
@@ -129,15 +138,6 @@
   
   <url>
     <loc>https://www.junzhe.top/posts/blog-setup-google.html</loc>
-    
-    <lastmod>2025-05-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.junzhe.top/posts/blog-setup-3-next.html</loc>
     
     <lastmod>2025-05-15</lastmod>
     
