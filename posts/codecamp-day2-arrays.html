@@ -19,28 +19,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.junzhe.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="LeetCode209.长度最小的子数组题目链接：209.长度最小的子数组 题目要点与解题思路">
+    <meta name="description" content="LeetCode209.长度最小的子数组题目链接：209.长度最小的子数组 题目要点与解题思路暴力解法不难想到暴力解法，时间复杂度是，就是以每一个元素为起始位置，然后往下看，直到找到满足要求的子数组。这种情况下结束位置会被反复遍历 滑动窗口滑动窗口就是不断调节起始位置和终止位置，然后找到满足要求的子数组在暴力循环中，一个 for 遍历起始位置，一个 for 遍历结束位置，结束位置是从每个起始位置开">
 <meta property="og:type" content="article">
-<meta property="og:title" content="代码随想录算法训练营第一天 | 数组Part02">
+<meta property="og:title" content="代码随想录算法训练营第二天 | 数组Part02">
 <meta property="og:url" content="https://www.junzhe.top/posts/codecamp-day2-arrays.html">
 <meta property="og:site_name" content="JunZhe&#39;s Blog">
-<meta property="og:description" content="LeetCode209.长度最小的子数组题目链接：209.长度最小的子数组 题目要点与解题思路">
+<meta property="og:description" content="LeetCode209.长度最小的子数组题目链接：209.长度最小的子数组 题目要点与解题思路暴力解法不难想到暴力解法，时间复杂度是，就是以每一个元素为起始位置，然后往下看，直到找到满足要求的子数组。这种情况下结束位置会被反复遍历 滑动窗口滑动窗口就是不断调节起始位置和终止位置，然后找到满足要求的子数组在暴力循环中，一个 for 遍历起始位置，一个 for 遍历结束位置，结束位置是从每个起始位置开">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://file1.kamacoder.com/i/algo/209.%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.gif">
 <meta property="article:published_time" content="2025-05-15T12:30:32.000Z">
-<meta property="article:modified_time" content="2025-05-15T14:54:21.264Z">
+<meta property="article:modified_time" content="2025-05-19T16:07:39.314Z">
 <meta property="article:author" content="JunZhe">
 <meta property="article:tag" content="数组">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://file1.kamacoder.com/i/algo/209.%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.gif">
 
 
 <link rel="canonical" href="https://www.junzhe.top/posts/codecamp-day2-arrays.html">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.junzhe.top/posts/codecamp-day2-arrays.html","path":"posts/codecamp-day2-arrays.html","title":"代码随想录算法训练营第一天 | 数组Part02"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.junzhe.top/posts/codecamp-day2-arrays.html","path":"posts/codecamp-day2-arrays.html","title":"代码随想录算法训练营第二天 | 数组Part02"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>代码随想录算法训练营第一天 | 数组Part02 | JunZhe's Blog</title>
+<title>代码随想录算法训练营第二天 | 数组Part02 | JunZhe's Blog</title>
   
 
 
@@ -250,7 +252,7 @@ mjx-container[display="true"] + br {
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LeetCode209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84"><span class="nav-number">1.</span> <span class="nav-text">LeetCode209.长度最小的子数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E8%A6%81%E7%82%B9%E4%B8%8E%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.</span> <span class="nav-text">题目要点与解题思路</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#LeetCode209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84"><span class="nav-number">1.</span> <span class="nav-text">LeetCode209.长度最小的子数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E8%A6%81%E7%82%B9%E4%B8%8E%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.</span> <span class="nav-text">题目要点与解题思路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9A%B4%E5%8A%9B%E8%A7%A3%E6%B3%95"><span class="nav-number">1.1.1.</span> <span class="nav-text">暴力解法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3"><span class="nav-number">1.1.2.</span> <span class="nav-text">滑动窗口</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81"><span class="nav-number">1.2.</span> <span class="nav-text">实现代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%B8%8E%E6%80%BB%E7%BB%93"><span class="nav-number">1.3.</span> <span class="nav-text">遇到的问题与总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LeetCode59-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5-II"><span class="nav-number">2.</span> <span class="nav-text">LeetCode59. 螺旋矩阵 II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E8%A6%81%E7%82%B9%E4%B8%8E%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF-1"><span class="nav-number">2.1.</span> <span class="nav-text">题目要点与解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81-1"><span class="nav-number">2.2.</span> <span class="nav-text">实现代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%B8%8E%E6%80%BB%E7%BB%93-1"><span class="nav-number">2.3.</span> <span class="nav-text">遇到的问题与总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KamaCoder58-%E5%8C%BA%E9%97%B4%E5%92%8C"><span class="nav-number">3.</span> <span class="nav-text">KamaCoder58. 区间和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E8%A6%81%E7%82%B9%E4%B8%8E%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF-2"><span class="nav-number">3.1.</span> <span class="nav-text">题目要点与解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81-2"><span class="nav-number">3.2.</span> <span class="nav-text">实现代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%B8%8E%E6%80%BB%E7%BB%93-2"><span class="nav-number">3.3.</span> <span class="nav-text">遇到的问题与总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8A%E6%97%A5%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">今日总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E9%83%A8%E5%88%86%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">数组部分总结</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -265,7 +267,7 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -330,12 +332,12 @@ mjx-container[display="true"] + br {
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="代码随想录算法训练营第一天 | 数组Part02 | JunZhe's Blog">
+      <meta itemprop="name" content="代码随想录算法训练营第二天 | 数组Part02 | JunZhe's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          代码随想录算法训练营第一天 | 数组Part02
+          代码随想录算法训练营第二天 | 数组Part02
         </h1>
 
         <div class="post-meta-container">
@@ -345,9 +347,15 @@ mjx-container[display="true"] + br {
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-05-15 20:30:32 / 修改时间：22:54:21" itemprop="dateCreated datePublished" datetime="2025-05-15T20:30:32+08:00">2025-05-15</time>
+      <time title="创建时间：2025-05-15 20:30:32" itemprop="dateCreated datePublished" datetime="2025-05-15T20:30:32+08:00">2025-05-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-20 00:07:39" itemprop="dateModified" datetime="2025-05-20T00:07:39+08:00">2025-05-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -373,14 +381,14 @@ mjx-container[display="true"] + br {
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>46</span>
+      <span>2.5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -390,8 +398,47 @@ mjx-container[display="true"] + br {
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="LeetCode209-长度最小的子数组"><a href="#LeetCode209-长度最小的子数组" class="headerlink" title="LeetCode209.长度最小的子数组"></a>LeetCode209.长度最小的子数组</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-size-subarray-sum/description/">题目链接：209.长度最小的子数组</a></p>
-<h2 id="题目要点与解题思路"><a href="#题目要点与解题思路" class="headerlink" title="题目要点与解题思路"></a>题目要点与解题思路</h2>
+    <div class="post-body" itemprop="articleBody"><h2 id="LeetCode209-长度最小的子数组"><a href="#LeetCode209-长度最小的子数组" class="headerlink" title="LeetCode209.长度最小的子数组"></a>LeetCode209.长度最小的子数组</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-size-subarray-sum/description/">题目链接：209.长度最小的子数组</a></p>
+<h3 id="题目要点与解题思路"><a href="#题目要点与解题思路" class="headerlink" title="题目要点与解题思路"></a>题目要点与解题思路</h3><h4 id="暴力解法"><a href="#暴力解法" class="headerlink" title="暴力解法"></a>暴力解法</h4><p>不难想到暴力解法，时间复杂度是<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="5.832ex" height="2.452ex" role="img" focusable="false" viewBox="0 -833.9 2577.6 1083.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="msup" transform="translate(1152,0)"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mn" transform="translate(633,363) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g><g data-mml-node="mo" transform="translate(2188.6,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container>，就是以每一个元素为起始位置，然后往下看，直到找到满足要求的子数组。这种情况下结束位置会被反复遍历</p>
+<h4 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h4><p>滑动窗口就是不断调节起始位置和终止位置，然后找到满足要求的子数组<br>在暴力循环中，一个 for 遍历起始位置，一个 for 遍历结束位置，结束位置是从每个起始位置开始枚举</p>
+<p>我们思考能否用一个 for 循环来解决这个问题：<br>首先应该表示起始位置还是终止位置呢？ 答案是终止位置，因为如果是起始位置的话一定会落入重复遍历终止位置的困境<br>我们移动终止位置，不断增长窗口，当窗口内的元素和大于等于目标值时，开始移动起始位置，直到窗口内的元素和小于目标值为止</p>
+<p><img src="https://file1.kamacoder.com/i/algo/209.%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.gif" alt=""></p>
+<span id="more"></span>
+<h3 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="type">int</span> target, vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>{</span><br><span class="line">        <span class="type">int</span> i = <span class="number">0</span>; <span class="comment">// 滑动窗口起始位置</span></span><br><span class="line">        <span class="type">int</span> sum = <span class="number">0</span>; <span class="comment">// 滑动窗口内元素和</span></span><br><span class="line">        <span class="type">int</span> subLength = <span class="number">0</span>;  <span class="comment">// 滑动窗口长度</span></span><br><span class="line">        <span class="type">int</span> result = INT32_MAX;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; nums.<span class="built_in">size</span>(); j++){</span><br><span class="line">            sum += nums[j];</span><br><span class="line">            <span class="keyword">while</span>(sum &gt;= target){</span><br><span class="line">                subLength = j - i + <span class="number">1</span>;</span><br><span class="line">                result = result &gt; subLength ? subLength : result;</span><br><span class="line">                sum -= nums[i];</span><br><span class="line">                i++;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> result == INT32_MAX ? <span class="number">0</span> : result;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
+<ul>
+<li>时间复杂度<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="4.844ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 2141 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(1152,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(1752,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container></li>
+<li>空间复杂度<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="4.618ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 2041 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mn" transform="translate(1152,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(1652,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">subLength = j - i + <span class="number">1</span>;</span><br><span class="line">result = result &gt; subLength ? subLength : result;</span><br></pre></td></tr></table></figure>
+<p>注意这两个语句的位置，思考为什么是放在 while 的最前面，我二刷有点背答案了，把他放到 while 后面去了，写的时候没有理清逻辑，debug 了几次才过<br>当 sum 一大于 target 的时候就要进行记录!</p>
+<h3 id="遇到的问题与总结"><a href="#遇到的问题与总结" class="headerlink" title="遇到的问题与总结"></a>遇到的问题与总结</h3><p>二刷的时候没有完全理清逻辑，以后要避免纯背答案<br>发现一个规律，很多关于“子”的问题，比如子数组，子字符串等问题的时候，都应该想一想滑动窗口的方法</p>
+<h2 id="LeetCode59-螺旋矩阵-II"><a href="#LeetCode59-螺旋矩阵-II" class="headerlink" title="LeetCode59. 螺旋矩阵 II"></a>LeetCode59. 螺旋矩阵 II</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/spiral-matrix-ii/description/">题目链接：59.螺旋矩阵 II</a></p>
+<h3 id="题目要点与解题思路-1"><a href="#题目要点与解题思路-1" class="headerlink" title="题目要点与解题思路"></a>题目要点与解题思路</h3><p>这道题没什么算法，主要考察的是模拟过程和对代码的掌控力</p>
+<p>代码随想录里面的解法比较繁琐，我自己采用了收缩边界的方法，个人觉得是这道题最实用的方法</p>
+<h3 id="实现代码-1"><a href="#实现代码-1" class="headerlink" title="实现代码"></a>实现代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">lass Solution {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">generateMatrix</span>(<span class="type">int</span> n) {</span><br><span class="line">        <span class="type">int</span> up = <span class="number">0</span>, down = n - <span class="number">1</span>, left = <span class="number">0</span>, right = n - <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> count = <span class="number">1</span>;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">vec</span>(n, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(n, <span class="number">0</span>));</span><br><span class="line">        <span class="keyword">while</span> (<span class="number">1</span>) {</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = left; i &lt;= right; i++) vec[up][i] = count++;</span><br><span class="line">            <span class="keyword">if</span> (++up &gt; down) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = up; i &lt;= down; i++) vec[i][right] = count++;</span><br><span class="line">            <span class="keyword">if</span> (--right &lt; left) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = right; i &gt;= left; i--) vec[down][i] = count++;</span><br><span class="line">            <span class="keyword">if</span> (--down &lt; up) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = down; i &gt;= up; i--) vec[i][left] = count++;</span><br><span class="line">            <span class="keyword">if</span> (++left &gt; right) <span class="keyword">break</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> vec;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
+<ul>
+<li>时间复杂度<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="5.832ex" height="2.452ex" role="img" focusable="false" viewBox="0 -833.9 2577.6 1083.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="msup" transform="translate(1152,0)"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mn" transform="translate(633,363) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g><g data-mml-node="mo" transform="translate(2188.6,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container></li>
+<li>空间复杂度<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="4.618ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 2041 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mn" transform="translate(1152,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(1652,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container></li>
+</ul>
+<p>这个方法巧妙在每次收缩边界，让代码保持了非常统一的风格，能很好的规避一些边界值的 bug</p>
+<h3 id="遇到的问题与总结-1"><a href="#遇到的问题与总结-1" class="headerlink" title="遇到的问题与总结"></a>遇到的问题与总结</h3><p>这道题知道使用边界收缩的方式基本就简单了，没啥问题</p>
+<h2 id="KamaCoder58-区间和"><a href="#KamaCoder58-区间和" class="headerlink" title="KamaCoder58. 区间和"></a>KamaCoder58. 区间和</h2><p><a target="_blank" rel="noopener" href="https://kamacoder.com/problempage.php?pid=1070">题目链接：58. 区间和</a></p>
+<h3 id="题目要点与解题思路-2"><a href="#题目要点与解题思路-2" class="headerlink" title="题目要点与解题思路"></a>题目要点与解题思路</h3><p>这道题看起来很简单，但是很容易超时，解决方法是使用<strong>前缀和</strong></p>
+<p>前缀和的思想是重复利用计算过的子数组之和，从而降低区间查询需要累加计算的次数。</p>
+<p>前缀和在涉及计算区间和的问题时非常有用！</p>
+<h3 id="实现代码-2"><a href="#实现代码-2" class="headerlink" title="实现代码"></a>实现代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">arr</span><span class="params">(n,<span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">p</span><span class="params">(n, <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="type">int</span> presum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++) {</span><br><span class="line">        cin &gt;&gt; arr[i];</span><br><span class="line">        presum += arr[i];</span><br><span class="line">        p[i] = presum;</span><br><span class="line">    }</span><br><span class="line">    <span class="type">int</span> a, b;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (cin &gt;&gt; a &gt;&gt; b) {</span><br><span class="line">        <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (a == <span class="number">0</span>) sum = p[b];</span><br><span class="line">        <span class="keyword">else</span> sum = p[b] - p[a - <span class="number">1</span>];</span><br><span class="line">        std::cout &lt;&lt; sum &lt;&lt; std::endl;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="遇到的问题与总结-2"><a href="#遇到的问题与总结-2" class="headerlink" title="遇到的问题与总结"></a>遇到的问题与总结</h3><p>以后见到区间和的问题就要想到前缀和</p>
+<h2 id="今日总结"><a href="#今日总结" class="headerlink" title="今日总结"></a>今日总结</h2><p>今天的几道题都是一刷不大能想到的，重点在于积累思想，以后看到类似的题目都能想到他们对映的解法就行。二刷总体感觉是可以的，就是要更加深对思维逻辑的理解，不要死记硬背</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://programmercarl.com/0209.%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.html#%E7%AE%97%E6%B3%95%E5%85%AC%E5%BC%80%E8%AF%BE">代码随想录-长度最小的子数组</a><br><a target="_blank" rel="noopener" href="https://programmercarl.com/kamacoder/0058.%E5%8C%BA%E9%97%B4%E5%92%8C.html">代码随想录-区间和</a></p>
+<h2 id="数组部分总结"><a href="#数组部分总结" class="headerlink" title="数组部分总结"></a>数组部分总结</h2><p>数组部分已经结束了，收获很大，主要是下面几个方面：</p>
+<ul>
+<li>二分查找：注意统一写法左闭右开 or 左闭右闭</li>
+<li>双指针：简化暴力解法</li>
+<li>滑动窗口：“子”问题</li>
+<li>模拟行为：想清楚边界和每一步</li>
+<li>前缀和：区间求和</li>
+</ul>
+
     </div>
 
     
@@ -421,7 +468,7 @@ mjx-container[display="true"] + br {
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://www.junzhe.top/posts/codecamp-day2-arrays.html" title="代码随想录算法训练营第一天 | 数组Part02">https://www.junzhe.top/posts/codecamp-day2-arrays.html</a>
+      <a href="https://www.junzhe.top/posts/codecamp-day2-arrays.html" title="代码随想录算法训练营第二天 | 数组Part02">https://www.junzhe.top/posts/codecamp-day2-arrays.html</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -499,13 +546,13 @@ mjx-container[display="true"] + br {
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">23k</span>
+    <span title="站点总字数">30k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21 分钟</span>
+    <span title="站点阅读时长">28 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
