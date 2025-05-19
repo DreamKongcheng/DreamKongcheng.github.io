@@ -13,7 +13,7 @@ timezone: Asia/Shanghai
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://DreamKongcheng.github.io
+url: https://www.junzhe.top #https://DreamKongcheng.github.io
 root: /
 #permalink: :year/:month/:day/:title/ #这里的title是相对于_posts文件夹的
 #permalink: :title/
@@ -52,7 +52,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 syntax_highlighter: highlight.js
@@ -107,6 +107,24 @@ ignore:
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
+#RSS订阅
+plugin:
+  - hexo-generator-feed
+  - hexo-generator-baidu-sitemap
+  - hexo-generator-sitemap
+
+#Feed Atom
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+
+baidusitemap:
+  path: baidusitemap.xml
+sitemap:
+  path: sitemap.xml
+
+
 ## Themes: https://hexo.io/themes/
 theme: next
 
@@ -118,19 +136,9 @@ deploy:
   branch: main
 
 
-# # Search Config
-# search:
-#   path: search.json #之前就是这里出了问题导致图标错误，错误的教程是 search.xml
-#   field: post
-#   format: html
-#   limit: 1000
-
-
-sitemap:
-path: sitemap.xml
 
 	
-copyAssets: Google Search Console Verification.html  #表示 copy-assets 文件夹中的文件不被渲染，直接复制到 public 文件夹。
+# copyAssets: Google Search Console Verification.html  #表示 copy-assets 文件夹中的文件不被渲染，直接复制到 public 文件夹。
 
 symbols_count_time:
   symbols: true             # 文章字数统计
