@@ -31,6 +31,8 @@ abbrlink: codecamp-day3-linkedlist
 - 删除节点只需要用到一个 cur 指针，cur-> next = cur->next->next; 这样就可以了
 - 别忘记 delete dummy 和要删除的节点
 
+<!--more-->
+
 ### 实现代码
 
 ```cpp

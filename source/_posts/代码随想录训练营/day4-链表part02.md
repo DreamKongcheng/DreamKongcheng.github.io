@@ -23,6 +23,8 @@ abbrlink: codecamp-day4-linkedlist
 
 我的解法是步骤 3-步骤 2-步骤 1，代码如下：
 
+<!--more-->
+
 ### 实现代码
 
 ```cpp
