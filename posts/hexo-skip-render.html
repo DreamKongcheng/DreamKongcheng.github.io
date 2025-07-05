@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.junzhe.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="前言众所周知，Hexo会自动将 source 文件夹下的所有 .md 与 .html 文件渲染。但有的时候，这会造成很大的问题。比如我写了个 README.md 文件，或者我想在根目录下添加一个 html 文件（比如谷歌用于验证网站的 html 文件），他们都会在 hexo g 时候被渲染。如果我们把这些文件直接放在 public 文件夹下，那么他们就不会被渲染，但是当我们执行了 hexo cle">
+    <meta name="description" content="前言 众所周知，Hexo会自动将 source 文件夹下的所有 .md 与 .html 文件渲染。但有的时候，这会造成很大的问题。比如我写了个 README.md 文件，或者我想在根目录下添加一个 html 文件（比如谷歌用于验证网站的 html 文件），他们都会在 hexo g 时候被渲染。如果我们把这些文件直接放在 public 文件夹下，那么他们就不会被渲染，但是当我们执行了 hexo cl">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo如何不渲染.md与.html文件">
 <meta property="og:url" content="https://www.junzhe.top/posts/hexo-skip-render.html">
 <meta property="og:site_name" content="濬哲的博客">
-<meta property="og:description" content="前言众所周知，Hexo会自动将 source 文件夹下的所有 .md 与 .html 文件渲染。但有的时候，这会造成很大的问题。比如我写了个 README.md 文件，或者我想在根目录下添加一个 html 文件（比如谷歌用于验证网站的 html 文件），他们都会在 hexo g 时候被渲染。如果我们把这些文件直接放在 public 文件夹下，那么他们就不会被渲染，但是当我们执行了 hexo cle">
+<meta property="og:description" content="前言 众所周知，Hexo会自动将 source 文件夹下的所有 .md 与 .html 文件渲染。但有的时候，这会造成很大的问题。比如我写了个 README.md 文件，或者我想在根目录下添加一个 html 文件（比如谷歌用于验证网站的 html 文件），他们都会在 hexo g 时候被渲染。如果我们把这些文件直接放在 public 文件夹下，那么他们就不会被渲染，但是当我们执行了 hexo cl">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-10T08:58:37.000Z">
 <meta property="article:modified_time" content="2025-05-19T16:33:18.619Z">
@@ -70,7 +70,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js" defer></script>
 
 
@@ -285,12 +285,25 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>众所周知，Hexo会自动将 source 文件夹下的所有 .md 与 .html 文件渲染。但有的时候，这会造成很大的问题。比如我写了个 README.md 文件，或者我想在根目录下添加一个 html 文件（比如谷歌用于验证网站的 html 文件），他们都会在 <code>hexo g</code> 时候被渲染。如果我们把这些文件直接放在 public 文件夹下，那么他们就不会被渲染，但是当我们执行了 <code>hexo clean</code> 之后，这些文件就会被删除。我们希望能够把这些文件放在我们的 source 文件夹下，每次 <code>hexo g</code> 的时候被<strong>拷贝</strong>到 public文件夹下而不被<strong>渲染</strong>。</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="前言">前言</h2>
+<p>众所周知，Hexo会自动将 source 文件夹下的所有 .md 与 .html
+文件渲染。但有的时候，这会造成很大的问题。比如我写了个 README.md
+文件，或者我想在根目录下添加一个 html 文件（比如谷歌用于验证网站的 html
+文件），他们都会在 <code>hexo g</code>
+时候被渲染。如果我们把这些文件直接放在 public
+文件夹下，那么他们就不会被渲染，但是当我们执行了 <code>hexo clean</code>
+之后，这些文件就会被删除。我们希望能够把这些文件放在我们的 source
+文件夹下，每次 <code>hexo g</code> 的时候被<strong>拷贝</strong>到
+public文件夹下而不被<strong>渲染</strong>。</p>
 <span id="more"></span>
-<h2 id="操作方法"><a href="#操作方法" class="headerlink" title="操作方法"></a>操作方法</h2><p>找到<strong>站点配置文件</strong> <code>_config.yml</code>，在其中添加以下配置：</p>
+<h2 id="操作方法">操作方法</h2>
+<p>找到<strong>站点配置文件</strong>
+<code>_config.yml</code>，在其中添加以下配置：</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">skip_render:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">&#x27;README.md&#x27;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">&#x27;*.html&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>这样符合规则的文件就不会被渲染了，他们会原封不动地进入到 pubilc 文件夹，存放在博客的根目录。完美！</p>
-<p>方法参考：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/ganzhilin520/article/details/79057774">Hexo不渲染.md或者.html</a></p>
+<p>这样符合规则的文件就不会被渲染了，他们会原封不动地进入到 pubilc
+文件夹，存放在博客的根目录。完美！</p>
+<p>方法参考： <a
+target="_blank" rel="noopener" href="https://blog.csdn.net/ganzhilin520/article/details/79057774">Hexo不渲染.md或者.html</a></p>
 
     </div>
 
@@ -400,13 +413,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">42k</span>
+    <span title="站点总字数">43k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">38 分钟</span>
+    <span title="站点阅读时长">39 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

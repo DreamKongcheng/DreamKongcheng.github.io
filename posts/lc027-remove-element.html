@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.junzhe.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="题目简介题目链接给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素。元素的顺序可能发生改变。然后返回 nums 中与 val 不同的元素的数量。 假设 nums 中不等于 val 的元素数量为 k，要通过此题，您需要执行以下操作： 更改 nums 数组，使 nums 的前 k 个元素包含不等于 val 的元素。nums 的其余元素和 nums 的大小并不重要。">
+    <meta name="description" content="题目简介 题目链接 给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素。元素的顺序可能发生改变。然后返回 nums 中与 val 不同的元素的数量。 假设 nums 中不等于 val 的元素数量为 k，要通过此题，您需要执行以下操作： 更改 nums 数组，使 nums 的前 k 个元素包含不等于 val 的元素。nums 的其余元素和 nums 的大小并不重">
 <meta property="og:type" content="article">
 <meta property="og:title" content="027.移除元素">
 <meta property="og:url" content="https://www.junzhe.top/posts/lc027-remove-element.html">
 <meta property="og:site_name" content="濬哲的博客">
-<meta property="og:description" content="题目简介题目链接给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素。元素的顺序可能发生改变。然后返回 nums 中与 val 不同的元素的数量。 假设 nums 中不等于 val 的元素数量为 k，要通过此题，您需要执行以下操作： 更改 nums 数组，使 nums 的前 k 个元素包含不等于 val 的元素。nums 的其余元素和 nums 的大小并不重要。">
+<meta property="og:description" content="题目简介 题目链接 给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素。元素的顺序可能发生改变。然后返回 nums 中与 val 不同的元素的数量。 假设 nums 中不等于 val 的元素数量为 k，要通过此题，您需要执行以下操作： 更改 nums 数组，使 nums 的前 k 个元素包含不等于 val 的元素。nums 的其余元素和 nums 的大小并不重">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-05-10T09:09:29.000Z">
 <meta property="article:modified_time" content="2025-05-19T16:33:18.640Z">
@@ -69,7 +69,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js" defer></script>
 
 
@@ -284,29 +284,47 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="题目简介"><a href="#题目简介" class="headerlink" title="题目简介"></a>题目简介</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-element/description/">题目链接</a><br>给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素。元素的顺序可能发生改变。然后返回 nums 中与 val 不同的元素的数量。</p>
-<p>假设 nums 中不等于 val 的元素数量为 k，要通过此题，您需要执行以下操作：</p>
-<p>更改 nums 数组，使 nums 的前 k 个元素包含不等于 val 的元素。nums 的其余元素和 nums 的大小并不重要。<br>返回 k。<br>用户评测：</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="题目简介">题目简介</h2>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-element/description/">题目链接</a>
+给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val
+的元素。元素的顺序可能发生改变。然后返回 nums 中与 val
+不同的元素的数量。</p>
+<p>假设 nums 中不等于 val 的元素数量为
+k，要通过此题，您需要执行以下操作：</p>
+<p>更改 nums 数组，使 nums 的前 k 个元素包含不等于 val 的元素。nums
+的其余元素和 nums 的大小并不重要。 返回 k。 用户评测：</p>
 <p>评测机将使用以下代码测试您的解决方案：</p>
 <p>示例 1：</p>
-<p>输入：nums = [3,2,2,3], val = 3<br>输出：2, nums = [2,2,_,_]<br>解释：你的函数函数应该返回 k = 2, 并且 nums 中的前两个元素均为 2。<br>你在返回的 k 个元素之外留下了什么并不重要（因此它们并不计入评测）。<br>示例 2：</p>
-<p>输入：nums = [0,1,2,2,3,0,4,2], val = 2<br>输出：5, nums = [0,1,4,0,3,_,_,_]<br>解释：你的函数应该返回 k = 5，并且 nums 中的前五个元素为 0,0,1,3,4。<br>注意这五个元素可以任意顺序返回。<br>你在返回的 k 个元素之外留下了什么并不重要（因此它们并不计入评测）。</p>
+<p>输入：nums = [3,2,2,3], val = 3 输出：2, nums = [2,2,<em>,</em>]
+解释：你的函数函数应该返回 k = 2, 并且 nums 中的前两个元素均为 2。
+你在返回的 k 个元素之外留下了什么并不重要（因此它们并不计入评测）。 示例
+2：</p>
+<p>输入：nums = [0,1,2,2,3,0,4,2], val = 2 输出：5, nums =
+[0,1,4,0,3,<em>,</em>,_] 解释：你的函数应该返回 k = 5，并且 nums
+中的前五个元素为 0,0,1,3,4。 注意这五个元素可以任意顺序返回。 你在返回的
+k 个元素之外留下了什么并不重要（因此它们并不计入评测）。</p>
 <p>提示：</p>
-<p>0 &lt;= nums.length &lt;= 100<br>0 &lt;= nums[i] &lt;= 50<br>0 &lt;= val &lt;= 100</p>
+<p>0 &lt;= nums.length &lt;= 100 0 &lt;= nums[i] &lt;= 50 0 &lt;= val
+&lt;= 100</p>
 <span id="more"></span>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>乍一看会想到用两层for循环，第一层检测要删除的元素，第二层是一个个位移填补空缺，这样是$O(n^2)$的时间复杂度</p>
-<p>我们希望能优化到$O(n)$，此时容易想到双指针</p>
-<p>双指针法（快慢指针法）： 通过一个快指针和慢指针在一个for循环下完成两个for循环的工作。</p>
+<h2 id="思路">思路</h2>
+<p>乍一看会想到用两层for循环，第一层检测要删除的元素，第二层是一个个位移填补空缺，这样是<span
+class="math inline">\(O(n^2)\)</span>的时间复杂度</p>
+<p>我们希望能优化到<span
+class="math inline">\(O(n)\)</span>，此时容易想到双指针</p>
+<p>双指针法（快慢指针法）：
+通过一个快指针和慢指针在一个for循环下完成两个for循环的工作。 -
+快指针：寻找符合条件的元素位置 - 慢指针：定位更新的位置</p>
+<p>这样讲有点抽象，直接看代码 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">removeElement</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> slow = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> fast = <span class="number">0</span>; fast &lt; nums.<span class="built_in">size</span>(); fast++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[fast] != val) &#123;</span><br><span class="line">                nums[slow] = nums[fast];</span><br><span class="line">                slow++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> slow;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+当fast发现元素不是val的时候，会把现在的fast赋给现在的slow，并且slow也往前进。如果fast指向要删除的元素，就会把fast只会管自己往前走，此时slow就停下来了，等待下一个fast指向的非val的元素</p>
+<h2 id="复杂度分析">复杂度分析</h2>
 <ul>
-<li>快指针：寻找符合条件的元素位置</li>
-<li>慢指针：定位更新的位置</li>
-</ul>
-<p>这样讲有点抽象，直接看代码<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">removeElement</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> slow = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> fast = <span class="number">0</span>; fast &lt; nums.<span class="built_in">size</span>(); fast++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[fast] != val) &#123;</span><br><span class="line">                nums[slow] = nums[fast];</span><br><span class="line">                slow++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> slow;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br>当fast发现元素不是val的时候，会把现在的fast赋给现在的slow，并且slow也往前进。如果fast指向要删除的元素，就会把fast只会管自己往前走，此时slow就停下来了，等待下一个fast指向的非val的元素</p>
-<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><ul>
 <li>时间复杂度：O(n)</li>
 <li>空间复杂度:O(1)</li>
 </ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题是双指针的经典应用，很多数组问题中都可以使用双指针进行优化，必须很清楚两个指针都代表什么含义</p>
+<h2 id="总结">总结</h2>
+<p>本题是双指针的经典应用，很多数组问题中都可以使用双指针进行优化，必须很清楚两个指针都代表什么含义</p>
 
     </div>
 
@@ -415,13 +433,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">42k</span>
+    <span title="站点总字数">43k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">38 分钟</span>
+    <span title="站点阅读时长">39 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

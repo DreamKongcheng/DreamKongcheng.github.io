@@ -65,7 +65,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js" defer></script>
 
 
@@ -366,7 +366,7 @@ mjx-container[display="true"] + br {
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.5k</span>
+      <span>2.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -384,11 +384,20 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="LeetCode209-长度最小的子数组"><a href="#LeetCode209-长度最小的子数组" class="headerlink" title="LeetCode209.长度最小的子数组"></a>LeetCode209.长度最小的子数组</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-size-subarray-sum/description/">题目链接：209.长度最小的子数组</a></p>
-<h3 id="题目要点与解题思路"><a href="#题目要点与解题思路" class="headerlink" title="题目要点与解题思路"></a>题目要点与解题思路</h3><h4 id="暴力解法"><a href="#暴力解法" class="headerlink" title="暴力解法"></a>暴力解法</h4><p>不难想到暴力解法，时间复杂度是<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="5.832ex" height="2.452ex" role="img" focusable="false" viewBox="0 -833.9 2577.6 1083.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="msup" transform="translate(1152,0)"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mn" transform="translate(633,363) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g><g data-mml-node="mo" transform="translate(2188.6,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container>，就是以每一个元素为起始位置，然后往下看，直到找到满足要求的子数组。这种情况下结束位置会被反复遍历</p>
-<h4 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h4><p>滑动窗口就是不断调节起始位置和终止位置，然后找到满足要求的子数组<br>在暴力循环中，一个 for 遍历起始位置，一个 for 遍历结束位置，结束位置是从每个起始位置开始枚举</p>
-<p>我们思考能否用一个 for 循环来解决这个问题：<br>首先应该表示起始位置还是终止位置呢？ 答案是终止位置，因为如果是起始位置的话一定会落入重复遍历终止位置的困境<br>我们移动终止位置，不断增长窗口，当窗口内的元素和大于等于目标值时，开始移动起始位置，直到窗口内的元素和小于目标值为止</p>
-<p><img src="https://file1.kamacoder.com/i/algo/209.%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.gif" alt=""></p>
+          <h2 id="leetcode209.长度最小的子数组">LeetCode209.长度最小的子数组</h2>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-size-subarray-sum/description/">题目链接：209.长度最小的子数组</a></p>
+<h3 id="题目要点与解题思路">题目要点与解题思路</h3>
+<h4 id="暴力解法">暴力解法</h4>
+<p>不难想到暴力解法，时间复杂度是<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="5.832ex" height="2.452ex" role="img" focusable="false" viewBox="0 -833.9 2577.6 1083.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="msup" transform="translate(1152,0)"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mn" transform="translate(633,363) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g><g data-mml-node="mo" transform="translate(2188.6,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container></span>，就是以每一个元素为起始位置，然后往下看，直到找到满足要求的子数组。这种情况下结束位置会被反复遍历</p>
+<h4 id="滑动窗口">滑动窗口</h4>
+<p>滑动窗口就是不断调节起始位置和终止位置，然后找到满足要求的子数组
+在暴力循环中，一个 for 遍历起始位置，一个 for
+遍历结束位置，结束位置是从每个起始位置开始枚举</p>
+<p>我们思考能否用一个 for 循环来解决这个问题：
+首先应该表示起始位置还是终止位置呢？
+答案是终止位置，因为如果是起始位置的话一定会落入重复遍历终止位置的困境
+我们移动终止位置，不断增长窗口，当窗口内的元素和大于等于目标值时，开始移动起始位置，直到窗口内的元素和小于目标值为止</p>
+<p><img src="https://file1.kamacoder.com/i/algo/209.%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.gif"></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/posts/codecamp-day2-arrays.html#more" rel="contents">
@@ -495,9 +504,11 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="LeetCode704-二分查找"><a href="#LeetCode704-二分查找" class="headerlink" title="LeetCode704.二分查找"></a>LeetCode704.二分查找</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-search/description/">题目链接：704.二分查找</a></p>
-<h3 id="题目要点与解题思路"><a href="#题目要点与解题思路" class="headerlink" title="题目要点与解题思路"></a>题目要点与解题思路</h3><p>首先我们明确一下二分查找的条件：</p>
-<ol>
+          <h2 id="leetcode704.二分查找">LeetCode704.二分查找</h2>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-search/description/">题目链接：704.二分查找</a></p>
+<h3 id="题目要点与解题思路">题目要点与解题思路</h3>
+<p>首先我们明确一下二分查找的条件：</p>
+<ol type="1">
 <li>数组是有序的</li>
 <li>数组中没有重复元素（否则返回的下标可能会不唯一）</li>
 </ol>
@@ -608,10 +619,13 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>双指针有大用处：<br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-element/description/">027.移除元素</a></p>
-<p>双指针还能延伸出滑动窗口，很多子数组之类的就是滑动窗口问题<br>字节后端一面中的编程题就是一道滑动窗口</p>
+          <p>双指针有大用处： <a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-element/description/">027.移除元素</a></p>
+<p>双指针还能延伸出滑动窗口，很多子数组之类的就是滑动窗口问题
+字节后端一面中的编程题就是一道滑动窗口</p>
 <p>最长非重复子字符串的长度，abcabc这种，最长子字符串是3</p>
-<p>这道题完全可以仿照<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-size-subarray-sum/description/">209.长度最小的子数组</a>来做</p>
+<p>这道题完全可以仿照<a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-size-subarray-sum/description/">209.长度最小的子数组</a>来做</p>
 
       
     </div>
@@ -693,7 +707,7 @@ mjx-container[display="true"] + br {
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>899</span>
+      <span>897</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -711,17 +725,24 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="题目简介"><a href="#题目简介" class="headerlink" title="题目简介"></a>题目简介</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/spiral-matrix-ii/description/">题目链接</a></p>
-<p>给你一个正整数 n ，生成一个包含 1 到 n2 所有元素，且元素按顺时针顺序螺旋排列的 n x n 正方形矩阵 matrix 。</p>
-<p>示例 1：<br><img src="https://assets.leetcode.com/uploads/2020/11/13/spiraln.jpg" alt=""></p>
-<p>输入：n = 3<br>输出：[[1,2,3],[8,9,4],[7,6,5]]<br>示例 2：</p>
-<p>输入：n = 1<br>输出：[[1]]</p>
+          <h2 id="题目简介">题目简介</h2>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/spiral-matrix-ii/description/">题目链接</a></p>
+<p>给你一个正整数 n ，生成一个包含 1 到 n2
+所有元素，且元素按顺时针顺序螺旋排列的 n x n 正方形矩阵 matrix 。</p>
+<p>示例 1： <img
+src="https://assets.leetcode.com/uploads/2020/11/13/spiraln.jpg" /></p>
+<p>输入：n = 3 输出：[[1,2,3],[8,9,4],[7,6,5]] 示例 2：</p>
+<p>输入：n = 1 输出：[[1]]</p>
 <p>提示：</p>
 <p>1 &lt;= n &lt;= 20</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>这道题很容易把人绕晕进去，如果找不到一个统一的写法，会产生大量的逻辑判断。下面我给出一个很巧妙的方法，不光是对这种正方形有用，同时也适用于长方形</p>
-<p>我们访问的顺序就是最外面这一圈，像是<strong>剥洋葱</strong>一样，一条一条的把边剥开，然后每次处理的就是一个新的矩形，代码其实非常好理解，up,down, left, right分别表示矩形的上下左右边界，count表示当前要填入的数字，vec是结果矩阵</p>
+<h2 id="思路">思路</h2>
+<p>这道题很容易把人绕晕进去，如果找不到一个统一的写法，会产生大量的逻辑判断。下面我给出一个很巧妙的方法，不光是对这种正方形有用，同时也适用于长方形</p>
+<p>我们访问的顺序就是最外面这一圈，像是<strong>剥洋葱</strong>一样，一条一条的把边剥开，然后每次处理的就是一个新的矩形，代码其实非常好理解，up,down,
+left,
+right分别表示矩形的上下左右边界，count表示当前要填入的数字，vec是结果矩阵</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">generateMatrix</span>(<span class="type">int</span> n) &#123;</span><br><span class="line">        <span class="type">int</span> up = <span class="number">0</span>, down = n - <span class="number">1</span>, left = <span class="number">0</span>, right = n - <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> count = <span class="number">1</span>;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">vec</span>(n, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(n, <span class="number">0</span>));</span><br><span class="line">        <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = left; i &lt;= right; i++) vec[up][i] = count++;</span><br><span class="line">            <span class="keyword">if</span> (++up &gt; down) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = up; i &lt;= down; i++) vec[i][right] = count++;</span><br><span class="line">            <span class="keyword">if</span> (--right &lt; left) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = right; i &gt;= left; i--) vec[down][i] = count++;</span><br><span class="line">            <span class="keyword">if</span> (--down &lt; up) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = down; i &gt;= up; i--) vec[i][left] = count++;</span><br><span class="line">            <span class="keyword">if</span> (++left &gt; right) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> vec;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>时间复杂度O(n^2)，空间复杂度O(n^2)</p>
+<p>时间复杂度O(n<sup>2)，空间复杂度O(n</sup>2)</p>
 
       
     </div>
@@ -821,17 +842,24 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="题目简介"><a href="#题目简介" class="headerlink" title="题目简介"></a>题目简介</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-size-subarray-sum/description/">题目链接</a></p>
+          <h2 id="题目简介">题目简介</h2>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-size-subarray-sum/description/">题目链接</a></p>
 <p>给定一个含有 n 个正整数的数组和一个正整数 target 。</p>
-<p>找出该数组中满足其总和大于等于 target 的长度最小的 子数组 [numsl, numsl+1, …, numsr-1, numsr] ，并返回其长度。如果不存在符合条件的子数组，返回 0 。</p>
+<p>找出该数组中满足其总和大于等于 target 的长度最小的 子数组 [numsl,
+numsl+1, …, numsr-1, numsr]
+，并返回其长度。如果不存在符合条件的子数组，返回 0 。</p>
 <p>示例 1：</p>
-<p>输入：target = 7, nums = [2,3,1,2,4,3]<br>输出：2<br>解释：子数组 [4,3] 是该条件下的长度最小的子数组。<br>示例 2：</p>
-<p>输入：target = 4, nums = [1,4,4]<br>输出：1<br>示例 3：</p>
-<p>输入：target = 11, nums = [1,1,1,1,1,1,1,1]<br>输出：0</p>
+<p>输入：target = 7, nums = [2,3,1,2,4,3] 输出：2 解释：子数组 [4,3]
+是该条件下的长度最小的子数组。 示例 2：</p>
+<p>输入：target = 4, nums = [1,4,4] 输出：1 示例 3：</p>
+<p>输入：target = 11, nums = [1,1,1,1,1,1,1,1] 输出：0</p>
 <p>提示：</p>
-<p>1 &lt;= target &lt;= 109<br>1 &lt;= nums.length &lt;= 105<br>1 &lt;= nums[i] &lt;= 104</p>
+<p>1 &lt;= target &lt;= 109 1 &lt;= nums.length &lt;= 105 1 &lt;=
+nums[i] &lt;= 104</p>
 <p>进阶：</p>
-<p>如果你已经实现 O(n) 时间复杂度的解法, 请尝试设计一个 O(n log(n)) 时间复杂度的解法。</p>
+<p>如果你已经实现 O(n) 时间复杂度的解法, 请尝试设计一个 O(n log(n))
+时间复杂度的解法。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/posts/lc209-minimum-size-subarray-sum.html#more" rel="contents">
@@ -938,12 +966,19 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="题目简介"><a href="#题目简介" class="headerlink" title="题目简介"></a>题目简介</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/squares-of-a-sorted-array/description/">977. 有序数组的平方</a></p>
-<p>给你一个按 非递减顺序 排序的整数数组 nums，返回 每个数字的平方 组成的新数组，要求也按 非递减顺序 排序。</p>
-<p>示例 1：<br>输入：nums = [-4,-1,0,3,10]<br>输出：[0,1,9,16,100]<br>解释：平方后，数组变为 [16,1,0,9,100]<br>排序后，数组变为 [0,1,9,16,100]</p>
-<p>示例 2：<br>输入：nums = [-7,-3,2,3,11]<br>输出：[4,9,9,49,121]</p>
-<p>提示：<br>1 &lt;= nums.length &lt;= 104<br>-104 &lt;= nums[i] &lt;= 104<br>nums 已按 非递减顺序 排序</p>
-<p>进阶：<br>请你设计时间复杂度为 O(n) 的算法解决本问题</p>
+          <h2 id="题目简介">题目简介</h2>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/squares-of-a-sorted-array/description/">977.
+有序数组的平方</a></p>
+<p>给你一个按 非递减顺序 排序的整数数组 nums，返回 每个数字的平方
+组成的新数组，要求也按 非递减顺序 排序。</p>
+<p>示例 1： 输入：nums = [-4,-1,0,3,10] 输出：[0,1,9,16,100]
+解释：平方后，数组变为 [16,1,0,9,100] 排序后，数组变为
+[0,1,9,16,100]</p>
+<p>示例 2： 输入：nums = [-7,-3,2,3,11] 输出：[4,9,9,49,121]</p>
+<p>提示： 1 &lt;= nums.length &lt;= 104 -104 &lt;= nums[i] &lt;= 104
+nums 已按 非递减顺序 排序</p>
+<p>进阶： 请你设计时间复杂度为 O(n) 的算法解决本问题</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/posts/lc977-squares-of-a-sorted-array.html#more" rel="contents">
@@ -1050,15 +1085,29 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="题目简介"><a href="#题目简介" class="headerlink" title="题目简介"></a>题目简介</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-element/description/">题目链接</a><br>给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素。元素的顺序可能发生改变。然后返回 nums 中与 val 不同的元素的数量。</p>
-<p>假设 nums 中不等于 val 的元素数量为 k，要通过此题，您需要执行以下操作：</p>
-<p>更改 nums 数组，使 nums 的前 k 个元素包含不等于 val 的元素。nums 的其余元素和 nums 的大小并不重要。<br>返回 k。<br>用户评测：</p>
+          <h2 id="题目简介">题目简介</h2>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-element/description/">题目链接</a>
+给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val
+的元素。元素的顺序可能发生改变。然后返回 nums 中与 val
+不同的元素的数量。</p>
+<p>假设 nums 中不等于 val 的元素数量为
+k，要通过此题，您需要执行以下操作：</p>
+<p>更改 nums 数组，使 nums 的前 k 个元素包含不等于 val 的元素。nums
+的其余元素和 nums 的大小并不重要。 返回 k。 用户评测：</p>
 <p>评测机将使用以下代码测试您的解决方案：</p>
 <p>示例 1：</p>
-<p>输入：nums = [3,2,2,3], val = 3<br>输出：2, nums = [2,2,_,_]<br>解释：你的函数函数应该返回 k = 2, 并且 nums 中的前两个元素均为 2。<br>你在返回的 k 个元素之外留下了什么并不重要（因此它们并不计入评测）。<br>示例 2：</p>
-<p>输入：nums = [0,1,2,2,3,0,4,2], val = 2<br>输出：5, nums = [0,1,4,0,3,_,_,_]<br>解释：你的函数应该返回 k = 5，并且 nums 中的前五个元素为 0,0,1,3,4。<br>注意这五个元素可以任意顺序返回。<br>你在返回的 k 个元素之外留下了什么并不重要（因此它们并不计入评测）。</p>
+<p>输入：nums = [3,2,2,3], val = 3 输出：2, nums = [2,2,<em>,</em>]
+解释：你的函数函数应该返回 k = 2, 并且 nums 中的前两个元素均为 2。
+你在返回的 k 个元素之外留下了什么并不重要（因此它们并不计入评测）。 示例
+2：</p>
+<p>输入：nums = [0,1,2,2,3,0,4,2], val = 2 输出：5, nums =
+[0,1,4,0,3,<em>,</em>,_] 解释：你的函数应该返回 k = 5，并且 nums
+中的前五个元素为 0,0,1,3,4。 注意这五个元素可以任意顺序返回。 你在返回的
+k 个元素之外留下了什么并不重要（因此它们并不计入评测）。</p>
 <p>提示：</p>
-<p>0 &lt;= nums.length &lt;= 100<br>0 &lt;= nums[i] &lt;= 50<br>0 &lt;= val &lt;= 100</p>
+<p>0 &lt;= nums.length &lt;= 100 0 &lt;= nums[i] &lt;= 50 0 &lt;= val
+&lt;= 100</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/posts/lc027-remove-element.html#more" rel="contents">
@@ -1147,7 +1196,7 @@ mjx-container[display="true"] + br {
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>867</span>
+      <span>875</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -1165,13 +1214,20 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="题目简介"><a href="#题目简介" class="headerlink" title="题目简介"></a>题目简介</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-search/description/">题目链接</a></p>
-<p>给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target  ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。</p>
+          <h2 id="题目简介">题目简介</h2>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-search/description/">题目链接</a></p>
+<p>给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target
+，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回
+-1。</p>
 <p>示例 1:</p>
-<p>输入: nums = [-1,0,3,5,9,12], target = 9<br>输出: 4<br>解释: 9 出现在 nums 中并且下标为 4<br>示例 2:</p>
-<p>输入: nums = [-1,0,3,5,9,12], target = 2<br>输出: -1<br>解释: 2 不存在 nums 中因此返回 -1</p>
+<p>输入: nums = [-1,0,3,5,9,12], target = 9 输出: 4 解释: 9 出现在 nums
+中并且下标为 4 示例 2:</p>
+<p>输入: nums = [-1,0,3,5,9,12], target = 2 输出: -1 解释: 2 不存在 nums
+中因此返回 -1</p>
 <p>提示：</p>
-<p>你可以假设 nums 中的所有元素是不重复的。<br>n 将在 [1, 10000]之间。<br>nums 的每个元素都将在 [-9999, 9999]之间。</p>
+<p>你可以假设 nums 中的所有元素是不重复的。 n 将在 [1, 10000]之间。 nums
+的每个元素都将在 [-9999, 9999]之间。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/posts/lc704-binary-search.html#more" rel="contents">
@@ -1278,10 +1334,18 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前段时间自己折腾了一下博客，初步建立起了自己的小站，今天心血来潮在谷歌搜索自己之前写的<a target="_blank" rel="noopener" href="https://dreamkongcheng.github.io/blogs/personal-blog-setup/Github%20Pages%20+%20Hexo%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/">从零搭建个人博客</a>的文章，结果在 Google 上面翻了十页都没有翻到，我一开始还以为是因为发了没多久的缘故，后来一查才知道 GitHub Pages 屏蔽了Google 的爬虫，所以在 Google 里是搜索不到 GitHub Pages 上面的网页的。</p>
+          <h2 id="前言">前言</h2>
+<p>前段时间自己折腾了一下博客，初步建立起了自己的小站，今天心血来潮在谷歌搜索自己之前写的<a
+target="_blank" rel="noopener" href="https://dreamkongcheng.github.io/blogs/personal-blog-setup/Github%20Pages%20+%20Hexo%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/">从零搭建个人博客</a>的文章，结果在
+Google
+上面翻了十页都没有翻到，我一开始还以为是因为发了没多久的缘故，后来一查才知道
+GitHub Pages 屏蔽了Google 的爬虫，所以在 Google 里是搜索不到 GitHub
+Pages 上面的网页的。</p>
 <p>这怎么行？！</p>
 <p>对于我来说，我写博客主要是为了将自己学习的知识进行一个输出，虽然不是什么高大上的东西，但是我相信一定有和我一样刚刚在计算机领域起步，并且热爱探索、折腾工具的朋友，我的这些经验和感悟或许就能给大家带来一点小小的启发。另外，因为是要写给别人看，所以要更加注重自己语言的逻辑组织。并且要把一件事能够完全的和别人讲清楚，还需要自己更高层次的理解，这反过来也倒逼了我自己去进行更深度的思考，让我更好的理解掌握知识。</p>
-<p>话说回来，我不是写只给自己看的日记的，那些我都存放在本地的 obsidian 里面。之后或许有机会写一些我折腾 obsidian 的记录（<del>逃</del>），我希望我的博客能在网络的海洋里有幸被人看到。</p>
+<p>话说回来，我不是写只给自己看的日记的，那些我都存放在本地的 obsidian
+里面。之后或许有机会写一些我折腾 obsidian
+的记录（<del>逃</del>），我希望我的博客能在网络的海洋里有幸被人看到。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/posts/blog-setup-google.html#more" rel="contents">
@@ -1388,7 +1452,16 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>众所周知，Hexo会自动将 source 文件夹下的所有 .md 与 .html 文件渲染。但有的时候，这会造成很大的问题。比如我写了个 README.md 文件，或者我想在根目录下添加一个 html 文件（比如谷歌用于验证网站的 html 文件），他们都会在 <code>hexo g</code> 时候被渲染。如果我们把这些文件直接放在 public 文件夹下，那么他们就不会被渲染，但是当我们执行了 <code>hexo clean</code> 之后，这些文件就会被删除。我们希望能够把这些文件放在我们的 source 文件夹下，每次 <code>hexo g</code> 的时候被<strong>拷贝</strong>到 public文件夹下而不被<strong>渲染</strong>。</p>
+          <h2 id="前言">前言</h2>
+<p>众所周知，Hexo会自动将 source 文件夹下的所有 .md 与 .html
+文件渲染。但有的时候，这会造成很大的问题。比如我写了个 README.md
+文件，或者我想在根目录下添加一个 html 文件（比如谷歌用于验证网站的 html
+文件），他们都会在 <code>hexo g</code>
+时候被渲染。如果我们把这些文件直接放在 public
+文件夹下，那么他们就不会被渲染，但是当我们执行了 <code>hexo clean</code>
+之后，这些文件就会被删除。我们希望能够把这些文件放在我们的 source
+文件夹下，每次 <code>hexo g</code> 的时候被<strong>拷贝</strong>到
+public文件夹下而不被<strong>渲染</strong>。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/posts/hexo-skip-render.html#more" rel="contents">
@@ -1437,13 +1510,13 @@ mjx-container[display="true"] + br {
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">42k</span>
+    <span title="站点总字数">43k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">38 分钟</span>
+    <span title="站点阅读时长">39 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
