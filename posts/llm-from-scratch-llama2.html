@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.junzhe.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="前言在前面，我已经动手复现了 transformer 模型的整体架构，对其中的每一个模块都有了比较好的了解。但是我对现在主流的一些大模型的结构还不是很了解，之前搭建的 transformer 也只有模型结构，并没有和模型的具体任务进行关联。所以这次我根据 datawhale 的happy-llm教程，来走一遍从模型搭建到 tokenizer 训练到模型预训练到 SFT 微调的全流程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零搭建LLaMA2大模型">
+<meta property="og:url" content="https://www.junzhe.top/posts/llm-from-scratch-llama2.html">
+<meta property="og:site_name" content="濬哲的博客">
+<meta property="og:description" content="前言在前面，我已经动手复现了 transformer 模型的整体架构，对其中的每一个模块都有了比较好的了解。但是我对现在主流的一些大模型的结构还不是很了解，之前搭建的 transformer 也只有模型结构，并没有和模型的具体任务进行关联。所以这次我根据 datawhale 的happy-llm教程，来走一遍从模型搭建到 tokenizer 训练到模型预训练到 SFT 微调的全流程。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-06-05T14:14:25.000Z">
+<meta property="article:modified_time" content="2025-06-06T02:32:56.631Z">
+<meta property="article:author" content="濬哲">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.junzhe.top/posts/llm-from-scratch-llama2.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.junzhe.top/posts/llm-from-scratch-llama2.html","path":"posts/llm-from-scratch-llama2.html","title":"从零搭建LLaMA2大模型"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>从零搭建LLaMA2大模型 | 濬哲的博客</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="濬哲的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">濬哲的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">人生如棋，落子无悔</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%85%A8%E5%A5%97%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">大模型从零开始全套流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LLaMA2-%E5%A4%A7%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">LLaMA2 大模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tokenizer-%E8%AE%AD%E7%BB%83"><span class="nav-number">4.</span> <span class="nav-text">Tokenizer 训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Word-based-Tokenizer"><span class="nav-number">4.1.</span> <span class="nav-text">1. Word-based Tokenizer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Character-based-Tokenizer"><span class="nav-number">4.2.</span> <span class="nav-text">2. Character-based Tokenizer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Subword-Tokenizer"><span class="nav-number">4.3.</span> <span class="nav-text">3. Subword Tokenizer</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%881%EF%BC%89Byte-Pair-Encoding-BPE"><span class="nav-number">4.3.1.</span> <span class="nav-text">（1）Byte Pair Encoding (BPE)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%882%EF%BC%89WordPiece"><span class="nav-number">4.3.2.</span> <span class="nav-text">（2）WordPiece</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%883%EF%BC%89Unigram"><span class="nav-number">4.3.3.</span> <span class="nav-text">（3）Unigram</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AA-Tokenizer"><span class="nav-number">4.4.</span> <span class="nav-text">4. 训练一个 Tokenizer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B"><span class="nav-number">5.</span> <span class="nav-text">预训练模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SFT"><span class="nav-number">6.</span> <span class="nav-text">SFT</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="濬哲"
+      src="/images/head.jpg">
+  <p class="site-author-name" itemprop="name">濬哲</p>
+  <div class="site-description" itemprop="description">技术沉思与人间烟火</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/DreamKongcheng" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DreamKongcheng" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3377965639@qq.com" title="E-Mail → mailto:3377965639@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://dreamkongcheng.github.io/about/" title="Wechat → https:&#x2F;&#x2F;dreamkongcheng.github.io&#x2F;about&#x2F;" rel="noopener me" target="_blank"><i class="fab fa-weixin fa-fw"></i>Wechat</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.junzhe.top/posts/llm-from-scratch-llama2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="濬哲">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="濬哲的博客">
+      <meta itemprop="description" content="技术沉思与人间烟火">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="从零搭建LLaMA2大模型 | 濬哲的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          从零搭建LLaMA2大模型
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-06-05 22:14:25" itemprop="dateCreated datePublished" datetime="2025-06-05T22:14:25+08:00">2025-06-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-06-06 10:32:56" itemprop="dateModified" datetime="2025-06-06T10:32:56+08:00">2025-06-06</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在前面，我已经动手复现了 transformer 模型的整体架构，对其中的每一个模块都有了比较好的了解。但是我对现在主流的一些大模型的结构还不是很了解，之前搭建的 transformer 也只有模型结构，并没有和模型的具体任务进行关联。所以这次我根据 datawhale 的<a target="_blank" rel="noopener" href="https://github.com/datawhalechina/happy-llm/blob/main/docs/chapter5/%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E5%8A%A8%E6%89%8B%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%A8%A1%E5%9E%8B.md">happy-llm</a>教程，来走一遍从模型搭建到 tokenizer 训练到模型预训练到 SFT 微调的全流程。</p>
+<span id="more"></span>
+<h2 id="大模型从零开始全套流程"><a href="#大模型从零开始全套流程" class="headerlink" title="大模型从零开始全套流程"></a>大模型从零开始全套流程</h2><ol>
+<li>任务定义与架构选择</li>
+</ol>
+<ul>
+<li>任务类型：<ul>
+<li>序列任务：文本生成（GPT 类）、翻译（Encoder-Decoder）、分类（BERT 类）。</li>
+<li>非序列任务：图像（ViT）、多模态（CLIP）。</li>
+</ul>
+</li>
+<li>模型变体选择：<ul>
+<li>纯 Decoder（GPT）：自回归生成。</li>
+<li>纯 Encoder（BERT）：双向上下文编码。</li>
+<li>Encoder-Decoder（T5）：序列到序列任务。</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>Tokenizer 训练</li>
+</ol>
+<ul>
+<li>数据收集：<ul>
+<li>核心原则<ul>
+<li>覆盖性：需涵盖模型未来可能接触的所有文本领域（如多语言、专业术语、网络用语等）。</li>
+<li>一致性：与预训练数据分布尽量一致（避免预训练时出现大量未登录词）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>常见数据源<ul>
+<li>通用领域：<ul>
+<li>Wikipedia（多语言版本）</li>
+<li>Common Crawl（网页爬取，需清洗）</li>
+<li>图书语料（如 Project Gutenberg）</li>
+<li>新闻语料（如 News Commentary）</li>
+</ul>
+</li>
+<li>专业领域：<ul>
+<li>医学论文（PubMed）、法律文本、代码（GitHub）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>训练 Tokenizer：<ul>
+<li>子词算法：BPE（GPT）、WordPiece（BERT）、Unigram（SentencePiece）。</li>
+<li>关键步骤：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tokenizers <span class="keyword">import</span> Tokenizer, models, trainers</span><br><span class="line">tokenizer = Tokenizer(models.BPE())</span><br><span class="line">trainer = trainers.BpeTrainer(special_tokens=[<span class="string">"[PAD]"</span>, <span class="string">"[UNK]"</span>])</span><br><span class="line">tokenizer.train(files=[<span class="string">"data.txt"</span>], trainer=trainer)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>模型预训练</li>
+</ol>
+<ul>
+<li>训练数据集<ul>
+<li>大规模无标注文本（如 Wikipedia、Common Crawl）。</li>
+</ul>
+</li>
+<li>数据预处理<ul>
+<li>用刚刚训练好的 Tokenizer 把原始文本转化为 id 序列。</li>
+</ul>
+</li>
+<li>开训！<ul>
+<li>最小化预测损失（如交叉熵）</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>有监督微调（SFT, Supervised Fine-Tuning）</li>
+</ol>
+<ul>
+<li>适用场景<ul>
+<li>当预训练模型需适配具体任务时（如对话、分类）。</li>
+<li>数据要求：高质量标注数据（规模远小于预训练数据）。</li>
+</ul>
+</li>
+<li>微调方法<ol>
+<li>全参数微调：<ul>
+<li>直接更新所有模型参数。</li>
+<li>学习率通常比预训练更低（如 1e-5）。</li>
+</ul>
+</li>
+<li>参数高效微调（PEFT）：<ul>
+<li>LoRA：仅训练低秩适配矩阵。</li>
+<li>Adapter：插入小型网络模块。</li>
+<li>Prefix Tuning：学习任务特定的前缀 token。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<p><strong>流程图</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[原始文本] → Tokenizer训练 → [Token化数据] → 预训练 → [预训练模型] → SFT → [任务模型]</span><br></pre></td></tr></table></figure>
+<h2 id="LLaMA2-大模型"><a href="#LLaMA2-大模型" class="headerlink" title="LLaMA2 大模型"></a>LLaMA2 大模型</h2><p>LLaMA2 是一个 decoder-only 模型，具体框架是在 transformer 基础上演变的，我没有关注模型本身的细节，可以去参考<a target="_blank" rel="noopener" href="https://github.com/datawhalechina/happy-llm/blob/main/docs/chapter5/code/k_model.py">happy-llm 的具体实现</a></p>
+<h2 id="Tokenizer-训练"><a href="#Tokenizer-训练" class="headerlink" title="Tokenizer 训练"></a>Tokenizer 训练</h2><p>在自然语言处理 (NLP) 中，Tokenizer 是一种将文本分解为较小单位（称为 token）的工具。这些 token 可以是词、子词、字符，甚至是特定的符号。Tokenization 是 NLP 中的第一步，直接影响后续处理和分析的效果。不同类型的 tokenizer 适用于不同的应用场景，以下是几种常见的 tokenizer 及其特点。</p>
+<h3 id="1-Word-based-Tokenizer"><a href="#1-Word-based-Tokenizer" class="headerlink" title="1. Word-based Tokenizer"></a>1. Word-based Tokenizer</h3><p><strong>Word-based Tokenizer</strong> 是最简单和直观的一种分词方法。它将文本按空格和标点符号分割成单词。这种方法的优点在于其简单和直接，易于实现，且与人类对语言的直觉相符。然而，它也存在一些明显的缺点，如无法处理未登录词（OOV，out-of-vocabulary）和罕见词，对复合词（如“New York”）或缩略词（如“don’t”）的处理也不够精细。此外，Word-based Tokenizer 在处理不同语言时也会遇到挑战，因为一些语言（如中文、日文）没有显式的单词分隔符。</p>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: "Hello, world! There is Datawhale."</span><br><span class="line">Output: ["Hello", ",", "world", "!", "There", "is", "Datawhale", "."]</span><br></pre></td></tr></table></figure>
+<p>在这个例子中，输入的句子被分割成一系列单词和标点符号，每个单词或标点符号都作为一个独立的 token。</p>
+<h3 id="2-Character-based-Tokenizer"><a href="#2-Character-based-Tokenizer" class="headerlink" title="2. Character-based Tokenizer"></a>2. Character-based Tokenizer</h3><p><strong>Character-based Tokenizer</strong> 将文本中的每个字符视为一个独立的 token。这种方法能非常精细地处理文本，适用于处理拼写错误、未登录词或新词。由于每个字符都是一个独立的 token，因此这种方法可以捕捉到非常细微的语言特征。这对于一些特定的应用场景，如生成式任务或需要处理大量未登录词的任务，特别有用。但是，这种方法也会导致 token 序列变得非常长，增加了模型的计算复杂度和训练时间。此外，字符级的分割可能会丢失一些词级别的语义信息，使得模型难以理解上下文。</p>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: "Hello"</span><br><span class="line">Output: ["H", "e", "l", "l", "o"]</span><br></pre></td></tr></table></figure>
+<p>在这个例子中，单词“Hello”被分割成单个字符，每个字符作为一个独立的 token。这种方法能够处理任何语言和字符集，具有极大的灵活性。</p>
+<h3 id="3-Subword-Tokenizer"><a href="#3-Subword-Tokenizer" class="headerlink" title="3. Subword Tokenizer"></a>3. Subword Tokenizer</h3><p><strong>Subword Tokenizer</strong> 介于词和字符之间，能够更好地平衡分词的细粒度和处理未登录词的能力。Subword Tokenizer 的关键思想是将文本分割成比单词更小的单位，但又比字符更大，这样既能处理未知词，又能保持一定的语义信息。常见的子词分词方法包括 BPE、WordPiece 和 Unigram。</p>
+<h4 id="（1）Byte-Pair-Encoding-BPE"><a href="#（1）Byte-Pair-Encoding-BPE" class="headerlink" title="（1）Byte Pair Encoding (BPE)"></a>（1）Byte Pair Encoding (BPE)</h4><p><strong>BPE</strong> 是一种基于统计方法，通过反复合并频率最高的字符或字符序列对来生成子词词典。这种方法的优点在于其简单和高效，能够有效地处理未知词和罕见词，同时保持较低的词典大小。BPE 的合并过程是自底向上的，逐步将频率最高的字符对合并成新的子词，直到达到预定的词典大小或不再有高频的字符对。</p>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: "lower"</span><br><span class="line">Output: ["low", "er"]</span><br><span class="line"></span><br><span class="line">Input: "newest"</span><br><span class="line">Output: ["new", "est"]</span><br></pre></td></tr></table></figure>
+<p>在这个例子中，单词“lower”被分割成子词“low”和“er”，而“newest”被分割成“new”和“est”。这种方法有效地处理了词干和词缀，保持了单词的基本语义结构。</p>
+<h4 id="（2）WordPiece"><a href="#（2）WordPiece" class="headerlink" title="（2）WordPiece"></a>（2）WordPiece</h4><p><strong>WordPiece</strong> 是另一种基于子词的分词方法，最初用于谷歌的 BERT 模型。与 BPE 类似，WordPiece 通过最大化子词序列的似然函数来生成词典，但在合并子词时更注重语言模型的优化。WordPiece 会优先选择能够最大化整体句子概率的子词，使得分词结果在语言模型中具有更高的概率。</p>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: "unhappiness"</span><br><span class="line">Output: ["un", "##happiness"]</span><br></pre></td></tr></table></figure>
+<p>在这个例子中，单词“unhappiness”被分割成子词“un”和“##happiness”，其中“##”表示这是一个后缀子词。通过这种方式，WordPiece 能够更好地处理复合词和派生词，保留更多的语义信息。</p>
+<h4 id="（3）Unigram"><a href="#（3）Unigram" class="headerlink" title="（3）Unigram"></a>（3）Unigram</h4><p><strong>Unigram</strong> 分词方法基于概率模型，通过选择具有最高概率的子词来分割文本。Unigram 词典是通过训练语言模型生成的，可以处理多种语言和不同类型的文本。Unigram 模型会为每个子词分配一个概率，然后根据这些概率进行最优分割。</p>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: "unhappiness"</span><br><span class="line">Output: ["un", "happiness"]</span><br><span class="line"></span><br><span class="line">Input: "newest"</span><br><span class="line">Output: ["new", "est"]</span><br></pre></td></tr></table></figure>
+<p>在这个例子中，单词“unhappiness”被分割成子词“un”和“happiness”，而“newest”被分割成“new”和“est”。这种方法通过概率模型有效地处理了子词分割，使得分割结果更符合语言使用习惯。</p>
+<p>每种 Tokenizer 方法都有其特定的应用场景和优缺点，选择适合的 Tokenizer 对于自然语言处理任务的成功至关重要。</p>
+<h3 id="4-训练一个-Tokenizer"><a href="#4-训练一个-Tokenizer" class="headerlink" title="4. 训练一个 Tokenizer"></a>4. 训练一个 Tokenizer</h3><p>这里我们选择使用 BPE 算法来训练一个 Subword Tokenizer。BPE 是一种简单而有效的分词方法，能够处理未登录词和罕见词，同时保持较小的词典大小。我们将使用 Hugging Face 的 <code>tokenizers</code> 库来训练一个 BPE Tokenizer。</p>
+<h2 id="预训练模型"><a href="#预训练模型" class="headerlink" title="预训练模型"></a>预训练模型</h2><p>⚠️ 待完善</p>
+<h2 id="SFT"><a href="#SFT" class="headerlink" title="SFT"></a>SFT</h2><p>⚠️ 待完善</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><script src="//sdk.jinrishici.com/v2/browser/jinrishici.js"></script>
+<script>
+  jinrishici.load((result) => {
+    let jrsc = document.getElementById('jrsc');
+    const data = result.data;
+    let author = data.origin.author;
+    let title = '《' + data.origin.title + '》';
+    let content = data.content.substr(0, data.content.length - 1);
+    let dynasty = data.origin.dynasty.substr(0, data.origin.dynasty.length - 1);
+    jrsc.innerText = content + ' @ ' + dynasty + '·' + author + title;
+  });
+</script>
+<div style="text-align: center"><span id="jrsc" >正在加载今日诗词....</span></div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>濬哲
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://www.junzhe.top/posts/llm-from-scratch-llama2.html" title="从零搭建LLaMA2大模型">https://www.junzhe.top/posts/llm-from-scratch-llama2.html</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/transformer-from-scratch.html" rel="prev" title="transformer复现">
+                  <i class="fa fa-angle-left"></i> transformer复现
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/64299.html" rel="next" title="Tokenize 分词">
+                  Tokenize 分词 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">濬哲</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">42k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">38 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://lib.baomitu.com/canvas-nest.js/1.0.1/canvas-nest.js"></script>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"DreamKongcheng/DreamKongcheng.github.io","repo_id":"R_kgDOM33FfA","category":"General","category_id":"DIC_kwDOM33FfM4CqJQz","mapping":"pathname","strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"bottom","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>
