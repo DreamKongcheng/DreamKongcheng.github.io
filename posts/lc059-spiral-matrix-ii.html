@@ -21,25 +21,27 @@
 
     <meta name="description" content="题目简介 题目链接 给你一个正整数 n ，生成一个包含 1 到 n2 所有元素，且元素按顺时针顺序螺旋排列的 n x n 正方形矩阵 matrix 。 示例 1：  输入：n &#x3D; 3 输出：[[1,2,3],[8,9,4],[7,6,5]] 示例 2： 输入：n &#x3D; 1 输出：[[1]] 提示： 1 &lt;&#x3D; n &lt;&#x3D; 20 思路 这道题很容易把人绕晕进去，如果找不到一个统一的写法，会产生">
 <meta property="og:type" content="article">
-<meta property="og:title" content="59.螺旋矩阵II">
+<meta property="og:title" content="59. 螺旋矩阵 II">
 <meta property="og:url" content="https://www.junzhe.top/posts/lc059-spiral-matrix-ii.html">
 <meta property="og:site_name" content="濬哲的博客">
 <meta property="og:description" content="题目简介 题目链接 给你一个正整数 n ，生成一个包含 1 到 n2 所有元素，且元素按顺时针顺序螺旋排列的 n x n 正方形矩阵 matrix 。 示例 1：  输入：n &#x3D; 3 输出：[[1,2,3],[8,9,4],[7,6,5]] 示例 2： 输入：n &#x3D; 1 输出：[[1]] 提示： 1 &lt;&#x3D; n &lt;&#x3D; 20 思路 这道题很容易把人绕晕进去，如果找不到一个统一的写法，会产生">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2020/11/13/spiraln.jpg">
 <meta property="article:published_time" content="2025-05-10T14:22:37.000Z">
 <meta property="article:modified_time" content="2025-05-19T16:33:18.640Z">
 <meta property="article:author" content="濬哲">
 <meta property="article:tag" content="数组">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://assets.leetcode.com/uploads/2020/11/13/spiraln.jpg">
 
 
 <link rel="canonical" href="https://www.junzhe.top/posts/lc059-spiral-matrix-ii.html">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.junzhe.top/posts/lc059-spiral-matrix-ii.html","path":"posts/lc059-spiral-matrix-ii.html","title":"59.螺旋矩阵II"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.junzhe.top/posts/lc059-spiral-matrix-ii.html","path":"posts/lc059-spiral-matrix-ii.html","title":"59. 螺旋矩阵 II"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>59.螺旋矩阵II | 濬哲的博客</title>
+<title>59. 螺旋矩阵 II | 濬哲的博客</title>
   
 
 
@@ -152,13 +154,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -217,12 +219,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="59.螺旋矩阵II | 濬哲的博客">
+      <meta itemprop="name" content="59. 螺旋矩阵 II | 濬哲的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          59.螺旋矩阵II
+          59. 螺旋矩阵 II
         </h1>
 
         <div class="post-meta-container">
@@ -284,12 +286,10 @@
     
     
     <div class="post-body" itemprop="articleBody"><h2 id="题目简介">题目简介</h2>
-<p><a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/spiral-matrix-ii/description/">题目链接</a></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/spiral-matrix-ii/description/">题目链接</a></p>
 <p>给你一个正整数 n ，生成一个包含 1 到 n2
 所有元素，且元素按顺时针顺序螺旋排列的 n x n 正方形矩阵 matrix 。</p>
-<p>示例 1： <img
-src="https://assets.leetcode.com/uploads/2020/11/13/spiraln.jpg" /></p>
+<p>示例 1： <img src="https://assets.leetcode.com/uploads/2020/11/13/spiraln.jpg"></p>
 <p>输入：n = 3 输出：[[1,2,3],[8,9,4],[7,6,5]] 示例 2：</p>
 <p>输入：n = 1 输出：[[1]]</p>
 <p>提示：</p>
@@ -298,9 +298,9 @@ src="https://assets.leetcode.com/uploads/2020/11/13/spiraln.jpg" /></p>
 <p>这道题很容易把人绕晕进去，如果找不到一个统一的写法，会产生大量的逻辑判断。下面我给出一个很巧妙的方法，不光是对这种正方形有用，同时也适用于长方形</p>
 <p>我们访问的顺序就是最外面这一圈，像是<strong>剥洋葱</strong>一样，一条一条的把边剥开，然后每次处理的就是一个新的矩形，代码其实非常好理解，up,down,
 left,
-right分别表示矩形的上下左右边界，count表示当前要填入的数字，vec是结果矩阵</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">generateMatrix</span>(<span class="type">int</span> n) &#123;</span><br><span class="line">        <span class="type">int</span> up = <span class="number">0</span>, down = n - <span class="number">1</span>, left = <span class="number">0</span>, right = n - <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> count = <span class="number">1</span>;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">vec</span>(n, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(n, <span class="number">0</span>));</span><br><span class="line">        <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = left; i &lt;= right; i++) vec[up][i] = count++;</span><br><span class="line">            <span class="keyword">if</span> (++up &gt; down) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = up; i &lt;= down; i++) vec[i][right] = count++;</span><br><span class="line">            <span class="keyword">if</span> (--right &lt; left) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = right; i &gt;= left; i--) vec[down][i] = count++;</span><br><span class="line">            <span class="keyword">if</span> (--down &lt; up) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = down; i &gt;= up; i--) vec[i][left] = count++;</span><br><span class="line">            <span class="keyword">if</span> (++left &gt; right) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> vec;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>时间复杂度O(n<sup>2)，空间复杂度O(n</sup>2)</p>
+right 分别表示矩形的上下左右边界，count 表示当前要填入的数字，vec 是结果矩阵</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">generateMatrix</span>(<span class="type">int</span> n) {</span><br><span class="line">        <span class="type">int</span> up = <span class="number">0</span>, down = n - <span class="number">1</span>, left = <span class="number">0</span>, right = n - <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> count = <span class="number">1</span>;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">vec</span>(n, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(n, <span class="number">0</span>));</span><br><span class="line">        <span class="keyword">while</span> (<span class="number">1</span>) {</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = left; i &lt;= right; i++) vec[up][i] = count++;</span><br><span class="line">            <span class="keyword">if</span> (++up &gt; down) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = up; i &lt;= down; i++) vec[i][right] = count++;</span><br><span class="line">            <span class="keyword">if</span> (--right &lt; left) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = right; i &gt;= left; i--) vec[down][i] = count++;</span><br><span class="line">            <span class="keyword">if</span> (--down &lt; up) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = down; i &gt;= up; i--) vec[i][left] = count++;</span><br><span class="line">            <span class="keyword">if</span> (++left &gt; right) <span class="keyword">break</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> vec;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<p>时间复杂度 O (n<sup>2)，空间复杂度 O (n</sup>2)</p>
 
     </div>
 
@@ -331,7 +331,7 @@ right分别表示矩形的上下左右边界，count表示当前要填入的数�
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://www.junzhe.top/posts/lc059-spiral-matrix-ii.html" title="59.螺旋矩阵II">https://www.junzhe.top/posts/lc059-spiral-matrix-ii.html</a>
+      <a href="https://www.junzhe.top/posts/lc059-spiral-matrix-ii.html" title="59. 螺旋矩阵 II">https://www.junzhe.top/posts/lc059-spiral-matrix-ii.html</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -364,8 +364,8 @@ right分别表示矩形的上下左右边界，count表示当前要填入的数�
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/lc209-minimum-size-subarray-sum.html" rel="prev" title="209.长度最小的子数组">
-                  <i class="fa fa-angle-left"></i> 209.长度最小的子数组
+                <a href="/posts/lc209-minimum-size-subarray-sum.html" rel="prev" title="209. 长度最小的子数组">
+                  <i class="fa fa-angle-left"></i> 209. 长度最小的子数组
                 </a>
             </div>
             <div class="post-nav-item">
@@ -408,13 +408,13 @@ right分别表示矩形的上下左右边界，count表示当前要填入的数�
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">43k</span>
+    <span title="站点总字数">44k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">39 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

@@ -21,7 +21,7 @@
 
     <meta name="description" content="为什么要绑定域名 在使用 Hexo 搭建个人博客时，默认的域名是 GitHub Pages 提供的二级域名（如 username.github.io）。为了提升网站的专业性和可识别性，我们通常会选择绑定一个自定义的顶级域名（如 example.com）。 并且对于程序员来讲，拥有一个属于自己的域名看起来超酷的！">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo博客绑定域名与加速">
+<meta property="og:title" content="Hexo 博客绑定域名与加速">
 <meta property="og:url" content="https://www.junzhe.top/posts/blog-setup-4-domain.html">
 <meta property="og:site_name" content="濬哲的博客">
 <meta property="og:description" content="为什么要绑定域名 在使用 Hexo 搭建个人博客时，默认的域名是 GitHub Pages 提供的二级域名（如 username.github.io）。为了提升网站的专业性和可识别性，我们通常会选择绑定一个自定义的顶级域名（如 example.com）。 并且对于程序员来讲，拥有一个属于自己的域名看起来超酷的！">
@@ -51,10 +51,10 @@
 <link rel="canonical" href="https://www.junzhe.top/posts/blog-setup-4-domain.html">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.junzhe.top/posts/blog-setup-4-domain.html","path":"posts/blog-setup-4-domain.html","title":"Hexo博客绑定域名与加速"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.junzhe.top/posts/blog-setup-4-domain.html","path":"posts/blog-setup-4-domain.html","title":"Hexo 博客绑定域名与加速"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Hexo博客绑定域名与加速 | 濬哲的博客</title>
+<title>Hexo 博客绑定域名与加速 | 濬哲的博客</title>
   
 
 
@@ -279,13 +279,13 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -344,12 +344,12 @@ mjx-container[display="true"] + br {
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Hexo博客绑定域名与加速 | 濬哲的博客">
+      <meta itemprop="name" content="Hexo 博客绑定域名与加速 | 濬哲的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hexo博客绑定域名与加速
+          Hexo 博客绑定域名与加速
         </h1>
 
         <div class="post-meta-container">
@@ -446,8 +446,8 @@ Namecheap、GoDaddy、阿里云）购买一个域名。我自己是用的是阿�
 <li>管局审核（通常 10-20 个工作日）。</li>
 </ol>
 <p>而且备案需要购买服务器，这是一笔不小的开销。所以如果只是使用
-Hexo+GitHub Pages
-搭建个人博客的话完全不需要额外折腾，<strong>买域名+实名制就可以了</strong>！</p>
+Hexo + GitHub Pages
+搭建个人博客的话完全不需要额外折腾，<strong>买域名 + 实名制就可以了</strong>！</p>
 <p>实名认证一般需要 1 天的时间</p>
 <h3 id="步骤-3设置-dns-解析">步骤 3：设置 DNS 解析</h3>
 <p>需要将域名指向 GitHub Pages 的服务器。具体步骤如下：</p>
@@ -455,8 +455,8 @@ Hexo+GitHub Pages
 <li><p>在控制台的域名列表中选择解析 <img src="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/20250516181545501.webp" alt="alt text"></p></li>
 <li><p>添加两条解析记录 <img src="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/20250516181545502.webp" alt="alt text"></p></li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">记录类型: CNAME</span><br><span class="line">主机记录: www</span><br><span class="line">记录值: yourusername.github.io</span><br><span class="line">TTL: 10分钟</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">记录类型: A</span><br><span class="line">主机记录: @</span><br><span class="line">记录值: 185.199.108.153（GitHub Pages IP）</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">记录类型: CNAME</span><br><span class="line">主机记录: www</span><br><span class="line">记录值: yourusername.github.io</span><br><span class="line">TTL: 10分钟</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">记录类型: A</span><br><span class="line">主机记录: @</span><br><span class="line">记录值: 185.199.108.153（GitHub Pages IP）</span><br></pre></td></tr></tbody></table></figure>
 <p>其中 github pages 的 IP
 地址可以在通过命令<code>ping yourusername.github.io</code>来获取</p>
 <p>保存后等一会应该就行了</p>
@@ -465,14 +465,14 @@ Hexo+GitHub Pages
 <li>在 Hexo 博客的 source 文件夹下创建 CNAME
 文件（无后缀），内容填写你的域名（如 example.com 或
 www.example.com）</li>
-<li>重新部署博客</li>
+<li>重新部署博客 </li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy</span><br></pre></td></tr></tbody></table></figure>
 <p>理论上完成这两部就不需要再 GitHub 上进行任何操作了，因为
 settings-&gt;pages 里面的 custom domain 其实也就是在设置 CNAME
 文件而已</p>
 <h3 id="步骤-5检查是否生效">步骤 5：检查是否生效</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ping example.com  <span class="comment"># 检查是否指向 GitHub IP</span></span><br><span class="line">nslookup example.com  <span class="comment"># 查看 DNS 记录</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ping example.com  <span class="comment"># 检查是否指向 GitHub IP</span></span><br><span class="line">nslookup example.com  <span class="comment"># 查看 DNS 记录</span></span><br></pre></td></tr></tbody></table></figure>
 <figure>
 <img src="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/20250516181545503.webp" alt="alt text">
 <figcaption aria-hidden="true">alt text</figcaption>
@@ -511,14 +511,14 @@ Domain，然后输入自己的域名</p>
 这边会报错。接下来重新回到域名解析的地方（比如我是阿里云），按照 Vercel
 中 Domains
 提示的添加两条解析记录，并可以删除在第一部分<strong>域名设置</strong>中添加的解析记录</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">记录类型: CNAME</span><br><span class="line">主机记录: www</span><br><span class="line">记录值: your-hexo-repo.vercel.app</span><br><span class="line">TTL: 10分钟</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">记录类型: A</span><br><span class="line">主机记录: @</span><br><span class="line">记录值: 76.76.21.21 # Vercel IP</span><br><span class="line">TTL: 10分钟</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">记录类型: CNAME</span><br><span class="line">主机记录: www</span><br><span class="line">记录值: your-hexo-repo.vercel.app</span><br><span class="line">TTL: 10分钟</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">记录类型: A</span><br><span class="line">主机记录: @</span><br><span class="line">记录值: 76.76.21.21 # Vercel IP</span><br><span class="line">TTL: 10分钟</span><br></pre></td></tr></tbody></table></figure>
 <p><img src="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/20250516181545512.webp" alt="alt text"> 现在的延迟只有 50ms 了！</p>
 <p>以后 hexo d 的时候仓库的内容就会自动部署到 vercel
 上了，然后访问速度也会提高很多</p>
 <h2 id="参考资料">参考资料</h2>
 <p><a target="_blank" rel="noopener" href="https://vincentqin.tech/posts/speedup-gitpage/">工具：使用
-vercel 加速 Hexo 静态博客访问</a> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/347990778">vercel
+vercel 加速 Hexo 静态博客访问</a> <pangu> </pangu><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/347990778">vercel
 是什么神仙网站？</a> <a target="_blank" rel="noopener" href="https://www.cylong.com/blog/2016/04/19/hexo-git/">Hexo + Git
 搭建免费的个人博客</a></p>
 
@@ -551,7 +551,7 @@ vercel 加速 Hexo 静态博客访问</a> <a target="_blank" rel="noopener" href
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://www.junzhe.top/posts/blog-setup-4-domain.html" title="Hexo博客绑定域名与加速">https://www.junzhe.top/posts/blog-setup-4-domain.html</a>
+      <a href="https://www.junzhe.top/posts/blog-setup-4-domain.html" title="Hexo 博客绑定域名与加速">https://www.junzhe.top/posts/blog-setup-4-domain.html</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -588,13 +588,13 @@ vercel 加速 Hexo 静态博客访问</a> <a target="_blank" rel="noopener" href
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/codecamp-day2-arrays.html" rel="prev" title="代码随想录算法训练营第二天 | 数组Part02">
-                  <i class="fa fa-angle-left"></i> 代码随想录算法训练营第二天 | 数组Part02
+                <a href="/posts/codecamp-day2-arrays.html" rel="prev" title="代码随想录算法训练营第二天 | 数组 Part02">
+                  <i class="fa fa-angle-left"></i> 代码随想录算法训练营第二天 | 数组 Part02
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/hexo-image-manage-local-cloud.html" rel="next" title="Hexo博客图片管理最佳实践-本地+图床">
-                  Hexo博客图片管理最佳实践-本地+图床 <i class="fa fa-angle-right"></i>
+                <a href="/posts/hexo-image-manage-local-cloud.html" rel="next" title="Hexo 博客图片管理最佳实践 - 本地 + 图床">
+                  Hexo 博客图片管理最佳实践 - 本地 + 图床 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -632,13 +632,13 @@ vercel 加速 Hexo 静态博客访问</a> <a target="_blank" rel="noopener" href
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">43k</span>
+    <span title="站点总字数">44k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">39 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

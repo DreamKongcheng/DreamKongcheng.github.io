@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.junzhe.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="前言 在前面，我已经动手复现了 transformer 模型的整体架构，对其中的每一个模块都有了比较好的了解。但是我对现在主流的一些大模型的结构还不是很了解，之前搭建的 transformer 也只有模型结构，并没有和模型的具体任务进行关联。所以这次我根据 datawhale 的happy-llm教程，来走一遍从模型搭建到 tokenizer 训练到模型预训练到 SFT 微调的全流程。">
+    <meta name="description" content="前言 在前面，我已经动手复现了 transformer 模型的整体架构，对其中的每一个模块都有了比较好的了解。但是我对现在主流的一些大模型的结构还不是很了解，之前搭建的 transformer 也只有模型结构，并没有和模型的具体任务进行关联。所以这次我根据 datawhale 的happy-llm 教程，来走一遍从模型搭建到 tokenizer 训练到模型预训练到 SFT 微调的全流程。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从零搭建LLaMA2大模型">
+<meta property="og:title" content="从零搭建 LLaMA2 大模型">
 <meta property="og:url" content="https://www.junzhe.top/posts/llm-from-scratch-llama2.html">
 <meta property="og:site_name" content="濬哲的博客">
-<meta property="og:description" content="前言 在前面，我已经动手复现了 transformer 模型的整体架构，对其中的每一个模块都有了比较好的了解。但是我对现在主流的一些大模型的结构还不是很了解，之前搭建的 transformer 也只有模型结构，并没有和模型的具体任务进行关联。所以这次我根据 datawhale 的happy-llm教程，来走一遍从模型搭建到 tokenizer 训练到模型预训练到 SFT 微调的全流程。">
+<meta property="og:description" content="前言 在前面，我已经动手复现了 transformer 模型的整体架构，对其中的每一个模块都有了比较好的了解。但是我对现在主流的一些大模型的结构还不是很了解，之前搭建的 transformer 也只有模型结构，并没有和模型的具体任务进行关联。所以这次我根据 datawhale 的happy-llm 教程，来走一遍从模型搭建到 tokenizer 训练到模型预训练到 SFT 微调的全流程。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-05T14:14:25.000Z">
 <meta property="article:modified_time" content="2025-06-06T02:32:56.631Z">
@@ -35,10 +35,10 @@
 <link rel="canonical" href="https://www.junzhe.top/posts/llm-from-scratch-llama2.html">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.junzhe.top/posts/llm-from-scratch-llama2.html","path":"posts/llm-from-scratch-llama2.html","title":"从零搭建LLaMA2大模型"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.junzhe.top/posts/llm-from-scratch-llama2.html","path":"posts/llm-from-scratch-llama2.html","title":"从零搭建 LLaMA2 大模型"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>从零搭建LLaMA2大模型 | 濬哲的博客</title>
+<title>从零搭建 LLaMA2 大模型 | 濬哲的博客</title>
   
 
 
@@ -263,13 +263,13 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -328,12 +328,12 @@ mjx-container[display="true"] + br {
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="从零搭建LLaMA2大模型 | 濬哲的博客">
+      <meta itemprop="name" content="从零搭建 LLaMA2 大模型 | 濬哲的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          从零搭建LLaMA2大模型
+          从零搭建 LLaMA2 大模型
         </h1>
 
         <div class="post-meta-container">
@@ -390,7 +390,7 @@ mjx-container[display="true"] + br {
 模型的整体架构，对其中的每一个模块都有了比较好的了解。但是我对现在主流的一些大模型的结构还不是很了解，之前搭建的
 transformer
 也只有模型结构，并没有和模型的具体任务进行关联。所以这次我根据 datawhale
-的<a target="_blank" rel="noopener" href="https://github.com/datawhalechina/happy-llm/blob/main/docs/chapter5/%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E5%8A%A8%E6%89%8B%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%A8%A1%E5%9E%8B.md">happy-llm</a>教程，来走一遍从模型搭建到
+的<a target="_blank" rel="noopener" href="https://github.com/datawhalechina/happy-llm/blob/main/docs/chapter5/%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E5%8A%A8%E6%89%8B%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%A8%A1%E5%9E%8B.md">happy-llm</a> 教程，来走一遍从模型搭建到
 tokenizer 训练到模型预训练到 SFT 微调的全流程。</p>
 <span id="more"></span>
 <h2 id="大模型从零开始全套流程">大模型从零开始全套流程</h2>
@@ -440,7 +440,7 @@ tokenizer 训练到模型预训练到 SFT 微调的全流程。</p>
 <li>训练 Tokenizer：
 <ul>
 <li>子词算法：BPE（GPT）、WordPiece（BERT）、Unigram（SentencePiece）。</li>
-<li>关键步骤： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tokenizers <span class="keyword">import</span> Tokenizer, models, trainers</span><br><span class="line">tokenizer = Tokenizer(models.BPE())</span><br><span class="line">trainer = trainers.BpeTrainer(special_tokens=[<span class="string">"[PAD]"</span>, <span class="string">"[UNK]"</span>])</span><br><span class="line">tokenizer.train(files=[<span class="string">"data.txt"</span>], trainer=trainer)</span><br></pre></td></tr></table></figure></li>
+<li>关键步骤： <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tokenizers <span class="keyword">import</span> Tokenizer, models, trainers</span><br><span class="line">tokenizer = Tokenizer(models.BPE())</span><br><span class="line">trainer = trainers.BpeTrainer(special_tokens=[<span class="string">"[PAD]"</span>, <span class="string">"[UNK]"</span>])</span><br><span class="line">tokenizer.train(files=[<span class="string">"data.txt"</span>], trainer=trainer)</span><br></pre></td></tr></tbody></table></figure></li>
 </ul></li>
 </ul>
 <ol start="3" type="1">
@@ -485,10 +485,10 @@ tokenizer 训练到模型预训练到 SFT 微调的全流程。</p>
 </ol></li>
 </ul>
 <p><strong>流程图</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[原始文本] → Tokenizer训练 → [Token化数据] → 预训练 → [预训练模型] → SFT → [任务模型]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[原始文本] → Tokenizer训练 → [Token化数据] → 预训练 → [预训练模型] → SFT → [任务模型]</span><br></pre></td></tr></tbody></table></figure>
 <h2 id="llama2-大模型">LLaMA2 大模型</h2>
 <p>LLaMA2 是一个 decoder-only 模型，具体框架是在 transformer
-基础上演变的，我没有关注模型本身的细节，可以去参考<a target="_blank" rel="noopener" href="https://github.com/datawhalechina/happy-llm/blob/main/docs/chapter5/code/k_model.py">happy-llm
+基础上演变的，我没有关注模型本身的细节，可以去参考 <a target="_blank" rel="noopener" href="https://github.com/datawhalechina/happy-llm/blob/main/docs/chapter5/code/k_model.py">happy-llm
 的具体实现</a></p>
 <h2 id="tokenizer-训练">Tokenizer 训练</h2>
 <p>在自然语言处理 (NLP) 中，Tokenizer 是一种将文本分解为较小单位（称为
@@ -498,11 +498,11 @@ token）的工具。这些 token
 适用于不同的应用场景，以下是几种常见的 tokenizer 及其特点。</p>
 <h3 id="word-based-tokenizer">1. Word-based Tokenizer</h3>
 <p><strong>Word-based Tokenizer</strong>
-是最简单和直观的一种分词方法。它将文本按空格和标点符号分割成单词。这种方法的优点在于其简单和直接，易于实现，且与人类对语言的直觉相符。然而，它也存在一些明显的缺点，如无法处理未登录词（OOV，out-of-vocabulary）和罕见词，对复合词（如“New
-York”）或缩略词（如“don’t”）的处理也不够精细。此外，Word-based Tokenizer
+是最简单和直观的一种分词方法。它将文本按空格和标点符号分割成单词。这种方法的优点在于其简单和直接，易于实现，且与人类对语言的直觉相符。然而，它也存在一些明显的缺点，如无法处理未登录词（OOV，out-of-vocabulary）和罕见词，对复合词（如 “New
+York”）或缩略词（如 “don’t”）的处理也不够精细。此外，Word-based Tokenizer
 在处理不同语言时也会遇到挑战，因为一些语言（如中文、日文）没有显式的单词分隔符。</p>
 <p>示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: "Hello, world! There is Datawhale."</span><br><span class="line">Output: ["Hello", ",", "world", "!", "There", "is", "Datawhale", "."]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: "Hello, world! There is Datawhale."</span><br><span class="line">Output: ["Hello", ",", "world", "!", "There", "is", "Datawhale", "."]</span><br></pre></td></tr></tbody></table></figure>
 <p>在这个例子中，输入的句子被分割成一系列单词和标点符号，每个单词或标点符号都作为一个独立的
 token。</p>
 <h3 id="character-based-tokenizer">2. Character-based Tokenizer</h3>
@@ -513,8 +513,8 @@ token，因此这种方法可以捕捉到非常细微的语言特征。这对于
 token
 序列变得非常长，增加了模型的计算复杂度和训练时间。此外，字符级的分割可能会丢失一些词级别的语义信息，使得模型难以理解上下文。</p>
 <p>示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: "Hello"</span><br><span class="line">Output: ["H", "e", "l", "l", "o"]</span><br></pre></td></tr></table></figure>
-<p>在这个例子中，单词“Hello”被分割成单个字符，每个字符作为一个独立的
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: "Hello"</span><br><span class="line">Output: ["H", "e", "l", "l", "o"]</span><br></pre></td></tr></tbody></table></figure>
+<p>在这个例子中，单词 “Hello” 被分割成单个字符，每个字符作为一个独立的
 token。这种方法能够处理任何语言和字符集，具有极大的灵活性。</p>
 <h3 id="subword-tokenizer">3. Subword Tokenizer</h3>
 <p><strong>Subword Tokenizer</strong>
@@ -527,16 +527,16 @@ BPE、WordPiece 和 Unigram。</p>
 是一种基于统计方法，通过反复合并频率最高的字符或字符序列对来生成子词词典。这种方法的优点在于其简单和高效，能够有效地处理未知词和罕见词，同时保持较低的词典大小。BPE
 的合并过程是自底向上的，逐步将频率最高的字符对合并成新的子词，直到达到预定的词典大小或不再有高频的字符对。</p>
 <p>示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: "lower"</span><br><span class="line">Output: ["low", "er"]</span><br><span class="line"></span><br><span class="line">Input: "newest"</span><br><span class="line">Output: ["new", "est"]</span><br></pre></td></tr></table></figure>
-<p>在这个例子中，单词“lower”被分割成子词“low”和“er”，而“newest”被分割成“new”和“est”。这种方法有效地处理了词干和词缀，保持了单词的基本语义结构。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: "lower"</span><br><span class="line">Output: ["low", "er"]</span><br><span class="line"></span><br><span class="line">Input: "newest"</span><br><span class="line">Output: ["new", "est"]</span><br></pre></td></tr></tbody></table></figure>
+<p>在这个例子中，单词 “lower” 被分割成子词 “low” 和 “er”，而 “newest” 被分割成 “new” 和 “est”。这种方法有效地处理了词干和词缀，保持了单词的基本语义结构。</p>
 <h4 id="wordpiece">（2）WordPiece</h4>
 <p><strong>WordPiece</strong> 是另一种基于子词的分词方法，最初用于谷歌的
 BERT 模型。与 BPE 类似，WordPiece
 通过最大化子词序列的似然函数来生成词典，但在合并子词时更注重语言模型的优化。WordPiece
 会优先选择能够最大化整体句子概率的子词，使得分词结果在语言模型中具有更高的概率。</p>
 <p>示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: "unhappiness"</span><br><span class="line">Output: ["un", "##happiness"]</span><br></pre></td></tr></table></figure>
-<p>在这个例子中，单词“unhappiness”被分割成子词“un”和“##happiness”，其中“##”表示这是一个后缀子词。通过这种方式，WordPiece
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: "unhappiness"</span><br><span class="line">Output: ["un", "##happiness"]</span><br></pre></td></tr></tbody></table></figure>
+<p>在这个例子中，单词 “unhappiness” 被分割成子词 “un” 和 “##happiness”，其中 “##” 表示这是一个后缀子词。通过这种方式，WordPiece
 能够更好地处理复合词和派生词，保留更多的语义信息。</p>
 <h4 id="unigram">（3）Unigram</h4>
 <p><strong>Unigram</strong>
@@ -544,8 +544,8 @@ BERT 模型。与 BPE 类似，WordPiece
 词典是通过训练语言模型生成的，可以处理多种语言和不同类型的文本。Unigram
 模型会为每个子词分配一个概率，然后根据这些概率进行最优分割。</p>
 <p>示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: "unhappiness"</span><br><span class="line">Output: ["un", "happiness"]</span><br><span class="line"></span><br><span class="line">Input: "newest"</span><br><span class="line">Output: ["new", "est"]</span><br></pre></td></tr></table></figure>
-<p>在这个例子中，单词“unhappiness”被分割成子词“un”和“happiness”，而“newest”被分割成“new”和“est”。这种方法通过概率模型有效地处理了子词分割，使得分割结果更符合语言使用习惯。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: "unhappiness"</span><br><span class="line">Output: ["un", "happiness"]</span><br><span class="line"></span><br><span class="line">Input: "newest"</span><br><span class="line">Output: ["new", "est"]</span><br></pre></td></tr></tbody></table></figure>
+<p>在这个例子中，单词 “unhappiness” 被分割成子词 “un” 和 “happiness”，而 “newest” 被分割成 “new” 和 “est”。这种方法通过概率模型有效地处理了子词分割，使得分割结果更符合语言使用习惯。</p>
 <p>每种 Tokenizer 方法都有其特定的应用场景和优缺点，选择适合的 Tokenizer
 对于自然语言处理任务的成功至关重要。</p>
 <h3 id="训练一个-tokenizer">4. 训练一个 Tokenizer</h3>
@@ -586,7 +586,7 @@ Hugging Face 的 <code>tokenizers</code> 库来训练一个 BPE Tokenizer。</p>
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://www.junzhe.top/posts/llm-from-scratch-llama2.html" title="从零搭建LLaMA2大模型">https://www.junzhe.top/posts/llm-from-scratch-llama2.html</a>
+      <a href="https://www.junzhe.top/posts/llm-from-scratch-llama2.html" title="从零搭建 LLaMA2 大模型">https://www.junzhe.top/posts/llm-from-scratch-llama2.html</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -616,8 +616,8 @@ Hugging Face 的 <code>tokenizers</code> 库来训练一个 BPE Tokenizer。</p>
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/transformer-from-scratch.html" rel="prev" title="transformer复现">
-                  <i class="fa fa-angle-left"></i> transformer复现
+                <a href="/posts/transformer-from-scratch.html" rel="prev" title="transformer 复现">
+                  <i class="fa fa-angle-left"></i> transformer 复现
                 </a>
             </div>
             <div class="post-nav-item">
@@ -660,13 +660,13 @@ Hugging Face 的 <code>tokenizers</code> 库来训练一个 BPE Tokenizer。</p>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">43k</span>
+    <span title="站点总字数">44k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">39 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

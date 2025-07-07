@@ -21,7 +21,7 @@
 
     <meta name="description" content="题目简介 题目链接 给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素。元素的顺序可能发生改变。然后返回 nums 中与 val 不同的元素的数量。 假设 nums 中不等于 val 的元素数量为 k，要通过此题，您需要执行以下操作： 更改 nums 数组，使 nums 的前 k 个元素包含不等于 val 的元素。nums 的其余元素和 nums 的大小并不重">
 <meta property="og:type" content="article">
-<meta property="og:title" content="027.移除元素">
+<meta property="og:title" content="027. 移除元素">
 <meta property="og:url" content="https://www.junzhe.top/posts/lc027-remove-element.html">
 <meta property="og:site_name" content="濬哲的博客">
 <meta property="og:description" content="题目简介 题目链接 给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素。元素的顺序可能发生改变。然后返回 nums 中与 val 不同的元素的数量。 假设 nums 中不等于 val 的元素数量为 k，要通过此题，您需要执行以下操作： 更改 nums 数组，使 nums 的前 k 个元素包含不等于 val 的元素。nums 的其余元素和 nums 的大小并不重">
@@ -37,10 +37,10 @@
 <link rel="canonical" href="https://www.junzhe.top/posts/lc027-remove-element.html">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.junzhe.top/posts/lc027-remove-element.html","path":"posts/lc027-remove-element.html","title":"027.移除元素"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.junzhe.top/posts/lc027-remove-element.html","path":"posts/lc027-remove-element.html","title":"027. 移除元素"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>027.移除元素 | 濬哲的博客</title>
+<title>027. 移除元素 | 濬哲的博客</title>
   
 
 
@@ -153,13 +153,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -218,12 +218,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="027.移除元素 | 濬哲的博客">
+      <meta itemprop="name" content="027. 移除元素 | 濬哲的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          027.移除元素
+          027. 移除元素
         </h1>
 
         <div class="post-meta-container">
@@ -285,8 +285,7 @@
     
     
     <div class="post-body" itemprop="articleBody"><h2 id="题目简介">题目简介</h2>
-<p><a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-element/description/">题目链接</a>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-element/description/">题目链接</a>
 给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val
 的元素。元素的顺序可能发生改变。然后返回 nums 中与 val
 不同的元素的数量。</p>
@@ -309,19 +308,17 @@ k 个元素之外留下了什么并不重要（因此它们并不计入评测）
 &lt;= 100</p>
 <span id="more"></span>
 <h2 id="思路">思路</h2>
-<p>乍一看会想到用两层for循环，第一层检测要删除的元素，第二层是一个个位移填补空缺，这样是<span
-class="math inline">\(O(n^2)\)</span>的时间复杂度</p>
-<p>我们希望能优化到<span
-class="math inline">\(O(n)\)</span>，此时容易想到双指针</p>
+<p>乍一看会想到用两层 for 循环，第一层检测要删除的元素，第二层是一个个位移填补空缺，这样是<span class="math inline">\(O(n^2)\)</span> 的时间复杂度</p>
+<p>我们希望能优化到<span class="math inline"> \(O(n)\)</span>，此时容易想到双指针</p>
 <p>双指针法（快慢指针法）：
-通过一个快指针和慢指针在一个for循环下完成两个for循环的工作。 -
+通过一个快指针和慢指针在一个 for 循环下完成两个 for 循环的工作。 -
 快指针：寻找符合条件的元素位置 - 慢指针：定位更新的位置</p>
-<p>这样讲有点抽象，直接看代码 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">removeElement</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> slow = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> fast = <span class="number">0</span>; fast &lt; nums.<span class="built_in">size</span>(); fast++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[fast] != val) &#123;</span><br><span class="line">                nums[slow] = nums[fast];</span><br><span class="line">                slow++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> slow;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-当fast发现元素不是val的时候，会把现在的fast赋给现在的slow，并且slow也往前进。如果fast指向要删除的元素，就会把fast只会管自己往前走，此时slow就停下来了，等待下一个fast指向的非val的元素</p>
+<p>这样讲有点抽象，直接看代码 </p><figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">removeElement</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> val)</span> </span>{</span><br><span class="line">        <span class="type">int</span> slow = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> fast = <span class="number">0</span>; fast &lt; nums.<span class="built_in">size</span>(); fast++) {</span><br><span class="line">            <span class="keyword">if</span> (nums[fast] != val) {</span><br><span class="line">                nums[slow] = nums[fast];</span><br><span class="line">                slow++;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> slow;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+当fast发现元素不是val的时候，会把现在的fast赋给现在的slow，并且slow也往前进。如果fast指向要删除的元素，就会把fast只会管自己往前走，此时slow就停下来了，等待下一个fast指向的非val的元素<p></p>
 <h2 id="复杂度分析">复杂度分析</h2>
 <ul>
-<li>时间复杂度：O(n)</li>
-<li>空间复杂度:O(1)</li>
+<li>时间复杂度：O (n)</li>
+<li> 空间复杂度：O (1)</li>
 </ul>
 <h2 id="总结">总结</h2>
 <p>本题是双指针的经典应用，很多数组问题中都可以使用双指针进行优化，必须很清楚两个指针都代表什么含义</p>
@@ -355,7 +352,7 @@ class="math inline">\(O(n)\)</span>，此时容易想到双指针</p>
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://www.junzhe.top/posts/lc027-remove-element.html" title="027.移除元素">https://www.junzhe.top/posts/lc027-remove-element.html</a>
+      <a href="https://www.junzhe.top/posts/lc027-remove-element.html" title="027. 移除元素">https://www.junzhe.top/posts/lc027-remove-element.html</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -389,13 +386,13 @@ class="math inline">\(O(n)\)</span>，此时容易想到双指针</p>
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/lc704-binary-search.html" rel="prev" title="704.二分查找">
-                  <i class="fa fa-angle-left"></i> 704.二分查找
+                <a href="/posts/lc704-binary-search.html" rel="prev" title="704. 二分查找">
+                  <i class="fa fa-angle-left"></i> 704. 二分查找
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/lc977-squares-of-a-sorted-array.html" rel="next" title="977.有序数组的平方">
-                  977.有序数组的平方 <i class="fa fa-angle-right"></i>
+                <a href="/posts/lc977-squares-of-a-sorted-array.html" rel="next" title="977. 有序数组的平方">
+                  977. 有序数组的平方 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -433,13 +430,13 @@ class="math inline">\(O(n)\)</span>，此时容易想到双指针</p>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">43k</span>
+    <span title="站点总字数">44k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">39 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

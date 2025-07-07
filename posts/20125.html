@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.junzhe.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="消除偏序关系 离散特征（如颜色：红、绿、蓝）的原始数值编码（如红&#x3D;1、绿&#x3D;2、蓝&#x3D;3）会隐含不存在的“偏序关系”（即算法可能误认为“红 &lt; 绿 &lt; 蓝”）。而One-Hot编码通过独热向量（如红&#x3D;[1,0,0]、绿&#x3D;[0,1,0]、蓝&#x3D;[0,0,1]）让每个类别独立且平等，避免算法误判。 等距性 One-Hot编码后，任意两个类别在向量空间中的距离是相等的（如红与绿的距离&#x3D;红与蓝的距离">
+    <meta name="description" content="消除偏序关系 离散特征（如颜色：红、绿、蓝）的原始数值编码（如红 &#x3D; 1、绿 &#x3D; 2、蓝 &#x3D; 3）会隐含不存在的 “偏序关系”（即算法可能误认为 “红 &lt; 绿 &lt; 蓝”）。而 One-Hot 编码通过独热向量（如红 &#x3D;[1,0,0]、绿 &#x3D;[0,1,0]、蓝 &#x3D;[0,0,1]）让每个类别独立且平等，避免算法误判。 等距性 One-Hot 编码后，任意两个类别在向量空间中的距离是相等的（">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Embedding 词嵌入">
 <meta property="og:url" content="https://www.junzhe.top/posts/20125.html">
 <meta property="og:site_name" content="濬哲的博客">
-<meta property="og:description" content="消除偏序关系 离散特征（如颜色：红、绿、蓝）的原始数值编码（如红&#x3D;1、绿&#x3D;2、蓝&#x3D;3）会隐含不存在的“偏序关系”（即算法可能误认为“红 &lt; 绿 &lt; 蓝”）。而One-Hot编码通过独热向量（如红&#x3D;[1,0,0]、绿&#x3D;[0,1,0]、蓝&#x3D;[0,0,1]）让每个类别独立且平等，避免算法误判。 等距性 One-Hot编码后，任意两个类别在向量空间中的距离是相等的（如红与绿的距离&#x3D;红与蓝的距离">
+<meta property="og:description" content="消除偏序关系 离散特征（如颜色：红、绿、蓝）的原始数值编码（如红 &#x3D; 1、绿 &#x3D; 2、蓝 &#x3D; 3）会隐含不存在的 “偏序关系”（即算法可能误认为 “红 &lt; 绿 &lt; 蓝”）。而 One-Hot 编码通过独热向量（如红 &#x3D;[1,0,0]、绿 &#x3D;[0,1,0]、蓝 &#x3D;[0,0,1]）让每个类别独立且平等，避免算法误判。 等距性 One-Hot 编码后，任意两个类别在向量空间中的距离是相等的（">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.junzhe.top/posts/image.png">
 <meta property="article:published_time" content="2025-07-03T09:47:29.000Z">
@@ -265,13 +265,13 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -388,34 +388,34 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody"><p>消除偏序关系
-离散特征（如颜色：红、绿、蓝）的原始数值编码（如红=1、绿=2、蓝=3）会隐含不存在的“偏序关系”（即算法可能误认为“红
+离散特征（如颜色：红、绿、蓝）的原始数值编码（如红 = 1、绿 = 2、蓝 = 3）会隐含不存在的 “偏序关系”（即算法可能误认为 “红
 &lt; 绿 &lt;
-蓝”）。而One-Hot编码通过独热向量（如红=[1,0,0]、绿=[0,1,0]、蓝=[0,0,1]）让每个类别独立且平等，避免算法误判。</p>
+蓝”）。而 One-Hot 编码通过独热向量（如红 =[1,0,0]、绿 =[0,1,0]、蓝 =[0,0,1]）让每个类别独立且平等，避免算法误判。</p>
 <p>等距性
-One-Hot编码后，任意两个类别在向量空间中的距离是相等的（如红与绿的距离=红与蓝的距离=√2）。这保证了算法不会因编码方式对某些类别产生偏好。</p>
+One-Hot 编码后，任意两个类别在向量空间中的距离是相等的（如红与绿的距离 = 红与蓝的距离 =√2）。这保证了算法不会因编码方式对某些类别产生偏好。</p>
 <p>兼容连续特征的处理方法
-One-Hot编码将离散特征转换为多维的二元向量后，每一维都可以视为连续值（0或1），从而可以像连续特征一样进行归一化（如缩放到[-1,1]或标准化为均值为0、方差为1）。</p>
-<p>解释“One-Hot编码后，每一维可视为连续值，并可归一化” 1.
-One-Hot编码的结果是二元向量
-One-Hot编码将离散的类别特征（如“颜色：红、绿、蓝”）转换为多维的二元向量（仅含0或1）。例如：</p>
+One-Hot 编码将离散特征转换为多维的二元向量后，每一维都可以视为连续值（0 或 1），从而可以像连续特征一样进行归一化（如缩放到 [-1,1] 或标准化为均值为 0、方差为 1）。</p>
+<p>解释 “One-Hot 编码后，每一维可视为连续值，并可归一化” 1.
+One-Hot 编码的结果是二元向量
+One-Hot 编码将离散的类别特征（如 “颜色：红、绿、蓝”）转换为多维的二元向量（仅含 0 或 1）。例如：</p>
 <p>红 → [1, 0, 0]</p>
 <p>绿 → [0, 1, 0]</p>
 <p>蓝 → [0, 0, 1]</p>
-<p>每个向量的维度数等于类别总数，且只有一个位置是1（表示当前类别），其余为0。</p>
+<p>每个向量的维度数等于类别总数，且只有一个位置是 1（表示当前类别），其余为 0。</p>
 <ol start="2" type="1">
-<li>为什么说“可以视为连续值”？
-虽然One-Hot编码的取值是离散的（0或1），但从数学处理的角度，可以将其看作连续的数值，原因如下：</li>
+<li>为什么说 “可以视为连续值”？
+虽然 One-Hot 编码的取值是离散的（0 或 1），但从数学处理的角度，可以将其看作连续的数值，原因如下：</li>
 </ol>
-<p>数值性质：0和1是实数，可以参与连续值的数学运算（如加减、乘除、求均值等）。</p>
-<p>算法兼容性：许多机器学习算法（如神经网络、回归模型）默认输入是连续值。将One-Hot向量视为连续值后，可以直接输入这些模型，无需特殊处理。</p>
-<p>注意：严格来说，One-Hot编码是离散的，但因其数值特性，实践中常按连续值处理。</p>
+<p>数值性质：0 和 1 是实数，可以参与连续值的数学运算（如加减、乘除、求均值等）。</p>
+<p>算法兼容性：许多机器学习算法（如神经网络、回归模型）默认输入是连续值。将 One-Hot 向量视为连续值后，可以直接输入这些模型，无需特殊处理。</p>
+<p>注意：严格来说，One-Hot 编码是离散的，但因其数值特性，实践中常按连续值处理。</p>
 <figure>
 <img src="./image.png" alt="alt text">
 <figcaption aria-hidden="true">alt text</figcaption>
 </figure>
 <h2 id="word2vec">word2vec</h2>
-<p>word2vec工具是为了解决上述问题而提出的。它将每个词映射到一个固定长度的向量，这些向量能更好地表达不同词之间的相似性和类比关系。word2vec工具包含两个模型，即跳元模型（skip-gram）
-(Mikolov et al., 2013)和连续词袋（CBOW） (Mikolov et al.,
+<p>word2vec 工具是为了解决上述问题而提出的。它将每个词映射到一个固定长度的向量，这些向量能更好地表达不同词之间的相似性和类比关系。word2vec 工具包含两个模型，即跳元模型（skip-gram）
+(Mikolov et al., 2013) 和连续词袋（CBOW） (Mikolov et al.,
 2013)。对于在语义上有意义的表示，它们的训练依赖于条件概率，条件概率可以被看作使用语料库中一些词来预测另一些单词。由于是不带标签的数据，因此跳元模型和连续词袋都是<strong>自监督模型</strong>。</p>
 <p>https://blog.csdn.net/bitcarmanlee/article/details/82291968</p>
 <h3 id="section"></h3>
@@ -484,7 +484,7 @@ One-Hot编码将离散的类别特征（如“颜色：红、绿、蓝”）转�
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/53807.html" rel="next" title="求导">
+                <a href="/posts/differentiate.html" rel="next" title="求导">
                   求导 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
@@ -523,13 +523,13 @@ One-Hot编码将离散的类别特征（如“颜色：红、绿、蓝”）转�
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">43k</span>
+    <span title="站点总字数">44k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">39 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

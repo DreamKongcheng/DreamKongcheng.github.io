@@ -21,11 +21,18 @@
 
     <meta name="description" content="前言 今年我刚刚步入大三，已经进行了两年的计算机科学与技术专业的学习。这两年感觉有些摸鱼，学了一些知识，但是好像也就是为了应付考试，在考试结束以后这些知识慢慢的被遗忘了，这是我不愿意看到的。感觉如果想把自己所学的东西更好的消化吸收，光靠学是不够的，更重要的是把自己学的东西进行分享。只有当你能把一个知识点逻辑清晰的用自己的话讲述给别人时，才能说明自己真的是掌握了这个知识点。 我也见过学校里一些学长学">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Github Pages + Hexo从零搭建个人博客（一）：基础建设">
+<meta property="og:title" content="Github Pages + Hexo 从零搭建个人博客（一）：基础建设">
 <meta property="og:url" content="https://www.junzhe.top/posts/blog-setup-1-basics.html">
 <meta property="og:site_name" content="濬哲的博客">
 <meta property="og:description" content="前言 今年我刚刚步入大三，已经进行了两年的计算机科学与技术专业的学习。这两年感觉有些摸鱼，学了一些知识，但是好像也就是为了应付考试，在考试结束以后这些知识慢慢的被遗忘了，这是我不愿意看到的。感觉如果想把自己所学的东西更好的消化吸收，光靠学是不够的，更重要的是把自己学的东西进行分享。只有当你能把一个知识点逻辑清晰的用自己的话讲述给别人时，才能说明自己真的是掌握了这个知识点。 我也见过学校里一些学长学">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409272251954.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409272251955.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409272251956.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409272251957.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409272251958.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409272251959.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409272251960.webp">
 <meta property="article:published_time" content="2024-09-27T13:17:27.000Z">
 <meta property="article:modified_time" content="2025-05-19T16:33:18.640Z">
 <meta property="article:author" content="濬哲">
@@ -33,15 +40,16 @@
 <meta property="article:tag" content="网站建设">
 <meta property="article:tag" content="Hexo">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409272251954.webp">
 
 
 <link rel="canonical" href="https://www.junzhe.top/posts/blog-setup-1-basics.html">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.junzhe.top/posts/blog-setup-1-basics.html","path":"posts/blog-setup-1-basics.html","title":"Github Pages + Hexo从零搭建个人博客（一）：基础建设"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.junzhe.top/posts/blog-setup-1-basics.html","path":"posts/blog-setup-1-basics.html","title":"Github Pages + Hexo 从零搭建个人博客（一）：基础建设"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Github Pages + Hexo从零搭建个人博客（一）：基础建设 | 濬哲的博客</title>
+<title>Github Pages + Hexo 从零搭建个人博客（一）：基础建设 | 濬哲的博客</title>
   
 
 
@@ -139,8 +147,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E7%AE%80%E4%BB%8Bgithub-pageshexo%E9%83%BD%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">2.</span> <span class="nav-text">概念简介——Github
-Pages、Hexo都是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#github-pages"><span class="nav-number">2.1.</span> <span class="nav-text">Github Pages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo"><span class="nav-number">2.2.</span> <span class="nav-text">Hexo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA"><span class="nav-number">3.</span> <span class="nav-text">从零开始搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#step1github-pages%E9%85%8D%E7%BD%AE"><span class="nav-number">3.1.</span> <span class="nav-text">Step1：Github Pages配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step2%E5%AE%89%E8%A3%85hexomac%E7%8E%AF%E5%A2%83"><span class="nav-number">3.2.</span> <span class="nav-text">Step2：安装Hexo（Mac环境）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A6%81%E6%B1%82"><span class="nav-number">3.2.1.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85hexo"><span class="nav-number">3.2.2.</span> <span class="nav-text">安装Hexo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">3.2.3.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8hexo%E6%9C%8D%E5%8A%A1"><span class="nav-number">3.2.4.</span> <span class="nav-text">启动Hexo服务</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step3%E9%85%8D%E7%BD%AEhexo%E7%9A%84%E4%B8%BB%E9%A2%98"><span class="nav-number">3.3.</span> <span class="nav-text">Step3：配置Hexo的主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step4%E5%BC%80%E5%A7%8B%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%E5%86%99%E4%BD%9C"><span class="nav-number">3.4.</span> <span class="nav-text">Step4：开始我们的第一篇博客文章写作！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step5%E5%B0%86%E7%94%9F%E6%88%90%E7%9A%84%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2%E9%83%A8%E7%BD%B2%E5%88%B0-github-%E4%B8%8A"><span class="nav-number">3.5.</span> <span class="nav-text">Step5：将生成的静态页面部署到
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E7%AE%80%E4%BB%8Bgithub-pageshexo%E9%83%BD%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">2.</span> <span class="nav-text">概念简介 ——Github
+Pages、Hexo 都是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#github-pages"><span class="nav-number">2.1.</span> <span class="nav-text">Github Pages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo"><span class="nav-number">2.2.</span> <span class="nav-text">Hexo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA"><span class="nav-number">3.</span> <span class="nav-text">从零开始搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#step1github-pages%E9%85%8D%E7%BD%AE"><span class="nav-number">3.1.</span> <span class="nav-text">Step1：Github Pages 配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step2%E5%AE%89%E8%A3%85hexomac%E7%8E%AF%E5%A2%83"><span class="nav-number">3.2.</span> <span class="nav-text">Step2：安装 Hexo（Mac 环境）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A6%81%E6%B1%82"><span class="nav-number">3.2.1.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85hexo"><span class="nav-number">3.2.2.</span> <span class="nav-text">安装 Hexo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">3.2.3.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8hexo%E6%9C%8D%E5%8A%A1"><span class="nav-number">3.2.4.</span> <span class="nav-text">启动 Hexo 服务</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step3%E9%85%8D%E7%BD%AEhexo%E7%9A%84%E4%B8%BB%E9%A2%98"><span class="nav-number">3.3.</span> <span class="nav-text">Step3：配置 Hexo 的主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step4%E5%BC%80%E5%A7%8B%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%E5%86%99%E4%BD%9C"><span class="nav-number">3.4.</span> <span class="nav-text">Step4：开始我们的第一篇博客文章写作！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step5%E5%B0%86%E7%94%9F%E6%88%90%E7%9A%84%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2%E9%83%A8%E7%BD%B2%E5%88%B0-github-%E4%B8%8A"><span class="nav-number">3.5.</span> <span class="nav-text">Step5：将生成的静态页面部署到
 github 上</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%BB%8B%E7%BB%8D"><span class="nav-number">3.5.1.</span> <span class="nav-text">常用命令介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E6%93%8D%E4%BD%9C"><span class="nav-number">3.5.2.</span> <span class="nav-text">具体操作</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
@@ -156,13 +164,13 @@ github 上</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a c
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -221,12 +229,12 @@ github 上</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a c
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Github Pages + Hexo从零搭建个人博客（一）：基础建设 | 濬哲的博客">
+      <meta itemprop="name" content="Github Pages + Hexo 从零搭建个人博客（一）：基础建设 | 濬哲的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Github Pages + Hexo从零搭建个人博客（一）：基础建设
+          Github Pages + Hexo 从零搭建个人博客（一）：基础建设
         </h1>
 
         <div class="post-meta-container">
@@ -292,11 +300,10 @@ github 上</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a c
 <p>我也见过学校里一些学长学姐的个人网站，他们分享自己的课程笔记，<del>为我的期末补天提供了宝贵的资源</del>。我自己也是一个比较喜欢折腾的人，感觉在这些地方折腾就像是精心布置自己的房间一样，会让自己非常的有归属感与成就感。于是，我也看了网上不少的教程，希望能够从零开始一步步搭建属于我自己的个人网站。</p>
 <p>第一篇博客就来讲一下我是怎么搭建个人网站的吧！</p>
 <span id="more"></span>
-<h2 id="概念简介github-pageshexo都是什么">概念简介——Github
-Pages、Hexo都是什么？</h2>
+<h2 id="概念简介github-pageshexo都是什么">概念简介 ——Github
+Pages、Hexo 都是什么？</h2>
 <h3 id="github-pages">Github Pages</h3>
-<p>来看一下<a
-target="_blank" rel="noopener" href="https://docs.github.com/zh/pages/getting-started-with-github-pages/about-github-pages">官方文档</a>的解释</p>
+<p>来看一下<a target="_blank" rel="noopener" href="https://docs.github.com/zh/pages/getting-started-with-github-pages/about-github-pages">官方文档</a>的解释</p>
 <blockquote>
 <p>GitHub Pages 是一项静态站点托管服务，它直接从 GitHub 上的仓库获取
 HTML、CSS 和 JavaScript
@@ -308,33 +315,30 @@ HTML、CSS 和 JavaScript
 <ul>
 <li><p>Github Pages 是 Github
 提供的<strong>网页寄存服务</strong>，用于存放<strong>静态网页</strong>，也就是我们的博客。</p></li>
-<li><p>我们可以通过博客框架（e.g.Hexo）来把md文档转换为静态网页</p></li>
+<li><p>我们可以通过博客框架（e.g.Hexo）来把 md 文档转换为静态网页</p></li>
 <li><p>最终可以通过自己的<code>github.io</code><strong>子域名</strong>来访问到生成的静态网页</p></li>
 </ul>
 <blockquote>
-<p>静态网页是指内容固定、没有动态交互的网页，通常由HTML、CSS和JavaScript构成。每次用户请求时，服务器直接返回存储在硬盘上的文件，不会根据用户的输入或行为进行变化。</p>
+<p>静态网页是指内容固定、没有动态交互的网页，通常由 HTML、CSS 和 JavaScript 构成。每次用户请求时，服务器直接返回存储在硬盘上的文件，不会根据用户的输入或行为进行变化。</p>
 </blockquote>
 <p>而且重点是<strong>不花钱，不花钱，不花钱</strong>！！！</p>
 <h3 id="hexo">Hexo</h3>
-<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">Hexo官网地址</a></p>
-<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo官方文档</a></p>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">Hexo 官网地址</a></p>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo 官方文档</a></p>
 <ul>
-<li><p>Hexo
+<li><p> Hexo
 是一个快速、简洁且高效的<strong>静态博客框架</strong>。</p></li>
-<li><p>Hexo 使用 <a
-target="_blank" rel="noopener" href="http://daringfireball.net/projects/markdown/">Markdown</a>（或其他标记语言）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p></li>
-<li><p>我们写博客的工作流就是，在本地使用Markdown编辑器写博客，然后使用本地的Hexo框架进行解析，然后一键上传</p></li>
-<li><p>Hexo包含丰富的<strong>主题</strong>，你可以选择一款自己喜欢的主题来美化自己的博客，我选择的是<a
-target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next">Next主题</a></p></li>
+<li><p>Hexo 使用 <a target="_blank" rel="noopener" href="http://daringfireball.net/projects/markdown/">Markdown</a>（或其他标记语言）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p></li>
+<li><p>我们写博客的工作流就是，在本地使用 Markdown 编辑器写博客，然后使用本地的 Hexo 框架进行解析，然后一键上传</p></li>
+<li><p> Hexo 包含丰富的<strong>主题</strong>，你可以选择一款自己喜欢的主题来美化自己的博客，我选择的是 <a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next">Next 主题</a></p></li>
 </ul>
 <h2 id="从零开始搭建">从零开始搭建</h2>
-<p>默认你已经注册了Github账号并且安装了Git工具和Vscode代码编辑器</p>
-<h3 id="step1github-pages配置">Step1：Github Pages配置</h3>
+<p>默认你已经注册了 Github 账号并且安装了 Git 工具和 Vscode 代码编辑器</p>
+<h3 id="step1github-pages配置">Step1：Github Pages 配置</h3>
 <p>新建仓库， 名称为<code>&lt;username&gt;.github.io</code>
-，并保持仓库为<strong>public</strong></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409272251954.webp" /></p>
-<h3 id="step2安装hexomac环境">Step2：安装Hexo（Mac环境）</h3>
+，并保持仓库为<strong> public</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409272251954.webp"></p>
+<h3 id="step2安装hexomac环境">Step2：安装 Hexo（Mac 环境）</h3>
 <h4 id="要求">要求</h4>
 <p>安装 Hexo 相当简单，只需要先安装下列应用程序即可：</p>
 <ul>
@@ -342,60 +346,49 @@ src="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409272251954
 10.13，建议使用 Node.js 12.0 及以上版本)</li>
 <li><a target="_blank" rel="noopener" href="http://git-scm.com/">Git</a></li>
 </ul>
-<p>在Mac中，我们可以使用<a
-target="_blank" rel="noopener" href="https://brew.sh/zh-cn/">Homebrew</a>进行这两者的安装。Homebrew是Mac的一款包管理工具</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install git</span><br><span class="line">brew install node</span><br></pre></td></tr></table></figure>
-<h4 id="安装hexo">安装Hexo</h4>
+<p>在 Mac 中，我们可以使用<a target="_blank" rel="noopener" href="https://brew.sh/zh-cn/">Homebrew</a> 进行这两者的安装。Homebrew 是 Mac 的一款包管理工具</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install git</span><br><span class="line">brew install node</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="安装hexo">安装 Hexo</h4>
 <p>所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></tbody></table></figure>
 <h4 id="初始化">初始化</h4>
-<p>在电脑上创建一个文件夹用来存放自己的博客，我在文稿中新建了一个Blogs文件夹，在vscode中打开Blogs文件夹，新建一个终端，输入命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> Blogs</span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-<p><img
-src="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409272251955.webp" /></p>
+<p>在电脑上创建一个文件夹用来存放自己的博客，我在文稿中新建了一个 Blogs 文件夹，在 vscode 中打开 Blogs 文件夹，新建一个终端，输入命令：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> Blogs</span><br><span class="line">hexo init</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409272251955.webp"></p>
 <p>已经成功初始化</p>
-<p>其实这一步首先是克隆了一个Github仓库，然后执行了<code>npm install</code>命令来安装package.json中的依赖包，依赖安装完成后就会多出node_modules与package-lock.json两个文件夹。</p>
-<p>简单介绍下hexo的文件结构：</p>
+<p>其实这一步首先是克隆了一个 Github 仓库，然后执行了<code>npm install</code>命令来安装 package.json 中的依赖包，依赖安装完成后就会多出 node_modules 与 package-lock.json 两个文件夹。</p>
+<p>简单介绍下 hexo 的文件结构：</p>
 <ul>
-<li>node_modules ：插件以及hexo所需node.js模块</li>
+<li>node_modules ：插件以及 hexo 所需 node.js 模块</li>
 <li>_config.yml 站点配置文件，设定一些公开信息等</li>
-<li>package.json 应用程序信息，配置hexo运行所需js包</li>
-<li>scaffolds 模板文件夹，新建文章，会默认包含对应模板内容</li>
-<li>themes 存放主题文件，hexo根据主题生成静态网页</li>
-<li>source 用于存放用户资源</li>
+<li> package.json 应用程序信息，配置 hexo 运行所需 js 包</li>
+<li> scaffolds 模板文件夹，新建文章，会默认包含对应模板内容</li>
+<li> themes 存放主题文件，hexo 根据主题生成静态网页</li>
+<li> source 用于存放用户资源</li>
 </ul>
-<p>我们的日常写作都是在source/_posts文件夹下</p>
-<h4 id="启动hexo服务">启动Hexo服务</h4>
+<p>我们的日常写作都是在 source/_posts 文件夹下</p>
+<h4 id="启动hexo服务">启动 Hexo 服务</h4>
 <p>输入命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s  //或者hexo server</span><br></pre></td></tr></table></figure>
-<p><img
-src="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409272251956.webp" /></p>
-<p>点击链接 <a
-target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a>（图中黄色下划线位置）进行本地预览，默认是hexo内置的landscape
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s  //或者hexo server</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409272251956.webp"></p>
+<p>点击链接 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a>（图中黄色下划线位置）进行本地预览，默认是 hexo 内置的 landscape
 主题</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409272251957.webp" /></p>
-<h3 id="step3配置hexo的主题">Step3：配置Hexo的主题</h3>
-<p>我选择的是<a
-target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next">Next主题</a></p>
-<p>在Blogs这个主目录中，将Next主题从Github上克隆到themes文件夹中</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
-<p>可以看到themes文件夹下面多了存放Next主题的文件</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409272251958.webp" /></p>
-<p>接下来，我们进入到_config.yml中修改主题配置</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">landscape</span></span><br></pre></td></tr></table></figure>
-<p>将其修改为Next，然后启动hexo服务</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409272251959.webp" /></p>
-<p>我们已经成功使用了Next主题，是不是非常的方便快捷？</p>
-<h3
-id="step4开始我们的第一篇博客文章写作">Step4：开始我们的第一篇博客文章写作！</h3>
-<p>具体内容请参考<a
-target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/writing">Hexo官方文档</a>和<a
-target="_blank" rel="noopener" href="https://fuguigui.github.io/hexo2/">一个Hexo文章写作流程示例</a>，下面我就简单讲一点比较常用的操作</p>
+<p><img src="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409272251957.webp"></p>
+<h3 id="step3配置hexo的主题">Step3：配置 Hexo 的主题</h3>
+<p>我选择的是 <a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next">Next 主题</a></p>
+<p>在 Blogs 这个主目录中，将 Next 主题从 Github 上克隆到 themes 文件夹中</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></tbody></table></figure>
+<p>可以看到 themes 文件夹下面多了存放 Next 主题的文件</p>
+<p><img src="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409272251958.webp"></p>
+<p>接下来，我们进入到_config.yml 中修改主题配置</p>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">landscape</span></span><br></pre></td></tr></tbody></table></figure>
+<p>将其修改为 Next，然后启动 hexo 服务</p>
+<p><img src="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409272251959.webp"></p>
+<p>我们已经成功使用了 Next 主题，是不是非常的方便快捷？</p>
+<h3 id="step4开始我们的第一篇博客文章写作">Step4：开始我们的第一篇博客文章写作！</h3>
+<p>具体内容请参考 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/writing">Hexo 官方文档</a>和<a target="_blank" rel="noopener" href="https://fuguigui.github.io/hexo2/">一个 Hexo 文章写作流程示例</a>，下面我就简单讲一点比较常用的操作</p>
 <p>你可以执行下列命令来创建一篇新文章或者新的页面。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></tbody></table></figure>
 <p><code>post</code>是默认的<code>布局</code>，但你也可以提供自己的布局。
 您可以通过编辑 <code>_config.yml</code> 中的 <code>default_layout</code>
 设置来更改默认布局。</p>
@@ -426,19 +419,15 @@ different path. Newly created posts are saved to the
 </tbody>
 </table>
 <p>一般来说，我们就直接执行命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">&quot;Github Pages + Hexo从零搭建个人博客&quot;</span></span><br></pre></td></tr></table></figure>
-<p><img
-src="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409272251960.webp" /></p>
-<p>可以看到我们已经成功创建了一篇新的文章（文件名会把一些非法符号替换为-）</p>
-<p>我们就按照正常的Markdown写作流程进行写作就行了</p>
-<h3
-id="step5将生成的静态页面部署到-github-上">Step5：将生成的静态页面部署到
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">"Github Pages + Hexo从零搭建个人博客"</span></span><br></pre></td></tr></tbody></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409272251960.webp"></p>
+<p>可以看到我们已经成功创建了一篇新的文章（文件名会把一些非法符号替换为 -）</p>
+<p>我们就按照正常的 Markdown 写作流程进行写作就行了</p>
+<h3 id="step5将生成的静态页面部署到-github-上">Step5：将生成的静态页面部署到
 github 上</h3>
-<p>具体内容请参考<a
-target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/writing">Hexo官方文档</a>和<a
-target="_blank" rel="noopener" href="https://fuguigui.github.io/hexo2/">一次Hexo文章写作流程示例</a></p>
+<p>具体内容请参考 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/writing">Hexo 官方文档</a>和<a target="_blank" rel="noopener" href="https://fuguigui.github.io/hexo2/">一次 Hexo 文章写作流程示例</a></p>
 <ul>
-<li>通过上面4步的操作，我们已经可以在本地通过
+<li>通过上面 4 步的操作，我们已经可以在本地通过
 <code>localhost:4000</code> 查看博客页面了。</li>
 <li>因此，这里我们要将 Hexo 框架生成的内容部署到 github
 上，让其他家人也能看到 。</li>
@@ -448,32 +437,32 @@ target="_blank" rel="noopener" href="https://fuguigui.github.io/hexo2/">一次He
 <ul>
 <li><p>Clean:
 <code>hexo clean</code>。该命令会删除整个<code>***.github.io/public/</code>文件夹</p></li>
-<li><p>Generate:
-<code>hexo generate</code>或者简写为<code>hexo g</code>。该命令会生成静态文件夹<code>public/</code>，也就是从markdown到网页文件html等的转换操作</p></li>
-<li><p>Server:
+<li><p> Generate:
+<code>hexo generate</code>或者简写为<code>hexo g</code>。该命令会生成静态文件夹<code>public/</code>，也就是从 markdown 到网页文件 html 等的转换操作</p></li>
+<li><p> Server:
 启动服务器常用的是<code>hexo server</code>或者简写为<code>hexo s</code>。</p>
 <p>该命令会把生成好的静态文件部署到本地的指定端口，之后即可在本地浏览器输入<code>localhost:4000</code>即可预览。</p></li>
-<li><p>deploy：<code>hexo deploy</code>或者简写为<code>hexo d</code>。该命令将网站部署到服务器上。实际操作是：更新你在github上的仓库<code>***.github.io</code>的指定分支（如果你采用Hexo系列第一节说到的两分支方式的话）。这是你最终发表的博客页面，你可以在浏览器上访问<code>https://***.github.io</code>来查看更新后的博客啦。</p></li>
+<li><p>deploy：<code>hexo deploy</code>或者简写为<code>hexo d</code>。该命令将网站部署到服务器上。实际操作是：更新你在 github 上的仓库<code>***.github.io</code>的指定分支（如果你采用 Hexo 系列第一节说到的两分支方式的话）。这是你最终发表的博客页面，你可以在浏览器上访问<code>https://***.github.io</code>来查看更新后的博客啦。</p></li>
 </ul>
 <p>接着，给出一些命令使用的常见套路</p>
 <ul>
 <li><code>hexo clean</code>这个命令其实很少用。使用情况常见于：更新了<code>_config.yml</code>文件夹，删除了一些已有博文等。原因就是速度慢，耗费不必要的时间。毕竟它会将整个<code>public/</code>文件夹删除，再重新生成。推荐偶尔清理使用即可。</li>
 <li><strong>通常更新一次博客的套路是先本地预览，再远程部署</strong>。即先执行<code>hexo g; hexo s</code>，再执行<code>hexo d</code>或者<code>hexo g; hexo d</code></li>
-<li>hexo有个特别便利的地方！
+<li>hexo 有个特别便利的地方！
 <ul>
-<li>在本地预览时，你仍可以更改markdown文件中一般的文字内容，然后直接在浏览器端刷新页面，就能看到实时更改的效果，而不需要再执行一次<code>hexo g;hexo s</code>，节省很多时间。常用于预览过程中进行微调操作。</li>
+<li>在本地预览时，你仍可以更改 markdown 文件中一般的文字内容，然后直接在浏览器端刷新页面，就能看到实时更改的效果，而不需要再执行一次<code>hexo g;hexo s</code>，节省很多时间。常用于预览过程中进行微调操作。</li>
 </ul></li>
 </ul>
 <h4 id="具体操作">具体操作</h4>
 <p>修改站点配置文件<code>_config.yml</code>的最后部分</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/YourgithubName/YourgithubName.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/YourgithubName/YourgithubName.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></tbody></table></figure>
 <p>在执行之前，记得安装自动部署 (–save
-加不加的区别在于是否写入到依赖文件package.json中)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+加不加的区别在于是否写入到依赖文件 package.json 中)</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></tbody></table></figure>
 <p>然后</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean <span class="comment">#清除之前生成的东西</span></span><br><span class="line">hexo generate  <span class="comment">#生成静态文章，缩写hexo g</span></span><br><span class="line">hexo deploy  <span class="comment">#部署文章，缩写hexo d</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean <span class="comment">#清除之前生成的东西</span></span><br><span class="line">hexo generate  <span class="comment">#生成静态文章，缩写hexo g</span></span><br><span class="line">hexo deploy  <span class="comment">#部署文章，缩写hexo d</span></span><br></pre></td></tr></tbody></table></figure>
 <p>过一会儿就可以在<code>http://yourname.github.io</code>这个网站看到你的博客了！</p>
-<p>（ps：其实部署就是把public内的所有内容推送到仓库中。.gitignore中的内容是给版本控制用的）</p>
+<p>（ps：其实部署就是把 public 内的所有内容推送到仓库中。.gitignore 中的内容是给版本控制用的）</p>
 
     </div>
 
@@ -504,7 +493,7 @@ target="_blank" rel="noopener" href="https://fuguigui.github.io/hexo2/">一次He
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://www.junzhe.top/posts/blog-setup-1-basics.html" title="Github Pages + Hexo从零搭建个人博客（一）：基础建设">https://www.junzhe.top/posts/blog-setup-1-basics.html</a>
+      <a href="https://www.junzhe.top/posts/blog-setup-1-basics.html" title="Github Pages + Hexo 从零搭建个人博客（一）：基础建设">https://www.junzhe.top/posts/blog-setup-1-basics.html</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -541,8 +530,8 @@ target="_blank" rel="noopener" href="https://fuguigui.github.io/hexo2/">一次He
             <div class="post-nav-item">
             </div>
             <div class="post-nav-item">
-                <a href="/posts/blog-setup-2-git.html" rel="next" title="Github Pages + Hexo从零搭建个人博客（二）：Git双分支管理网页与源文件">
-                  Github Pages + Hexo从零搭建个人博客（二）：Git双分支管理网页与源文件 <i class="fa fa-angle-right"></i>
+                <a href="/posts/blog-setup-2-git.html" rel="next" title="Github Pages + Hexo 从零搭建个人博客（二）：Git 双分支管理网页与源文件">
+                  Github Pages + Hexo 从零搭建个人博客（二）：Git 双分支管理网页与源文件 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -580,13 +569,13 @@ target="_blank" rel="noopener" href="https://fuguigui.github.io/hexo2/">一次He
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">43k</span>
+    <span title="站点总字数">44k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">39 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

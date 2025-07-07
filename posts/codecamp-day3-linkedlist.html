@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.junzhe.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="链表理论基础 我突然在想为什么新建链表节点必须用 new ListNode()，而不能直接用 ListNode()呢？ 因为链表是动态分配的，new ListNode()会在堆上分配内存，而 ListNode()是在栈上分配内存。栈上的变量在函数结束后会被自动销毁，而堆上的变量需要手动释放。 如果用 ListNode()，这个函数结束了会自动销毁变量，造成悬空指针，而链表一般需要全局区调用，所以不">
+    <meta name="description" content="链表理论基础 我突然在想为什么新建链表节点必须用 new ListNode ()，而不能直接用 ListNode () 呢？ 因为链表是动态分配的，new ListNode () 会在堆上分配内存，而 ListNode () 是在栈上分配内存。栈上的变量在函数结束后会被自动销毁，而堆上的变量需要手动释放。 如果用 ListNode ()，这个函数结束了会自动销毁变量，造成悬空指针，而链表一般需要全">
 <meta property="og:type" content="article">
-<meta property="og:title" content="代码随想录算法训练营第三天 | 链表Part01">
+<meta property="og:title" content="代码随想录算法训练营第三天 | 链表 Part01">
 <meta property="og:url" content="https://www.junzhe.top/posts/codecamp-day3-linkedlist.html">
 <meta property="og:site_name" content="濬哲的博客">
-<meta property="og:description" content="链表理论基础 我突然在想为什么新建链表节点必须用 new ListNode()，而不能直接用 ListNode()呢？ 因为链表是动态分配的，new ListNode()会在堆上分配内存，而 ListNode()是在栈上分配内存。栈上的变量在函数结束后会被自动销毁，而堆上的变量需要手动释放。 如果用 ListNode()，这个函数结束了会自动销毁变量，造成悬空指针，而链表一般需要全局区调用，所以不">
+<meta property="og:description" content="链表理论基础 我突然在想为什么新建链表节点必须用 new ListNode ()，而不能直接用 ListNode () 呢？ 因为链表是动态分配的，new ListNode () 会在堆上分配内存，而 ListNode () 是在栈上分配内存。栈上的变量在函数结束后会被自动销毁，而堆上的变量需要手动释放。 如果用 ListNode ()，这个函数结束了会自动销毁变量，造成悬空指针，而链表一般需要全">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://file1.kamacoder.com/i/algo/206.%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8.gif">
 <meta property="article:published_time" content="2025-05-19T07:37:16.000Z">
@@ -39,10 +39,10 @@
 <link rel="canonical" href="https://www.junzhe.top/posts/codecamp-day3-linkedlist.html">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.junzhe.top/posts/codecamp-day3-linkedlist.html","path":"posts/codecamp-day3-linkedlist.html","title":"代码随想录算法训练营第三天 | 链表Part01"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.junzhe.top/posts/codecamp-day3-linkedlist.html","path":"posts/codecamp-day3-linkedlist.html","title":"代码随想录算法训练营第三天 | 链表 Part01"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>代码随想录算法训练营第三天 | 链表Part01 | 濬哲的博客</title>
+<title>代码随想录算法训练营第三天 | 链表 Part01 | 濬哲的博客</title>
   
 
 
@@ -252,7 +252,7 @@ mjx-container[display="true"] + br {
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%BE%E8%A1%A8%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">链表理论基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode203.%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0"><span class="nav-number">2.</span> <span class="nav-text">LeetCode203.移除链表元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E8%A6%81%E7%82%B9%E4%B8%8E%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="nav-number">2.1.</span> <span class="nav-text">题目要点与解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81"><span class="nav-number">2.2.</span> <span class="nav-text">实现代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%B8%8E%E6%80%BB%E7%BB%93"><span class="nav-number">2.3.</span> <span class="nav-text">遇到的问题与总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode707.%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8"><span class="nav-number">3.</span> <span class="nav-text">LeetCode707.设计链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode206.%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8"><span class="nav-number">4.</span> <span class="nav-text">LeetCode206.反转链表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E8%A6%81%E7%82%B9%E4%B8%8E%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF-1"><span class="nav-number">4.1.</span> <span class="nav-text">题目要点与解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81-1"><span class="nav-number">4.2.</span> <span class="nav-text">实现代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%B8%8E%E6%80%BB%E7%BB%93-1"><span class="nav-number">4.3.</span> <span class="nav-text">遇到的问题与总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%BE%E8%A1%A8%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">链表理论基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode203.%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0"><span class="nav-number">2.</span> <span class="nav-text">LeetCode203. 移除链表元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E8%A6%81%E7%82%B9%E4%B8%8E%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="nav-number">2.1.</span> <span class="nav-text">题目要点与解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81"><span class="nav-number">2.2.</span> <span class="nav-text">实现代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%B8%8E%E6%80%BB%E7%BB%93"><span class="nav-number">2.3.</span> <span class="nav-text">遇到的问题与总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode707.%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8"><span class="nav-number">3.</span> <span class="nav-text">LeetCode707. 设计链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode206.%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8"><span class="nav-number">4.</span> <span class="nav-text">LeetCode206. 反转链表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E8%A6%81%E7%82%B9%E4%B8%8E%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF-1"><span class="nav-number">4.1.</span> <span class="nav-text">题目要点与解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81-1"><span class="nav-number">4.2.</span> <span class="nav-text">实现代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%B8%8E%E6%80%BB%E7%BB%93-1"><span class="nav-number">4.3.</span> <span class="nav-text">遇到的问题与总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -267,13 +267,13 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -332,12 +332,12 @@ mjx-container[display="true"] + br {
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="代码随想录算法训练营第三天 | 链表Part01 | 濬哲的博客">
+      <meta itemprop="name" content="代码随想录算法训练营第三天 | 链表 Part01 | 濬哲的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          代码随想录算法训练营第三天 | 链表Part01
+          代码随想录算法训练营第三天 | 链表 Part01
         </h1>
 
         <div class="post-meta-container">
@@ -399,14 +399,14 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody"><h2 id="链表理论基础">链表理论基础</h2>
-<p>我突然在想为什么新建链表节点必须用 new ListNode()，而不能直接用
-ListNode()呢？ 因为链表是动态分配的，new ListNode()会在堆上分配内存，而
-ListNode()是在栈上分配内存。栈上的变量在函数结束后会被自动销毁，而堆上的变量需要手动释放。<br>
+<p>我突然在想为什么新建链表节点必须用 new ListNode ()，而不能直接用
+ListNode () 呢？ 因为链表是动态分配的，new ListNode () 会在堆上分配内存，而
+ListNode () 是在栈上分配内存。栈上的变量在函数结束后会被自动销毁，而堆上的变量需要手动释放。<br>
 如果用
-ListNode()，这个函数结束了会自动销毁变量，造成悬空指针，而链表一般需要全局区调用，所以不能放在栈上。</p>
+ListNode ()，这个函数结束了会自动销毁变量，造成悬空指针，而链表一般需要全局区调用，所以不能放在栈上。</p>
 <p>理解了这个点，这对于内存的堆空间和栈空间应该就更明白了</p>
-<h2 id="leetcode203.移除链表元素">LeetCode203.移除链表元素</h2>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-linked-list-elements/description/">题目链接：203.移除链表元素</a></p>
+<h2 id="leetcode203.移除链表元素">LeetCode203. 移除链表元素</h2>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-linked-list-elements/description/">题目链接：203. 移除链表元素</a></p>
 <h3 id="题目要点与解题思路">题目要点与解题思路</h3>
 <p>这是非常基础的链表删除操作，不是很想展开讲了，只需要记住下面几点：</p>
 <ul>
@@ -417,36 +417,36 @@ cur-&gt;next-&gt;next; 这样就可以了</li>
 </ul>
 <span id="more"></span>
 <h3 id="实现代码">实现代码</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">removeElements</span><span class="params">(ListNode* head, <span class="type">int</span> val)</span> </span>{</span><br><span class="line">        ListNode* dummy = <span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">-1</span>, head);</span><br><span class="line">        ListNode* cur = dummy;</span><br><span class="line">        ListNode* tmp; <span class="comment">// 用于删除节点</span></span><br><span class="line">        <span class="keyword">while</span> (cur-&gt;next) {</span><br><span class="line">            <span class="keyword">if</span> (cur-&gt;next-&gt;val == val) {</span><br><span class="line">                tmp = cur-&gt;next;</span><br><span class="line">                cur-&gt;next = cur-&gt;next-&gt;next;</span><br><span class="line">                <span class="keyword">delete</span> tmp;</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                cur = cur-&gt;next;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        head = dummy-&gt;next;</span><br><span class="line">        <span class="keyword">delete</span> dummy;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">removeElements</span><span class="params">(ListNode* head, <span class="type">int</span> val)</span> </span>{</span><br><span class="line">        ListNode* dummy = <span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">-1</span>, head);</span><br><span class="line">        ListNode* cur = dummy;</span><br><span class="line">        ListNode* tmp; <span class="comment">// 用于删除节点</span></span><br><span class="line">        <span class="keyword">while</span> (cur-&gt;next) {</span><br><span class="line">            <span class="keyword">if</span> (cur-&gt;next-&gt;val == val) {</span><br><span class="line">                tmp = cur-&gt;next;</span><br><span class="line">                cur-&gt;next = cur-&gt;next-&gt;next;</span><br><span class="line">                <span class="keyword">delete</span> tmp;</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                cur = cur-&gt;next;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        head = dummy-&gt;next;</span><br><span class="line">        <span class="keyword">delete</span> dummy;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 <p>删除本身操作的复杂度是<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="4.618ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 2041 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mn" transform="translate(1152,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(1652,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container></span>，但是我们需要遍历链表找到
 val，所以时间复杂度是<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="4.844ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 2141 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(1152,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(1752,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container></span>，空间复杂度是<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="4.618ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 2041 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mn" transform="translate(1152,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(1652,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container></span></p>
 <h3 id="遇到的问题与总结">遇到的问题与总结</h3>
 <p>一开始写的时候还用了 prev 指针，不过其实只需要用一个 cur
 指针就行（tmp
 用于暂存不计入指针数目）。后面见到删除链表的题目会使用双指针的</p>
-<h2 id="leetcode707.设计链表">LeetCode707.设计链表</h2>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/design-linked-list/description/">题目链接：707.设计链表</a></p>
+<h2 id="leetcode707.设计链表">LeetCode707. 设计链表</h2>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/design-linked-list/description/">题目链接：707. 设计链表</a></p>
 <blockquote>
 <p>简单看了一下代码随想录的答案，自己没写，先留个坑</p>
 </blockquote>
-<h2 id="leetcode206.反转链表">LeetCode206.反转链表</h2>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-linked-list/description/">题目链接：206.反转链表</a></p>
+<h2 id="leetcode206.反转链表">LeetCode206. 反转链表</h2>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-linked-list/description/">题目链接：206. 反转链表</a></p>
 <h3 id="题目要点与解题思路-1">题目要点与解题思路</h3>
 <ul>
 <li>需要原地的反转</li>
 <li>使用双指针</li>
 <li>本题不需要 dummy 节点</li>
 </ul>
-<p>模拟过程如下，很清楚了不再赘述(我大一学的时候没有看代码随想录，一直就没搞清这个问题，捂脸)，现在是彻彻底底搞懂了
+<p>模拟过程如下，很清楚了不再赘述 (我大一学的时候没有看代码随想录，一直就没搞清这个问题，捂脸)，现在是彻彻底底搞懂了
 <img src="https://file1.kamacoder.com/i/algo/206.%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8.gif"></p>
 <h3 id="实现代码-1">实现代码</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>{</span><br><span class="line">        ListNode* cur = head;</span><br><span class="line">        ListNode* prev = <span class="literal">nullptr</span>;</span><br><span class="line">        ListNode* tmp;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(cur){</span><br><span class="line">            tmp=cur-&gt;next;</span><br><span class="line">            cur-&gt;next=prev;</span><br><span class="line">            prev=cur;</span><br><span class="line">            cur=tmp;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> prev;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>{</span><br><span class="line">        ListNode* cur = head;</span><br><span class="line">        ListNode* prev = <span class="literal">nullptr</span>;</span><br><span class="line">        ListNode* tmp;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(cur){</span><br><span class="line">            tmp=cur-&gt;next;</span><br><span class="line">            cur-&gt;next=prev;</span><br><span class="line">            prev=cur;</span><br><span class="line">            cur=tmp;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> prev;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 <p>每次要把 cur-&gt;next 用 tmp 存住，好让 cur 往前走
-有没有发现这个特别像交换两个数的逻辑 swap(a, b)？</p>
+有没有发现这个特别像交换两个数的逻辑 swap (a, b)？</p>
 <h3 id="遇到的问题与总结-1">遇到的问题与总结</h3>
 <p>反转链表就用<strong>双指针</strong>！</p>
 <h2 id="参考资料">参考资料</h2>
-<p><a target="_blank" rel="noopener" href="https://programmercarl.com/0206.%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8.html">代码随想录-反转链表</a></p>
+<p><a target="_blank" rel="noopener" href="https://programmercarl.com/0206.%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8.html">代码随想录 - 反转链表</a></p>
 
     </div>
 
@@ -477,7 +477,7 @@ val，所以时间复杂度是<span class="math inline"><mjx-container class="Ma
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://www.junzhe.top/posts/codecamp-day3-linkedlist.html" title="代码随想录算法训练营第三天 | 链表Part01">https://www.junzhe.top/posts/codecamp-day3-linkedlist.html</a>
+      <a href="https://www.junzhe.top/posts/codecamp-day3-linkedlist.html" title="代码随想录算法训练营第三天 | 链表 Part01">https://www.junzhe.top/posts/codecamp-day3-linkedlist.html</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -511,13 +511,13 @@ val，所以时间复杂度是<span class="math inline"><mjx-container class="Ma
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/hexo-image-manage-local-cloud.html" rel="prev" title="Hexo博客图片管理最佳实践-本地+图床">
-                  <i class="fa fa-angle-left"></i> Hexo博客图片管理最佳实践-本地+图床
+                <a href="/posts/hexo-image-manage-local-cloud.html" rel="prev" title="Hexo 博客图片管理最佳实践 - 本地 + 图床">
+                  <i class="fa fa-angle-left"></i> Hexo 博客图片管理最佳实践 - 本地 + 图床
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/codecamp-day4-linkedlist.html" rel="next" title="代码随想录算法训练营第四天 | 链表Part02">
-                  代码随想录算法训练营第四天 | 链表Part02 <i class="fa fa-angle-right"></i>
+                <a href="/posts/codecamp-day4-linkedlist.html" rel="next" title="代码随想录算法训练营第四天 | 链表 Part02">
+                  代码随想录算法训练营第四天 | 链表 Part02 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -555,13 +555,13 @@ val，所以时间复杂度是<span class="math inline"><mjx-container class="Ma
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">43k</span>
+    <span title="站点总字数">44k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">39 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

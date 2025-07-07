@@ -21,7 +21,7 @@
 
     <meta name="description" content="题目简介 977. 有序数组的平方 给你一个按 非递减顺序 排序的整数数组 nums，返回 每个数字的平方 组成的新数组，要求也按 非递减顺序 排序。 示例 1： 输入：nums &#x3D; [-4,-1,0,3,10] 输出：[0,1,9,16,100] 解释：平方后，数组变为 [16,1,0,9,100] 排序后，数组变为 [0,1,9,16,100] 示例 2： 输入：nums &#x3D; [-7,-3,2">
 <meta property="og:type" content="article">
-<meta property="og:title" content="977.有序数组的平方">
+<meta property="og:title" content="977. 有序数组的平方">
 <meta property="og:url" content="https://www.junzhe.top/posts/lc977-squares-of-a-sorted-array.html">
 <meta property="og:site_name" content="濬哲的博客">
 <meta property="og:description" content="题目简介 977. 有序数组的平方 给你一个按 非递减顺序 排序的整数数组 nums，返回 每个数字的平方 组成的新数组，要求也按 非递减顺序 排序。 示例 1： 输入：nums &#x3D; [-4,-1,0,3,10] 输出：[0,1,9,16,100] 解释：平方后，数组变为 [16,1,0,9,100] 排序后，数组变为 [0,1,9,16,100] 示例 2： 输入：nums &#x3D; [-7,-3,2">
@@ -37,10 +37,10 @@
 <link rel="canonical" href="https://www.junzhe.top/posts/lc977-squares-of-a-sorted-array.html">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.junzhe.top/posts/lc977-squares-of-a-sorted-array.html","path":"posts/lc977-squares-of-a-sorted-array.html","title":"977.有序数组的平方"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.junzhe.top/posts/lc977-squares-of-a-sorted-array.html","path":"posts/lc977-squares-of-a-sorted-array.html","title":"977. 有序数组的平方"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>977.有序数组的平方 | 濬哲的博客</title>
+<title>977. 有序数组的平方 | 濬哲的博客</title>
   
 
 
@@ -153,13 +153,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -218,12 +218,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="977.有序数组的平方 | 濬哲的博客">
+      <meta itemprop="name" content="977. 有序数组的平方 | 濬哲的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          977.有序数组的平方
+          977. 有序数组的平方
         </h1>
 
         <div class="post-meta-container">
@@ -285,8 +285,7 @@
     
     
     <div class="post-body" itemprop="articleBody"><h2 id="题目简介">题目简介</h2>
-<p><a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/squares-of-a-sorted-array/description/">977.
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/squares-of-a-sorted-array/description/">977.
 有序数组的平方</a></p>
 <p>给你一个按 非递减顺序 排序的整数数组 nums，返回 每个数字的平方
 组成的新数组，要求也按 非递减顺序 排序。</p>
@@ -294,16 +293,16 @@ target="_blank" rel="noopener" href="https://leetcode.cn/problems/squares-of-a-s
 解释：平方后，数组变为 [16,1,0,9,100] 排序后，数组变为
 [0,1,9,16,100]</p>
 <p>示例 2： 输入：nums = [-7,-3,2,3,11] 输出：[4,9,9,49,121]</p>
-<p>提示： 1 &lt;= nums.length &lt;= 104 -104 &lt;= nums[i] &lt;= 104
+<p>提示： 1 &lt;= nums.length &lt;= 104 -104 &lt;= nums [i] &lt;= 104
 nums 已按 非递减顺序 排序</p>
-<p>进阶： 请你设计时间复杂度为 O(n) 的算法解决本问题</p>
+<p>进阶： 请你设计时间复杂度为 O (n) 的算法解决本问题</p>
 <span id="more"></span>
 <h2 id="思路">思路</h2>
-<p>想要在O(n)的时间复杂度内完成这个题目，我们可以使用双指针法。
+<p>想要在 O (n) 的时间复杂度内完成这个题目，我们可以使用双指针法。
 平方其实是个二次函数，最大的值会出现在两端，所以可以用左右两个指针不断向中间进行遍历，然后开辟一个新的数组，从后往前接住两个指针中较大的值的平方。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">sortedSquares</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">result</span><span class="params">(nums.size())</span></span>;</span><br><span class="line">        <span class="type">int</span> k=nums.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>,j=k;i&lt;=j;)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]*nums[i]&lt;nums[j]*nums[j])&#123;</span><br><span class="line">                result[k--]=nums[j]*nums[j];</span><br><span class="line">                j--;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                result[k--]=nums[i]*nums[i];</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>时间复杂度O(n)，空间复杂度O(n)</p>
-<p>注意i&lt;=j，如果没有等号，此位置的元素会被遗漏而没有填入到result中。</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">sortedSquares</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>{</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">result</span><span class="params">(nums.size())</span></span>;</span><br><span class="line">        <span class="type">int</span> k=nums.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>,j=k;i&lt;=j;){</span><br><span class="line">            <span class="keyword">if</span>(nums[i]*nums[i]&lt;nums[j]*nums[j]){</span><br><span class="line">                result[k--]=nums[j]*nums[j];</span><br><span class="line">                j--;</span><br><span class="line">            }<span class="keyword">else</span>{</span><br><span class="line">                result[k--]=nums[i]*nums[i];</span><br><span class="line">                i++;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<p>时间复杂度 O (n)，空间复杂度 O (n)</p>
+<p>注意 i&lt;=j，如果没有等号，此位置的元素会被遗漏而没有填入到 result 中。</p>
 
     </div>
 
@@ -334,7 +333,7 @@ nums 已按 非递减顺序 排序</p>
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://www.junzhe.top/posts/lc977-squares-of-a-sorted-array.html" title="977.有序数组的平方">https://www.junzhe.top/posts/lc977-squares-of-a-sorted-array.html</a>
+      <a href="https://www.junzhe.top/posts/lc977-squares-of-a-sorted-array.html" title="977. 有序数组的平方">https://www.junzhe.top/posts/lc977-squares-of-a-sorted-array.html</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -368,13 +367,13 @@ nums 已按 非递减顺序 排序</p>
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/lc027-remove-element.html" rel="prev" title="027.移除元素">
-                  <i class="fa fa-angle-left"></i> 027.移除元素
+                <a href="/posts/lc027-remove-element.html" rel="prev" title="027. 移除元素">
+                  <i class="fa fa-angle-left"></i> 027. 移除元素
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/lc209-minimum-size-subarray-sum.html" rel="next" title="209.长度最小的子数组">
-                  209.长度最小的子数组 <i class="fa fa-angle-right"></i>
+                <a href="/posts/lc209-minimum-size-subarray-sum.html" rel="next" title="209. 长度最小的子数组">
+                  209. 长度最小的子数组 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -412,13 +411,13 @@ nums 已按 非递减顺序 排序</p>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">43k</span>
+    <span title="站点总字数">44k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">39 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

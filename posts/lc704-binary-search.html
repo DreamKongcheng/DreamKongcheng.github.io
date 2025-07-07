@@ -21,7 +21,7 @@
 
     <meta name="description" content="题目简介 题目链接 给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。 示例 1: 输入: nums &#x3D; [-1,0,3,5,9,12], target &#x3D; 9 输出: 4 解释: 9 出现在 nums 中并且下标为 4 示例 2: 输入: nums &#x3D; [-1,0,3,5,9,">
 <meta property="og:type" content="article">
-<meta property="og:title" content="704.二分查找">
+<meta property="og:title" content="704. 二分查找">
 <meta property="og:url" content="https://www.junzhe.top/posts/lc704-binary-search.html">
 <meta property="og:site_name" content="濬哲的博客">
 <meta property="og:description" content="题目简介 题目链接 给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。 示例 1: 输入: nums &#x3D; [-1,0,3,5,9,12], target &#x3D; 9 输出: 4 解释: 9 出现在 nums 中并且下标为 4 示例 2: 输入: nums &#x3D; [-1,0,3,5,9,">
@@ -37,10 +37,10 @@
 <link rel="canonical" href="https://www.junzhe.top/posts/lc704-binary-search.html">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.junzhe.top/posts/lc704-binary-search.html","path":"posts/lc704-binary-search.html","title":"704.二分查找"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.junzhe.top/posts/lc704-binary-search.html","path":"posts/lc704-binary-search.html","title":"704. 二分查找"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>704.二分查找 | 濬哲的博客</title>
+<title>704. 二分查找 | 濬哲的博客</title>
   
 
 
@@ -153,13 +153,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -218,12 +218,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="704.二分查找 | 濬哲的博客">
+      <meta itemprop="name" content="704. 二分查找 | 濬哲的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          704.二分查找
+          704. 二分查找
         </h1>
 
         <div class="post-meta-container">
@@ -285,8 +285,7 @@
     
     
     <div class="post-body" itemprop="articleBody"><h2 id="题目简介">题目简介</h2>
-<p><a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-search/description/">题目链接</a></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-search/description/">题目链接</a></p>
 <p>给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target
 ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回
 -1。</p>
@@ -296,19 +295,19 @@ target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-search/
 <p>输入: nums = [-1,0,3,5,9,12], target = 2 输出: -1 解释: 2 不存在 nums
 中因此返回 -1</p>
 <p>提示：</p>
-<p>你可以假设 nums 中的所有元素是不重复的。 n 将在 [1, 10000]之间。 nums
-的每个元素都将在 [-9999, 9999]之间。</p>
+<p>你可以假设 nums 中的所有元素是不重复的。 n 将在 [1, 10000] 之间。 nums
+的每个元素都将在 [-9999, 9999] 之间。</p>
 <span id="more"></span>
 <h2 id="思路">思路</h2>
 <p>首先我们明确一下二分查找的条件： 1. 数组是有序的 2.
 数组中没有重复元素（否则返回的下标可能会不唯一）</p>
 <p>然后要注意二分查找的边界条件，有两种写法，左闭右开和左闭右闭，我是用的左闭右闭的写法，左闭右闭的写法是：
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">search</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> right = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> mid;</span><br><span class="line">        <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">            mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (target &gt; nums[mid]) &#123;</span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (target &lt; nums[mid]) &#123;</span><br><span class="line">                right = mid - <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure> 注意两个地方： 1.
+</p><figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">search</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>{</span><br><span class="line">        <span class="type">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> right = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> mid;</span><br><span class="line">        <span class="keyword">while</span> (left &lt;= right) {</span><br><span class="line">            mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (target &gt; nums[mid]) {</span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">            } <span class="keyword">else</span> <span class="keyword">if</span> (target &lt; nums[mid]) {</span><br><span class="line">                right = mid - <span class="number">1</span>;</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure> 注意两个地方： 1.
 <code>left &lt;= right</code>，这个是二分查找的条件，左闭右闭中是小于等于
-2. <code>else if (target &lt; nums[mid])</code> right = mid - 1;</p>
+2. <code>else if (target &lt; nums[mid])</code> right = mid - 1;<p></p>
 <h2 id="复杂度分析">复杂度分析</h2>
-<p>时间复杂度：O(logn)，每次都将搜索范围缩小一半
-空间复杂度：O(1)，只使用了常数级别的额外空间</p>
+<p>时间复杂度：O (logn)，每次都将搜索范围缩小一半
+空间复杂度：O (1)，只使用了常数级别的额外空间</p>
 <h2 id="总结">总结</h2>
 <p>注意二分查找的适用前提以及边界条件</p>
 
@@ -341,7 +340,7 @@ target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-search/
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://www.junzhe.top/posts/lc704-binary-search.html" title="704.二分查找">https://www.junzhe.top/posts/lc704-binary-search.html</a>
+      <a href="https://www.junzhe.top/posts/lc704-binary-search.html" title="704. 二分查找">https://www.junzhe.top/posts/lc704-binary-search.html</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -375,13 +374,13 @@ target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-search/
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/blog-setup-google.html" rel="prev" title="让Google搜到你的Github-Hexo个人博客">
-                  <i class="fa fa-angle-left"></i> 让Google搜到你的Github-Hexo个人博客
+                <a href="/posts/blog-setup-google.html" rel="prev" title="让 Google 搜到你的 Github-Hexo 个人博客">
+                  <i class="fa fa-angle-left"></i> 让 Google 搜到你的 Github-Hexo 个人博客
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/lc027-remove-element.html" rel="next" title="027.移除元素">
-                  027.移除元素 <i class="fa fa-angle-right"></i>
+                <a href="/posts/lc027-remove-element.html" rel="next" title="027. 移除元素">
+                  027. 移除元素 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -419,13 +418,13 @@ target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-search/
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">43k</span>
+    <span title="站点总字数">44k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">39 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

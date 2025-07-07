@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.junzhe.top/posts/53807.html</loc>
-    <lastmod>2025-07-05</lastmod>
+    <loc>https://www.junzhe.top/posts/differentiate.html</loc>
+    <lastmod>2025-07-07</lastmod>
+  </url>
+  <url>
+    <loc>https://www.junzhe.top/posts/differential-algorithm.html</loc>
+    <lastmod>2025-07-07</lastmod>
   </url>
   <url>
     <loc>https://www.junzhe.top/posts/20125.html</loc>
@@ -45,11 +49,11 @@
     <lastmod>2025-05-19</lastmod>
   </url>
   <url>
-    <loc>https://www.junzhe.top/posts/lc027-remove-element.html</loc>
+    <loc>https://www.junzhe.top/posts/lc059-spiral-matrix-ii.html</loc>
     <lastmod>2025-05-19</lastmod>
   </url>
   <url>
-    <loc>https://www.junzhe.top/posts/lc059-spiral-matrix-ii.html</loc>
+    <loc>https://www.junzhe.top/posts/lc027-remove-element.html</loc>
     <lastmod>2025-05-19</lastmod>
   </url>
   <url>
