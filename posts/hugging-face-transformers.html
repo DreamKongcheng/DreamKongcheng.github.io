@@ -19,24 +19,26 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.junzhe.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="技术沉思与人间烟火">
-<meta property="og:type" content="website">
-<meta property="og:title" content="濬哲的博客">
-<meta property="og:url" content="https://www.junzhe.top/tags/%E7%BD%91%E7%AB%99%E5%BB%BA%E8%AE%BE/index.html">
+    <meta name="description" content="前言 记录一下自己使用 transformers 库的一些常见 work，以及各种参数等 Model 类 1output &#x3D; model(**input) PyTorch 模型的 forward 方法通常接受关键字参数（如 input_ids、attention_mask、labels） Tokenizer 对象是 callable，因此可以直接传入一个字符串，返回一个 dict。最主要的是 ID">
+<meta property="og:type" content="article">
+<meta property="og:title" content="transformers 库教程">
+<meta property="og:url" content="https://www.junzhe.top/posts/hugging-face-transformers.html">
 <meta property="og:site_name" content="濬哲的博客">
-<meta property="og:description" content="技术沉思与人间烟火">
+<meta property="og:description" content="前言 记录一下自己使用 transformers 库的一些常见 work，以及各种参数等 Model 类 1output &#x3D; model(**input) PyTorch 模型的 forward 方法通常接受关键字参数（如 input_ids、attention_mask、labels） Tokenizer 对象是 callable，因此可以直接传入一个字符串，返回一个 dict。最主要的是 ID">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-07-08T03:18:24.000Z">
+<meta property="article:modified_time" content="2025-07-08T10:02:24.170Z">
 <meta property="article:author" content="濬哲">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://www.junzhe.top/tags/%E7%BD%91%E7%AB%99%E5%BB%BA%E8%AE%BE/">
+<link rel="canonical" href="https://www.junzhe.top/posts/hugging-face-transformers.html">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"tags/网站建设/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.junzhe.top/posts/hugging-face-transformers.html","path":"posts/hugging-face-transformers.html","title":"transformers 库教程"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>标签: 网站建设 | 濬哲的博客</title>
+<title>transformers 库教程 | 濬哲的博客</title>
   
 
 
@@ -73,7 +75,119 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-<link rel="alternate" href="/atom.xml" title="濬哲的博客" type="application/atom+xml">
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="濬哲的博客" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
@@ -121,7 +235,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -134,6 +248,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#model%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">Model 类</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -189,194 +304,184 @@
 
     </div>
 
-    <div class="main-inner tag posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">网站建设
-          <small>标签</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.junzhe.top/posts/hugging-face-transformers.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="濬哲">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="濬哲的博客">
+      <meta itemprop="description" content="技术沉思与人间烟火">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="transformers 库教程 | 濬哲的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          transformers 库教程
         </h1>
-      </div>
 
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2025</span>
+
+      <time title="创建时间：2025-07-08 11:18:24 / 修改时间：18:02:24" itemprop="dateCreated datePublished" datetime="2025-07-08T11:18:24+08:00">2025-07-08</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>865</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="前言">前言</h2>
+<p>记录一下自己使用 transformers 库的一些常见 work，以及各种参数等</p>
+<h2 id="model类">Model 类</h2>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">output = model(**<span class="built_in">input</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p>PyTorch 模型的 forward 方法通常接受关键字参数（如
+input_ids、attention_mask、labels）</p>
+<p>Tokenizer 对象是 callable，因此可以直接传入一个字符串，返回一个 dict。最主要的是 ID 的 list，同时也会返回 attention
+mask：</p>
+<p>报错： </p><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KeyError: "The `metric_for_best_model` training argument is set to 'eval_accuracy', which is not found in the evaluation metrics. The available evaluation metrics are: ['eval_runtime', 'eval_samples_per_second', 'eval_steps_per_second', 'epoch']. Consider changing the `metric_for_best_model` via the TrainingArguments."</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>首先看一下 compute_metrics 中 return 的 key 是否和 TrainingArguments
+中 metric_for_best_model 的类型相同 Hugging Face 的 Trainer
+原生支持多卡训练，无需手动包装 DataParallel：</p>
+<p>Trainer 会自动根据 CUDA_VISIBLE_DEVICES 使用所有可用 GPU。</p>
+<p>xlm-roberta-base 30 分类 3 RTX Titan 24G 显存
+maxlength（tokenizer 中设定）=256 50w 条训练数据 epoch = 3
+per_device_batch_size = 64</p>
+<p>lr=3e-5</p>
+<p>一开始开了 fp16，梯度直接爆炸了，不知道为什么 关闭了就好了不少</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-05-16T18:24:55+08:00"
-              content="2025-05-16">
-          05-16
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/hexo-image-manage-local-cloud.html" itemprop="url">
-            <span itemprop="name">Hexo 博客图片管理最佳实践 - 本地 + 图床</span>
+    <footer class="post-footer"><script src="//sdk.jinrishici.com/v2/browser/jinrishici.js"></script>
+<script>
+  jinrishici.load((result) => {
+    let jrsc = document.getElementById('jrsc');
+    const data = result.data;
+    let author = data.origin.author;
+    let title = '《' + data.origin.title + '》';
+    let content = data.content.substr(0, data.content.length - 1);
+    let dynasty = data.origin.dynasty.substr(0, data.origin.dynasty.length - 1);
+    jrsc.innerText = content + ' @ ' + dynasty + '·' + author + title;
+  });
+</script>
+<div style="text-align: center"><span id="jrsc" >正在加载今日诗词....</span></div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>濬哲
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://www.junzhe.top/posts/hugging-face-transformers.html" title="transformers 库教程">https://www.junzhe.top/posts/hugging-face-transformers.html</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
           </a>
       </div>
+  </div>
+</div>
 
-      
-    </header>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/differential-algorithm.html" rel="prev" title="微分算法">
+                  <i class="fa fa-angle-left"></i> 微分算法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/pytorch-tensor-operation.html" rel="next" title="Pytorch 张量操作">
+                  Pytorch 张量操作 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-05-16T14:54:37+08:00"
-              content="2025-05-16">
-          05-16
-        </time>
-      </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/blog-setup-4-domain.html" itemprop="url">
-            <span itemprop="name">Hexo 博客绑定域名与加速</span>
-          </a>
-      </div>
 
-      
-    </header>
-  </article>
-    <div class="collection-year">
-      <span class="collection-header">2024</span>
-    </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-10-10T17:58:30+08:00"
-              content="2024-10-10">
-          10-10
-        </time>
-      </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/blog-setup-google.html" itemprop="url">
-            <span itemprop="name">让 Google 搜到你的 Github-Hexo 个人博客</span>
-          </a>
-      </div>
 
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-10-10T16:58:37+08:00"
-              content="2024-10-10">
-          10-10
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/hexo-skip-render.html" itemprop="url">
-            <span itemprop="name">Hexo 如何不渲染.md 与.html 文件</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-09-28T20:04:37+08:00"
-              content="2024-09-28">
-          09-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/hexo-posts-folder-manage.html" itemprop="url">
-            <span itemprop="name">Hexo 技巧之_posts 文件夹管理</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-09-28T19:46:45+08:00"
-              content="2024-09-28">
-          09-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/blog-setup-3-next.html" itemprop="url">
-            <span itemprop="name">Github Pages + Hexo 从零搭建个人博客（三）：Next 主题美化</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-09-28T18:46:45+08:00"
-              content="2024-09-28">
-          09-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/blog-setup-2-git.html" itemprop="url">
-            <span itemprop="name">Github Pages + Hexo 从零搭建个人博客（二）：Git 双分支管理网页与源文件</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-09-27T21:17:27+08:00"
-              content="2024-09-27">
-          09-27
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/blog-setup-1-basics.html" itemprop="url">
-            <span itemprop="name">Github Pages + Hexo 从零搭建个人博客（一）：基础建设</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-    </div>
+    
+  
+  <div class="comments giscus-container">
   </div>
   
   
-  
-
 </div>
   </main>
 

@@ -260,18 +260,18 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -302,6 +302,239 @@ mjx-container[display="true"] + br {
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://www.junzhe.top/posts/codecamp-day3-linkedlist.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="濬哲">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="濬哲的博客">
+      <meta itemprop="description" content="技术沉思与人间烟火">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 濬哲的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/codecamp-day3-linkedlist.html" class="post-title-link" itemprop="url">代码随想录算法训练营第三天 | 链表 Part01</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-05-19 15:37:16" itemprop="dateCreated datePublished" datetime="2025-05-19T15:37:16+08:00">2025-05-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-20 00:33:18" itemprop="dateModified" datetime="2025-05-20T00:33:18+08:00">2025-05-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">代码随想录</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="链表理论基础">链表理论基础</h2>
+<p>我突然在想为什么新建链表节点必须用 new ListNode ()，而不能直接用
+ListNode () 呢？ 因为链表是动态分配的，new ListNode () 会在堆上分配内存，而
+ListNode () 是在栈上分配内存。栈上的变量在函数结束后会被自动销毁，而堆上的变量需要手动释放。<br>
+如果用
+ListNode ()，这个函数结束了会自动销毁变量，造成悬空指针，而链表一般需要全局区调用，所以不能放在栈上。</p>
+<p>理解了这个点，这对于内存的堆空间和栈空间应该就更明白了</p>
+<h2 id="leetcode203.移除链表元素">LeetCode203. 移除链表元素</h2>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-linked-list-elements/description/">题目链接：203. 移除链表元素</a></p>
+<h3 id="题目要点与解题思路">题目要点与解题思路</h3>
+<p>这是非常基础的链表删除操作，不是很想展开讲了，只需要记住下面几点：</p>
+<ul>
+<li>建议使用 dummy 节点，避免处理头节点的特殊情况</li>
+<li>删除节点只需要用到一个 cur 指针，cur-&gt; next =
+cur-&gt;next-&gt;next; 这样就可以了</li>
+<li>别忘记 delete dummy 和要删除的节点</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/codecamp-day3-linkedlist.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://www.junzhe.top/posts/hexo-image-manage-local-cloud.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="濬哲">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="濬哲的博客">
+      <meta itemprop="description" content="技术沉思与人间烟火">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 濬哲的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/hexo-image-manage-local-cloud.html" class="post-title-link" itemprop="url">Hexo 博客图片管理最佳实践 - 本地 + 图床</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-05-16 18:24:55" itemprop="dateCreated datePublished" datetime="2025-05-16T18:24:55+08:00">2025-05-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-20 00:33:18" itemprop="dateModified" datetime="2025-05-20T00:33:18+08:00">2025-05-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%BB%BA%E8%AE%BE/" itemprop="url" rel="index"><span itemprop="name">个人博客建设</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="前言">前言</h2>
+<p>我们在进行 markdown 写作的时候，通常会在文章中插入图片，而 markdown
+的图片管理也是很烦人的事情。另外加上 hexo
+的一些特性，导致图片本地预览和线上发布不一致，网上也有不少用插件来解决的方法，比如 <a target="_blank" rel="noopener" href="https://github.com/yiyungent/hexo-asset-img">hexo-asset-img</a>。但是我觉得网上的大多数实践还不够完美，下面我就给出我自己的解决方案。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/hexo-image-manage-local-cloud.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1238,242 +1471,6 @@ k 个元素之外留下了什么并不重要（因此它们并不计入评测）
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://www.junzhe.top/posts/lc704-binary-search.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="濬哲">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="濬哲的博客">
-      <meta itemprop="description" content="技术沉思与人间烟火">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 濬哲的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/lc704-binary-search.html" class="post-title-link" itemprop="url">704. 二分查找</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-05-10 16:22:15" itemprop="dateCreated datePublished" datetime="2025-05-10T16:22:15+08:00">2025-05-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-05-20 00:33:18" itemprop="dateModified" datetime="2025-05-20T00:33:18+08:00">2025-05-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%88%B7%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>875</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="题目简介">题目简介</h2>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-search/description/">题目链接</a></p>
-<p>给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target
-，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回
--1。</p>
-<p>示例 1:</p>
-<p>输入: nums = [-1,0,3,5,9,12], target = 9 输出: 4 解释: 9 出现在 nums
-中并且下标为 4 示例 2:</p>
-<p>输入: nums = [-1,0,3,5,9,12], target = 2 输出: -1 解释: 2 不存在 nums
-中因此返回 -1</p>
-<p>提示：</p>
-<p>你可以假设 nums 中的所有元素是不重复的。 n 将在 [1, 10000] 之间。 nums
-的每个元素都将在 [-9999, 9999] 之间。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/lc704-binary-search.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://www.junzhe.top/posts/blog-setup-google.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="濬哲">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="濬哲的博客">
-      <meta itemprop="description" content="技术沉思与人间烟火">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 濬哲的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/blog-setup-google.html" class="post-title-link" itemprop="url">让 Google 搜到你的 Github-Hexo 个人博客</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-10-10 17:58:30" itemprop="dateCreated datePublished" datetime="2024-10-10T17:58:30+08:00">2024-10-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-05-20 00:33:18" itemprop="dateModified" datetime="2025-05-20T00:33:18+08:00">2025-05-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%BB%BA%E8%AE%BE/" itemprop="url" rel="index"><span itemprop="name">个人博客建设</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.8k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="前言">前言</h2>
-<p>前段时间自己折腾了一下博客，初步建立起了自己的小站，今天心血来潮在谷歌搜索自己之前写的<a target="_blank" rel="noopener" href="https://dreamkongcheng.github.io/blogs/personal-blog-setup/Github%20Pages%20+%20Hexo%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/">从零搭建个人博客</a>的文章，结果在
-Google
-上面翻了十页都没有翻到，我一开始还以为是因为发了没多久的缘故，后来一查才知道
-GitHub Pages 屏蔽了 Google 的爬虫，所以在 Google 里是搜索不到 GitHub
-Pages 上面的网页的。</p>
-<p>这怎么行？！</p>
-<p>对于我来说，我写博客主要是为了将自己学习的知识进行一个输出，虽然不是什么高大上的东西，但是我相信一定有和我一样刚刚在计算机领域起步，并且热爱探索、折腾工具的朋友，我的这些经验和感悟或许就能给大家带来一点小小的启发。另外，因为是要写给别人看，所以要更加注重自己语言的逻辑组织。并且要把一件事能够完全的和别人讲清楚，还需要自己更高层次的理解，这反过来也倒逼了我自己去进行更深度的思考，让我更好的理解掌握知识。</p>
-<p>话说回来，我不是写只给自己看的日记的，那些我都存放在本地的 obsidian
-里面。之后或许有机会写一些我折腾 obsidian
-的记录（<del>逃</del>），我希望我的博客能在网络的海洋里有幸被人看到。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/blog-setup-google.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1497,13 +1494,13 @@ Pages 上面的网页的。</p>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">44k</span>
+    <span title="站点总字数">47k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">40 分钟</span>
+    <span title="站点阅读时长">43 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
