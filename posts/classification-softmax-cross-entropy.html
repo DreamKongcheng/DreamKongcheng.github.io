@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.junzhe.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="前言 在机器学习和深度学习中，分类问题是一个重要的任务。根据输出类别的数量，分类问题可以分为二分类和多分类两种类型。众所周知多分类任务中经常会使用 softmax 函数，并且使用交叉熵损失函数来训练模型。而二分类任务中经常使用 sigmoid 函数，并且使用二元交叉熵损失函数来训练模型。但是这两者的关系以及 softmax 和交叉熵之间的关系很多人其实一直没有弄清楚，写代码的时候也就是调用一下交叉">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多分类与二分类问题详解">
+<meta property="og:url" content="https://www.junzhe.top/posts/classification-softmax-cross-entropy.html">
+<meta property="og:site_name" content="濬哲的博客">
+<meta property="og:description" content="前言 在机器学习和深度学习中，分类问题是一个重要的任务。根据输出类别的数量，分类问题可以分为二分类和多分类两种类型。众所周知多分类任务中经常会使用 softmax 函数，并且使用交叉熵损失函数来训练模型。而二分类任务中经常使用 sigmoid 函数，并且使用二元交叉熵损失函数来训练模型。但是这两者的关系以及 softmax 和交叉熵之间的关系很多人其实一直没有弄清楚，写代码的时候也就是调用一下交叉">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-07-30T01:36:00.000Z">
+<meta property="article:modified_time" content="2025-07-30T01:55:05.018Z">
+<meta property="article:author" content="濬哲">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.junzhe.top/posts/classification-softmax-cross-entropy.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.junzhe.top/posts/classification-softmax-cross-entropy.html","path":"posts/classification-softmax-cross-entropy.html","title":"多分类与二分类问题详解"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>多分类与二分类问题详解 | 濬哲的博客</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="濬哲的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">濬哲的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">人生如棋，落子无悔</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">多分类问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#softmax-%E5%87%BD%E6%95%B0"><span class="nav-number">2.1.</span> <span class="nav-text">1. Softmax 函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%81%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1mle"><span class="nav-number">2.2.</span> <span class="nav-text">2. 极大似然估计（MLE）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E5%8F%89%E7%86%B5%E6%8D%9F%E5%A4%B1"><span class="nav-number">2.3.</span> <span class="nav-text">3. 交叉熵损失</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E8%80%85%E7%9A%84%E8%81%94%E5%90%88%E6%8E%A8%E5%AF%BC%E9%93%BE%E6%9D%A1"><span class="nav-number">2.4.</span> <span class="nav-text">4. 三者的联合推导链条</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E4%B8%89%E8%80%85%E7%9A%84%E6%A0%B8%E5%BF%83%E8%81%94%E7%B3%BB"><span class="nav-number">2.5.</span> <span class="nav-text">5.
+总结：三者的核心联系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">二分类问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E7%B1%BB%E7%9A%84%E6%A8%A1%E5%9E%8B%E8%BE%93%E5%87%BA"><span class="nav-number">3.1.</span> <span class="nav-text">1. 二分类的模型输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%81%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1mle-1"><span class="nav-number">3.2.</span> <span class="nav-text">2. 极大似然估计（MLE）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%85%83%E4%BA%A4%E5%8F%89%E7%86%B5%E6%8D%9F%E5%A4%B1bce"><span class="nav-number">3.3.</span> <span class="nav-text">3.
+二元交叉熵损失（BCE）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E6%A2%AF%E5%BA%A6%E8%AE%A1%E7%AE%97"><span class="nav-number">3.4.</span> <span class="nav-text">4. 反向传播梯度计算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E4%BA%8C%E5%88%86%E7%B1%BB-vs.-%E5%A4%9A%E5%88%86%E7%B1%BB"><span class="nav-number">4.</span> <span class="nav-text">总结：二分类
+vs. 多分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E7%BB%93%E8%AE%BA"><span class="nav-number">5.</span> <span class="nav-text">最终结论</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="濬哲"
+      src="/images/head.jpg">
+  <p class="site-author-name" itemprop="name">濬哲</p>
+  <div class="site-description" itemprop="description">技术沉思与人间烟火</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/DreamKongcheng" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DreamKongcheng" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3377965639@qq.com" title="E-Mail → mailto:3377965639@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://dreamkongcheng.github.io/about/" title="Wechat → https:&#x2F;&#x2F;dreamkongcheng.github.io&#x2F;about&#x2F;" rel="noopener me" target="_blank"><i class="fab fa-weixin fa-fw"></i>Wechat</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.junzhe.top/posts/classification-softmax-cross-entropy.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="濬哲">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="濬哲的博客">
+      <meta itemprop="description" content="技术沉思与人间烟火">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="多分类与二分类问题详解 | 濬哲的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          多分类与二分类问题详解
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-07-30 09:36:00 / 修改时间：09:55:05" itemprop="dateCreated datePublished" datetime="2025-07-30T09:36:00+08:00">2025-07-30</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="前言">前言</h2>
+<p>在机器学习和深度学习中，分类问题是一个重要的任务。根据输出类别的数量，分类问题可以分为二分类和多分类两种类型。众所周知多分类任务中经常会使用 softmax 函数，并且使用交叉熵损失函数来训练模型。而二分类任务中经常使用 sigmoid 函数，并且使用二元交叉熵损失函数来训练模型。但是这两者的关系以及 softmax 和交叉熵之间的关系很多人其实一直没有弄清楚，写代码的时候也就是调用一下交叉熵损失。本文将从多分类问题引入，详解讲解从 softmax 函数到交叉熵损失函数的推导过程，并且将这个过程推广到二分类问题，力争让大家形成一个完整的知识体系。</p>
+<span id="more"></span>
+<h2 id="多分类问题">多分类问题</h2>
+<p>大家都知道做多分类的时候，模型的输出是一个向量，向量的每个元素对应一个<strong>类别的分数（logits）</strong>。为了将这些分数转换为概率分布，我们通常使用
+<strong>softmax</strong>
+函数。为了训练模型，我们需要一个损失函数来衡量预测概率分布与真实标签之间的差异。这里我们使用
+<strong>交叉熵损失</strong> 函数。</p>
+<p>从 softmax 到交叉熵损失函数的过程中，我们还需要知道
+<strong>极大似然估计（MLE）</strong>
+的概念。下面我们将详细介绍这三者之间的关系。</p>
+<hr>
+<h3 id="softmax-函数">1. <strong>Softmax 函数</strong></h3>
+<p><strong>作用</strong>：将模型输出的原始分数（logits）转换为概率分布。<br>
+设模型对样本 () 的输出为 ( = (z_1, , z_K) )（称为 logits），其中 (K)
+是类别数。我们需要将 () 转换为概率分布 ( = (p_1, , p_K) )。</p>
+<p><strong>Softmax 的构造逻辑</strong>：<br>
+- 目标：概率 (p_i) 应满足 (p_i &gt; 0) 且 (_{i = 1}^K p_i = 1
+)。<br>
+- 方法：通过指数函数保证正值，再归一化：<br>
+[ p_i = ]</p>
+<hr>
+<h3 id="极大似然估计mle">2. <strong>极大似然估计（MLE）</strong></h3>
+<p><strong>目标</strong>：找到模型参数，使得观测数据（真实标签）出现的概率最大。
+<strong>问题设定</strong>：<br>
+假设真实类别为 (y)（one-hot 编码为 ()，其中 (y_k = 1)，其余为
+0），模型预测概率为 ()。</p>
+<p><strong>似然函数构建</strong>：<br>
+- 单样本的似然是模型对真实类别的预测概率：<br>
+[ L() = p_k = <em>{i = 1}^K p_i^{y_i} ] （因为 (y_i = 0) 对其他类别，仅
+(p_k^1) 有效）。<br>
+- 对数似然（取对数简化计算）：<br>
+[ L() = </em>{i=1}^K y_i p_i = p_k ] - <strong>MLE
+的目标</strong>：最大化对数似然，等价于最小化负对数似然：<br>
+[ -p_k ]</p>
+<p><strong>关键点</strong>：<br>
+- MLE 的假设是样本独立同分布（i.i.d.），对于 (N)
+个样本，总似然是各样本似然的乘积：<br>
+[ L_{}() = <em>{n=1}^N p</em>{k<sup>{(n)}}</sup>{(n)} ]
+对数似然为：<br>
+[ L_{}() = <em>{n=1}^N p</em>{k<sup>{(n)}}</sup>{(n)} ]</p>
+<hr>
+<h3 id="交叉熵损失">3. <strong>交叉熵损失</strong></h3>
+<p><strong>信息论基础</strong>：<br>
+- 交叉熵衡量两个分布 ()（真实）和 ()（预测）的差异：<br>
+[H (,) = -_{i = 1}^K y_i p_i] - 当 () 是 one-hot 编码时（仅 (y_k = 1
+)），简化为：<br>
+[ H(, ) = -p_k ]</p>
+<p><strong>与 MLE 的关系</strong>：<br>
+- 交叉熵的表达式 (-p_k) 与负对数似然完全一致。<br>
+- <strong>数学本质</strong>：最小化交叉熵损失等价于最大化似然函数。</p>
+<p><em>这里非常关键！softmax 和交叉熵损失是通过极大似然估计联系起来的，因为交叉熵损失最小化就是最大化似然函数，所以交叉熵损失可以用于 softmax 模型的训练。</em></p>
+<p><strong>多样本情况</strong>：<br>
+对于批量数据，损失函数为所有样本交叉熵的平均：<br>
+[ = - <em>{n=1}^N p</em>{k<sup>{(n)}}</sup>{(n)} ]</p>
+<hr>
+<h3 id="三者的联合推导链条">4. <strong>三者的联合推导链条</strong></h3>
+<p><strong>步骤 1：模型输出到概率</strong><br>
+模型输出 logits ()，通过 Softmax 得到概率：<br>
+[ p_k = ]</p>
+<p><strong>步骤 2：构建似然函数</strong><br>
+对于真实类别 (k)，似然为 (p_k)，最大化似然等价于最小化：<br>
+[ -p_k = -( ) = -z_k + _{j=1}^K e^{z_j} ]</p>
+<p><strong>步骤 3：交叉熵的形式化</strong><br>
+直接代入交叉熵定义：<br>
+[ H(, ) = -_{i=1}^K y_i p_i = -p_k ]</p>
+<p><strong>步骤 4：梯度反向传播</strong><br>
+通过链式法则计算损失对 logits (z_i) 的梯度：<br>
+[ = p_i - y_i ]</p>
+<hr>
+<h3 id="总结三者的核心联系">5.
+<strong>总结：三者的核心联系</strong></h3>
+<ol type="1">
+<li><strong>Softmax</strong>：将模型输出 () 转换为概率分布 (
+)，为似然计算提供基础。<br>
+</li>
+<li><strong>MLE</strong>：通过最大化 (p_k
+)（似然）指导模型训练，转化为最小化 (-p_k)。<br>
+</li>
+<li><strong>交叉熵损失</strong>：是 (-p_k)
+的具体实现形式，直接作为优化目标。</li>
+</ol>
+<p><strong>数学一致性</strong>：<br>
+[ -p_k ]</p>
+<p><strong>物理意义</strong>：<br>
+- <strong>Softmax</strong>：概率归一化。<br>
+- <strong>MLE</strong>：统计学最优性保证。<br>
+- <strong>交叉熵</strong>：衡量信息差异，实现高效优化。</p>
+<p>这一链条在分类问题中构成了从模型输出到损失计算的完整闭环。</p>
+<h2 id="二分类问题">二分类问题</h2>
+<p>在二分类问题中，<strong>softmax</strong>、<strong>交叉熵损失</strong>和<strong>极大似然估计</strong>的联系依然存在，但形式上可以简化为使用
+<strong>sigmoid 函数</strong> 和 <strong>二元交叉熵损失（Binary
+Cross-Entropy,
+BCE）</strong>。下面我们详细推导它们的关系，并与多分类情况对比。</p>
+<hr>
+<h3 id="二分类的模型输出"><strong>1. 二分类的模型输出</strong></h3>
+<p>在二分类问题中，通常只需要预测一个类别（如正类）的概率 (p
+)，而负类的概率自然就是 (1-p)。因此： -
+<strong>模型输出</strong>：一个 logit 值 (z)（而不是 (K) 维向量）。
+- <strong>概率转换</strong>：使用 <strong>sigmoid 函数</strong>（而非
+softmax）： [p = (z) =] 其中： - (p) 是正类的概率。 - (1-p)
+是负类的概率。</p>
+<p><strong>对比多分类 softmax</strong>： - 多分类：softmax
+对所有类别归一化，输出 (K) 个概率。 - 二分类：sigmoid
+仅计算正类的概率，负类概率由 (1-p) 决定。 - sigmoid 可以看作是 softmax
+的特例（(K = 2) 时），只需要固定 (z_2 = 0)（负类的 logit），让 (z_1)
+代表<strong>正类相对于负类的得分</strong>。</p>
+<hr>
+<h3 id="极大似然估计mle-1"><strong>2. 极大似然估计（MLE）</strong></h3>
+<p>假设真实标签 (y {0, 1})，则： - 如果 (y = 1)，我们希望 (p)
+尽可能大。 - 如果 (y = 0)，我们希望 (1-p) 尽可能大。</p>
+<strong>似然函数</strong>（单个样本）： [ L() =
+<span class="math display"><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -2.148ex;" xmlns="http://www.w3.org/2000/svg" width="16.767ex" height="5.428ex" role="img" focusable="false" viewBox="0 -1449.5 7411 2399"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mrow"><g data-mml-node="mo" transform="translate(0 -0.5)"><path data-c="7B" d="M618 -943L612 -949H582L568 -943Q472 -903 411 -841T332 -703Q327 -682 327 -653T325 -350Q324 -28 323 -18Q317 24 301 61T264 124T221 171T179 205T147 225T132 234Q130 238 130 250Q130 255 130 258T131 264T132 267T134 269T139 272T144 275Q207 308 256 367Q310 436 323 519Q324 529 325 851Q326 1124 326 1154T332 1205Q369 1358 566 1443L582 1450H612L618 1444V1429Q618 1413 616 1411L608 1406Q599 1402 585 1393T552 1372T515 1343T479 1305T449 1257T429 1200Q425 1180 425 1152T423 851Q422 579 422 549T416 498Q407 459 388 424T346 364T297 318T250 284T214 264T197 254L188 251L205 242Q290 200 345 138T416 3Q421 -18 421 -48T423 -349Q423 -397 423 -472Q424 -677 428 -694Q429 -697 429 -699Q434 -722 443 -743T465 -782T491 -816T519 -845T548 -868T574 -886T595 -899T610 -908L616 -910Q618 -912 618 -928V-943Z"></path></g><g data-mml-node="mtable" transform="translate(750,0)"><g data-mml-node="mtr" transform="translate(0,600)"><g data-mml-node="mtd"><g data-mml-node="mi"><path data-c="1D45D" d="M23 287Q24 290 25 295T30 317T40 348T55 381T75 411T101 433T134 442Q209 442 230 378L240 387Q302 442 358 442Q423 442 460 395T497 281Q497 173 421 82T249 -10Q227 -10 210 -4Q199 1 187 11T168 28L161 36Q160 35 139 -51T118 -138Q118 -144 126 -145T163 -148H188Q194 -155 194 -157T191 -175Q188 -187 185 -190T172 -194Q170 -194 161 -194T127 -193T65 -192Q-5 -192 -24 -194H-32Q-39 -187 -39 -183Q-37 -156 -26 -148H-6Q28 -147 33 -136Q36 -130 94 103T155 350Q156 355 156 364Q156 405 131 405Q109 405 94 377T71 316T59 280Q57 278 43 278H29Q23 284 23 287ZM178 102Q200 26 252 26Q282 26 310 49T356 107Q374 141 392 215T411 325V331Q411 405 350 405Q339 405 328 402T306 393T286 380T269 365T254 350T243 336T235 326L232 322Q232 321 229 308T218 264T204 212Q178 106 178 102Z"></path></g><g data-mml-node="mo" transform="translate(503,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g></g><g data-mml-node="mtd" transform="translate(3503.4,0)"><g data-mml-node="mtext"><path data-c="69" d="M69 609Q69 637 87 653T131 669Q154 667 171 652T188 609Q188 579 171 564T129 549Q104 549 87 564T69 609ZM247 0Q232 3 143 3Q132 3 106 3T56 1L34 0H26V46H42Q70 46 91 49Q100 53 102 60T104 102V205V293Q104 345 102 359T88 378Q74 385 41 385H30V408Q30 431 32 431L42 432Q52 433 70 434T106 436Q123 437 142 438T171 441T182 442H185V62Q190 52 197 50T232 46H255V0H247Z"></path><path data-c="66" d="M273 0Q255 3 146 3Q43 3 34 0H26V46H42Q70 46 91 49Q99 52 103 60Q104 62 104 224V385H33V431H104V497L105 564L107 574Q126 639 171 668T266 704Q267 704 275 704T289 705Q330 702 351 679T372 627Q372 604 358 590T321 576T284 590T270 627Q270 647 288 667H284Q280 668 273 668Q245 668 223 647T189 592Q183 572 182 497V431H293V385H185V225Q185 63 186 61T189 57T194 54T199 51T206 49T213 48T222 47T231 47T241 46T251 46H282V0H273Z" transform="translate(278,0)"></path><path data-c="A0" d="" transform="translate(584,0)"></path></g><g data-mml-node="mi" transform="translate(834,0)"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(1601.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mn" transform="translate(2657.6,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g><g data-mml-node="mtr" transform="translate(0,-600)"><g data-mml-node="mtd"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(722.2,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="mi" transform="translate(1722.4,0)"><path data-c="1D45D" d="M23 287Q24 290 25 295T30 317T40 348T55 381T75 411T101 433T134 442Q209 442 230 378L240 387Q302 442 358 442Q423 442 460 395T497 281Q497 173 421 82T249 -10Q227 -10 210 -4Q199 1 187 11T168 28L161 36Q160 35 139 -51T118 -138Q118 -144 126 -145T163 -148H188Q194 -155 194 -157T191 -175Q188 -187 185 -190T172 -194Q170 -194 161 -194T127 -193T65 -192Q-5 -192 -24 -194H-32Q-39 -187 -39 -183Q-37 -156 -26 -148H-6Q28 -147 33 -136Q36 -130 94 103T155 350Q156 355 156 364Q156 405 131 405Q109 405 94 377T71 316T59 280Q57 278 43 278H29Q23 284 23 287ZM178 102Q200 26 252 26Q282 26 310 49T356 107Q374 141 392 215T411 325V331Q411 405 350 405Q339 405 328 402T306 393T286 380T269 365T254 350T243 336T235 326L232 322Q232 321 229 308T218 264T204 212Q178 106 178 102Z"></path></g><g data-mml-node="mo" transform="translate(2225.4,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g></g><g data-mml-node="mtd" transform="translate(3503.4,0)"><g data-mml-node="mtext"><path data-c="69" d="M69 609Q69 637 87 653T131 669Q154 667 171 652T188 609Q188 579 171 564T129 549Q104 549 87 564T69 609ZM247 0Q232 3 143 3Q132 3 106 3T56 1L34 0H26V46H42Q70 46 91 49Q100 53 102 60T104 102V205V293Q104 345 102 359T88 378Q74 385 41 385H30V408Q30 431 32 431L42 432Q52 433 70 434T106 436Q123 437 142 438T171 441T182 442H185V62Q190 52 197 50T232 46H255V0H247Z"></path><path data-c="66" d="M273 0Q255 3 146 3Q43 3 34 0H26V46H42Q70 46 91 49Q99 52 103 60Q104 62 104 224V385H33V431H104V497L105 564L107 574Q126 639 171 668T266 704Q267 704 275 704T289 705Q330 702 351 679T372 627Q372 604 358 590T321 576T284 590T270 627Q270 647 288 667H284Q280 668 273 668Q245 668 223 647T189 592Q183 572 182 497V431H293V385H185V225Q185 63 186 61T189 57T194 54T199 51T206 49T213 48T222 47T231 47T241 46T251 46H282V0H273Z" transform="translate(278,0)"></path><path data-c="A0" d="" transform="translate(584,0)"></path></g><g data-mml-node="mi" transform="translate(834,0)"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(1601.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mn" transform="translate(2657.6,0)"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></g></g></g></g><g data-mml-node="mo" transform="translate(7411,0) translate(0 250)"></g></g></g></g></svg></mjx-container></span>
+<p>] 可以统一写成： [L () = p^y (1 - p)^{1 - y}]</p>
+<p><strong>对数似然</strong>： [ L() = y p + (1 - y) (1 - p) ]
+<strong>MLE 目标</strong>：最大化对数似然，等价于最小化负对数似然： [
+-L () = -]</p>
+<hr>
+<h3 id="二元交叉熵损失bce"><strong>3.
+二元交叉熵损失（BCE）</strong></h3>
+<p><strong>交叉熵</strong>衡量真实分布 (y) 和预测分布 (p)
+之间的差异： [H (y, p) = -] 这与负对数似然完全一致！</p>
+<p><strong>对比多分类交叉熵</strong>： - 多分类交叉熵： [H (y, p) =
+-_{i = 1}^K y_i p_i] 其中 (y) 是 one-hot 向量。 - 二分类交叉熵： [H (y,
+p) = -] 其中 (y {0, 1})。</p>
+<hr>
+<h3 id="反向传播梯度计算"><strong>4. 反向传播梯度计算</strong></h3>
+<p>为了优化模型，我们需要计算损失对 logit (z) 的梯度： [=] 其中： 1.
+<strong>损失对概率 (p) 的梯度</strong>： [ = - + ] 2. <strong>sigmoid
+梯度</strong>： [ = p (1 - p) ] 3. <strong>最终梯度</strong>： [= (- +
+) p (1 - p) = p - y] 这与多分类 softmax 的梯度 (= p_i - y_i)
+形式一致！</p>
+<hr>
+<h2 id="总结二分类-vs.-多分类"><strong>总结：二分类
+vs.&nbsp;多分类</strong></h2>
+<table>
+<colgroup>
+<col style="width: 11%">
+<col style="width: 44%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr>
+<th><strong>概念</strong></th>
+<th><strong>二分类</strong></th>
+<th><strong>多分类</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>模型输出</strong></td>
+<td> 1 个 logit (z)</td>
+<td>(K) 个 logits ( = (z_1, , z_K) )</td>
+</tr>
+<tr>
+<td><strong> 概率转换</strong></td>
+<td> sigmoid ( p = (z) )</td>
+<td>softmax ( p_i = )</td>
+</tr>
+<tr>
+<td><strong>MLE 目标</strong></td>
+<td> ( )</td>
+<td>(p_k)（one-hot 标签）</td>
+</tr>
+<tr>
+<td><strong>损失函数</strong></td>
+<td>二元交叉熵 ( H (y, p) = -[y p + (1 - y) (1 - p)] )</td>
+<td> 交叉熵 ( H (y, p) = -_{i = 1}^K y_i p_i )</td>
+</tr>
+<tr>
+<td><strong> 梯度</strong></td>
+<td> ( = p - y )</td>
+<td>( = p_i - y_i )</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="最终结论"><strong>最终结论</strong></h2>
+<ol type="1">
+<li><strong>二分类</strong>可以看作是 <strong>多分类的特例（(K = 2
+)）</strong>，但由于对称性，仅需计算一个概率 (p)，另一个为 (1 - p
+)。</li>
+<li><strong>sigmoid + 二元交叉熵</strong> 等价于 <strong>softmax +
+交叉熵</strong> 在二分类情况下的简化形式。</li>
+<li><strong>MLE 仍然成立</strong>，最大化似然等价于最小化交叉熵。</li>
+<li><strong>梯度计算一致</strong>，均为预测概率减去真实标签（(p - y
+)）。</li>
+</ol>
+<p>因此，<strong>二分类与多分类在数学本质上是统一的</strong>，只是实现方式不同。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><script src="//sdk.jinrishici.com/v2/browser/jinrishici.js"></script>
+<script>
+  jinrishici.load((result) => {
+    let jrsc = document.getElementById('jrsc');
+    const data = result.data;
+    let author = data.origin.author;
+    let title = '《' + data.origin.title + '》';
+    let content = data.content.substr(0, data.content.length - 1);
+    let dynasty = data.origin.dynasty.substr(0, data.origin.dynasty.length - 1);
+    jrsc.innerText = content + ' @ ' + dynasty + '·' + author + title;
+  });
+</script>
+<div style="text-align: center"><span id="jrsc" >正在加载今日诗词....</span></div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>濬哲
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://www.junzhe.top/posts/classification-softmax-cross-entropy.html" title="多分类与二分类问题详解">https://www.junzhe.top/posts/classification-softmax-cross-entropy.html</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/word2vec.html" rel="prev" title="word2vec">
+                  <i class="fa fa-angle-left"></i> word2vec
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">濬哲</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">59k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">54 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://lib.baomitu.com/canvas-nest.js/1.0.1/canvas-nest.js"></script>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"DreamKongcheng/DreamKongcheng.github.io","repo_id":"R_kgDOM33FfA","category":"General","category_id":"DIC_kwDOM33FfM4CqJQz","mapping":"pathname","strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"bottom","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>

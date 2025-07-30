@@ -19,34 +19,24 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.junzhe.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="首先来讲一下站点配置文件和主题配置文件  站点配置文件  位于博客根目录下的_config.yml  主题配置文件  位于 themes &#x2F; next 中的_config.yml   站点配置 主题配置 更换内置主题 在Schemes下可以看到这些主题，去掉想要的主题前面的 # 即可 12345# Schemes#scheme: Musescheme: Mist#scheme: Pisces#sc">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Github Pages + Hexo 从零搭建个人博客（三）：Next 主题美化">
-<meta property="og:url" content="https://www.junzhe.top/posts/blog-setup-3-next.html">
+    <meta name="description" content="技术沉思与人间烟火">
+<meta property="og:type" content="website">
+<meta property="og:title" content="濬哲的博客">
+<meta property="og:url" content="https://www.junzhe.top/page/4/index.html">
 <meta property="og:site_name" content="濬哲的博客">
-<meta property="og:description" content="首先来讲一下站点配置文件和主题配置文件  站点配置文件  位于博客根目录下的_config.yml  主题配置文件  位于 themes &#x2F; next 中的_config.yml   站点配置 主题配置 更换内置主题 在Schemes下可以看到这些主题，去掉想要的主题前面的 # 即可 12345# Schemes#scheme: Musescheme: Mist#scheme: Pisces#sc">
+<meta property="og:description" content="技术沉思与人间烟火">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409282248043.webp">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409282248044.webp">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409282248045.webp">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409282248046.webp">
-<meta property="article:published_time" content="2024-09-28T11:46:45.000Z">
-<meta property="article:modified_time" content="2025-05-19T16:33:18.591Z">
 <meta property="article:author" content="濬哲">
-<meta property="article:tag" content="前端">
-<meta property="article:tag" content="网站建设">
-<meta property="article:tag" content="Hexo">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/DreamKongcheng/image-repo/blogs/202409282248043.webp">
 
 
-<link rel="canonical" href="https://www.junzhe.top/posts/blog-setup-3-next.html">
+<link rel="canonical" href="https://www.junzhe.top/page/4/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.junzhe.top/posts/blog-setup-3-next.html","path":"posts/blog-setup-3-next.html","title":"Github Pages + Hexo 从零搭建个人博客（三）：Next 主题美化"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"page/4/index.html","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Github Pages + Hexo 从零搭建个人博客（三）：Next 主题美化 | 濬哲的博客</title>
+<title>濬哲的博客</title>
   
 
 
@@ -104,7 +94,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <p class="site-title">濬哲的博客</p>
+      <h1 class="site-title">濬哲的博客</h1>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">人生如棋，落子无悔</p>
@@ -131,7 +121,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -144,7 +134,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%99%E7%82%B9%E9%85%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">站点配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">主题配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2%E5%86%85%E7%BD%AE%E4%B8%BB%E9%A2%98"><span class="nav-number">2.1.</span> <span class="nav-text">更换内置主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E8%8F%9C%E5%8D%95"><span class="nav-number">2.2.</span> <span class="nav-text">设置菜单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E4%BE%A7%E8%BE%B9%E6%A0%8F"><span class="nav-number">2.3.</span> <span class="nav-text">设置侧边栏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%8F%B3%E4%B8%8A%E8%A7%92github%E5%9B%BE%E6%A0%87"><span class="nav-number">2.4.</span> <span class="nav-text">设置右上角 Github 图标</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -200,17 +189,16 @@
 
     </div>
 
-    <div class="main-inner post posts-expand">
+    <div class="main-inner index posts-expand">
 
-
-  
+    
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://www.junzhe.top/posts/blog-setup-3-next.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -224,13 +212,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Github Pages + Hexo 从零搭建个人博客（三）：Next 主题美化 | 濬哲的博客">
+      <meta itemprop="name" content=" | 濬哲的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Github Pages + Hexo 从零搭建个人博客（三）：Next 主题美化
-        </h1>
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/blog-setup-3-next.html" class="post-title-link" itemprop="url">Github Pages + Hexo 从零搭建个人博客（三）：Next 主题美化</a>
+        </h2>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -260,13 +248,6 @@
     </span>
 
   
-    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="busuanzi_value_page_pv"></span>
-    </span>
     <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
@@ -290,7 +271,8 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>首先来讲一下<strong>站点配置文件</strong>和<strong>主题配置文件</strong></p>
+    <div class="post-body" itemprop="articleBody">
+          <p>首先来讲一下<strong>站点配置文件</strong>和<strong>主题配置文件</strong></p>
 <ul>
 <li>站点配置文件
 <ul>
@@ -384,80 +366,16 @@ g 的时候会在 public 文件夹下生成 tags 文件夹，里面是由刚刚�
 Page｜基础教程 (二)：NexT 主题基本美化｜全网最细致全面的教程</a> <pangu> </pangu><a target="_blank" rel="noopener" href="https://www.cylong.com/blog/2016/04/25/hexo-faq/">Hexo 使用总结
 &amp; 常见问题</a></p>
 
+      
     </div>
 
     
     
     
 
-    <footer class="post-footer"><script src="//sdk.jinrishici.com/v2/browser/jinrishici.js"></script>
-<script>
-  jinrishici.load((result) => {
-    let jrsc = document.getElementById('jrsc');
-    const data = result.data;
-    let author = data.origin.author;
-    let title = '《' + data.origin.title + '》';
-    let content = data.content.substr(0, data.content.length - 1);
-    let dynasty = data.origin.dynasty.substr(0, data.origin.dynasty.length - 1);
-    jrsc.innerText = content + ' @ ' + dynasty + '·' + author + title;
-  });
-</script>
-<div style="text-align: center"><span id="jrsc" >正在加载今日诗词....</span></div>
-
-          
-
-<div class="post-copyright">
-<ul>
-  <li class="post-copyright-author">
-      <strong>原作者： </strong>濬哲
-  </li>
-  <li class="post-copyright-link">
-      <strong>本文链接：</strong>
-      <a href="https://www.junzhe.top/posts/blog-setup-3-next.html" title="Github Pages + Hexo 从零搭建个人博客（三）：Next 主题美化">https://www.junzhe.top/posts/blog-setup-3-next.html</a>
-  </li>
-  <li class="post-copyright-license">
-      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
-
-          <div class="followme">
-  <span>欢迎关注我的其它发布渠道</span>
-
-  <div class="social-list">
-
-      <div class="social-item">
-          <a target="_blank" class="social-link" href="/atom.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-
-            <span class="label">RSS</span>
-          </a>
-      </div>
-  </div>
-</div>
-
-          <div class="post-tags">
-              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
-              <a href="/tags/%E7%BD%91%E7%AB%99%E5%BB%BA%E8%AE%BE/" rel="tag"># 网站建设</a>
-              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
-          </div>
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/posts/blog-setup-2-git.html" rel="prev" title="Github Pages + Hexo 从零搭建个人博客（二）：Git 双分支管理网页与源文件">
-                  <i class="fa fa-angle-left"></i> Github Pages + Hexo 从零搭建个人博客（二）：Git 双分支管理网页与源文件
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/posts/hexo-posts-folder-manage.html" rel="next" title="Hexo 技巧之_posts 文件夹管理">
-                  Hexo 技巧之_posts 文件夹管理 <i class="fa fa-angle-right"></i>
-                </a>
-            </div>
-          </div>
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
     </footer>
   </article>
 </div>
@@ -465,14 +383,234 @@ Page｜基础教程 (二)：NexT 主题基本美化｜全网最细致全面的�
 
 
 
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://www.junzhe.top/posts/blog-setup-2-git.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="濬哲">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="濬哲的博客">
+      <meta itemprop="description" content="技术沉思与人间烟火">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 濬哲的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/blog-setup-2-git.html" class="post-title-link" itemprop="url">Github Pages + Hexo 从零搭建个人博客（二）：Git 双分支管理网页与源文件</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-09-28 18:46:45" itemprop="dateCreated datePublished" datetime="2024-09-28T18:46:45+08:00">2024-09-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-20 00:33:18" itemprop="dateModified" datetime="2025-05-20T00:33:18+08:00">2025-05-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%BB%BA%E8%AE%BE/" itemprop="url" rel="index"><span itemprop="name">个人博客建设</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="双分支管理">双分支管理</h2>
+<p>参考文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/gatieme/article/details/82317704">使用
+GitHub 分支保存 Hexo 环境和博文</a></p>
+<h3 id="为什么要双分支管理">为什么要双分支管理？</h3>
+<p><code>hexo d</code>命令实际上是用了 hexo-deploy-git 工具，将 public 中的内容加入到.deploy_git 文件夹中，然后把这个文件夹的内容同步到远程仓库 (YourgithubName.github.io) 中你<a href="#具体操作">前面设置</a>的分支中。我这里设置的是 main。</p>
+<p>注意！你的 source 文件夹等是不会到 public 里面去的，所以不会被同步！</p>
+<p>那么问题来了。如果我需要在不同地方撰写我的博客，或者我需要使用 github 来进行备份，该怎么办呢？</p>
+<p>这时候就需要我们用两个分支，第一个 main 分支保存 public 的 html 内容，也就是我们的网站，另一个 source 分支来保存我们的配置文件、md 源文件等。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/blog-setup-2-git.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
 
 
     
+
+
+<div class="post-block">
   
-  <div class="comments giscus-container">
-  </div>
   
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://www.junzhe.top/posts/blog-setup-1-basics.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="濬哲">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="濬哲的博客">
+      <meta itemprop="description" content="技术沉思与人间烟火">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 濬哲的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/blog-setup-1-basics.html" class="post-title-link" itemprop="url">Github Pages + Hexo 从零搭建个人博客（一）：基础建设</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-09-27 21:17:27" itemprop="dateCreated datePublished" datetime="2024-09-27T21:17:27+08:00">2024-09-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-20 00:33:18" itemprop="dateModified" datetime="2025-05-20T00:33:18+08:00">2025-05-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%BB%BA%E8%AE%BE/" itemprop="url" rel="index"><span itemprop="name">个人博客建设</span></a>
+        </span>
+    </span>
+
   
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="前言">前言</h2>
+<p>今年我刚刚步入大三，已经进行了两年的计算机科学与技术专业的学习。这两年感觉有些摸鱼，学了一些知识，但是好像也就是为了应付考试，在考试结束以后这些知识慢慢的被遗忘了，这是我不愿意看到的。感觉如果想把自己所学的东西更好的消化吸收，光靠学是不够的，更重要的是把自己学的东西进行分享。只有当你能把一个知识点逻辑清晰的用自己的话讲述给别人时，才能说明自己真的是掌握了这个知识点。</p>
+<p>我也见过学校里一些学长学姐的个人网站，他们分享自己的课程笔记，<del>为我的期末补天提供了宝贵的资源</del>。我自己也是一个比较喜欢折腾的人，感觉在这些地方折腾就像是精心布置自己的房间一样，会让自己非常的有归属感与成就感。于是，我也看了网上不少的教程，希望能够从零开始一步步搭建属于我自己的个人网站。</p>
+<p>第一篇博客就来讲一下我是怎么搭建个人网站的吧！</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/blog-setup-1-basics.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+  </nav>
+
 </div>
   </main>
 
