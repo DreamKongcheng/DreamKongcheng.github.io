@@ -19,24 +19,26 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.junzhe.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="技术沉思与人间烟火">
-<meta property="og:type" content="website">
-<meta property="og:title" content="濬哲的博客">
-<meta property="og:url" content="https://www.junzhe.top/archives/page/4/index.html">
+    <meta name="description" content="前言 推荐系统的召回阶段有许多的负采样策略，网上很多文章也介绍了各种负采样策略的优缺点，但是看了很多感觉不同文章还是有很多出入，并且没有形成一个完整的体系，所以本文尝试对负采样进行一个系统的总结。 正样本 一般直接选择点击过的物品 负样本 简单负样本 全体物品随机采样 均匀抽样：对冷门物品不公平 - 正样本大多数是热门物品 - 如果均匀抽样产生负样本，则负样本大多是冷门物品（因为冷门物品占据了大多">
+<meta property="og:type" content="article">
+<meta property="og:title" content="召回阶段负采样">
+<meta property="og:url" content="https://www.junzhe.top/posts/56761.html">
 <meta property="og:site_name" content="濬哲的博客">
-<meta property="og:description" content="技术沉思与人间烟火">
+<meta property="og:description" content="前言 推荐系统的召回阶段有许多的负采样策略，网上很多文章也介绍了各种负采样策略的优缺点，但是看了很多感觉不同文章还是有很多出入，并且没有形成一个完整的体系，所以本文尝试对负采样进行一个系统的总结。 正样本 一般直接选择点击过的物品 负样本 简单负样本 全体物品随机采样 均匀抽样：对冷门物品不公平 - 正样本大多数是热门物品 - 如果均匀抽样产生负样本，则负样本大多是冷门物品（因为冷门物品占据了大多">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-08-27T02:25:14.000Z">
+<meta property="article:modified_time" content="2025-08-27T02:48:57.038Z">
 <meta property="article:author" content="濬哲">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://www.junzhe.top/archives/page/4/">
+<link rel="canonical" href="https://www.junzhe.top/posts/56761.html">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"archives/page/4/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.junzhe.top/posts/56761.html","path":"posts/56761.html","title":"召回阶段负采样"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>归档 | 濬哲的博客</title>
+<title>召回阶段负采样 | 濬哲的博客</title>
   
 
 
@@ -73,7 +75,119 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-<link rel="alternate" href="/atom.xml" title="濬哲的博客" type="application/atom+xml">
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="濬哲的博客" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
@@ -94,7 +208,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">濬哲的博客</h1>
+      <p class="site-title">濬哲的博客</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">人生如棋，落子无悔</p>
@@ -121,7 +235,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -134,6 +248,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E6%A0%B7%E6%9C%AC"><span class="nav-number">2.</span> <span class="nav-text">正样本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%9F%E6%A0%B7%E6%9C%AC"><span class="nav-number">3.</span> <span class="nav-text">负样本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E8%B4%9F%E6%A0%B7%E6%9C%AC"><span class="nav-number">3.1.</span> <span class="nav-text">简单负样本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%A8%E4%BD%93%E7%89%A9%E5%93%81%E9%9A%8F%E6%9C%BA%E9%87%87%E6%A0%B7"><span class="nav-number">3.1.1.</span> <span class="nav-text">全体物品随机采样</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#batch-%E5%86%85%E8%B4%9F%E6%A0%B7%E6%9C%AC"><span class="nav-number">3.1.2.</span> <span class="nav-text">Batch 内负样本</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -189,134 +304,180 @@
 
     </div>
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.junzhe.top/posts/56761.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="濬哲">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="濬哲的博客">
+      <meta itemprop="description" content="技术沉思与人间烟火">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="召回阶段负采样 | 濬哲的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          召回阶段负采样
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-08-27 10:25:14 / 修改时间：10:48:57" itemprop="dateCreated datePublished" datetime="2025-08-27T10:25:14+08:00">2025-08-27</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>272</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="前言">前言</h2>
+<p>推荐系统的召回阶段有许多的负采样策略，网上很多文章也介绍了各种负采样策略的优缺点，但是看了很多感觉不同文章还是有很多出入，并且没有形成一个完整的体系，所以本文尝试对负采样进行一个系统的总结。</p>
+<h2 id="正样本">正样本</h2>
+<p>一般直接选择点击过的物品</p>
+<h2 id="负样本">负样本</h2>
+<h3 id="简单负样本">简单负样本</h3>
+<h4 id="全体物品随机采样">全体物品随机采样</h4>
+<p>均匀抽样：对冷门物品不公平 - 正样本大多数是热门物品 -
+如果均匀抽样产生负样本，则负样本大多是冷门物品（因为冷门物品占据了大多数）
+- 会让热门物品更热，冷门物品更冷</p>
+<p><strong>非均匀抽样：目的是打压热门物品</strong> -
+负样本的选取概率与热门程度（点击次数）相关 -
+抽样概率正比于点击次数的 0.75 次方</p>
+<h4 id="batch-内负样本">Batch 内负样本</h4>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><script src="//sdk.jinrishici.com/v2/browser/jinrishici.js"></script>
+<script>
+  jinrishici.load((result) => {
+    let jrsc = document.getElementById('jrsc');
+    const data = result.data;
+    let author = data.origin.author;
+    let title = '《' + data.origin.title + '》';
+    let content = data.content.substr(0, data.content.length - 1);
+    let dynasty = data.origin.dynasty.substr(0, data.origin.dynasty.length - 1);
+    jrsc.innerText = content + ' @ ' + dynasty + '·' + author + title;
+  });
+</script>
+<div style="text-align: center"><span id="jrsc" >正在加载今日诗词....</span></div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>濬哲
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://www.junzhe.top/posts/56761.html" title="召回阶段负采样">https://www.junzhe.top/posts/56761.html</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+
         
-        <span class="collection-header">还行! 目前共计 35 篇日志。 继续努力。</span>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2024<span class="collection-year-count">6</span></span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-10-10T16:58:37+08:00"
-              content="2024-10-10">
-          10-10
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/hexo-skip-render.html" itemprop="url">
-            <span itemprop="name">Hexo 如何不渲染.md 与.html 文件</span>
-          </a>
-      </div>
-
-      
-    </header>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/classification-softmax-cross-entropy.html" rel="prev" title="多分类与二分类问题详解">
+                  <i class="fa fa-angle-left"></i> 多分类与二分类问题详解
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/cs336-bpe-tokenizer.html" rel="next" title="cs336-bpe 分词器">
+                  cs336-bpe 分词器 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-09-28T20:04:37+08:00"
-              content="2024-09-28">
-          09-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/hexo-posts-folder-manage.html" itemprop="url">
-            <span itemprop="name">Hexo 技巧之_posts 文件夹管理</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-09-28T19:46:45+08:00"
-              content="2024-09-28">
-          09-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/blog-setup-3-next.html" itemprop="url">
-            <span itemprop="name">Github Pages + Hexo 从零搭建个人博客（三）：Next 主题美化</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-09-28T18:46:45+08:00"
-              content="2024-09-28">
-          09-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/blog-setup-2-git.html" itemprop="url">
-            <span itemprop="name">Github Pages + Hexo 从零搭建个人博客（二）：Git 双分支管理网页与源文件</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-09-27T21:17:27+08:00"
-              content="2024-09-27">
-          09-27
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/blog-setup-1-basics.html" itemprop="url">
-            <span itemprop="name">Github Pages + Hexo 从零搭建个人博客（一）：基础建设</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
   </div>
   
   
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/archives/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span>
-  </nav>
-
 </div>
   </main>
 
